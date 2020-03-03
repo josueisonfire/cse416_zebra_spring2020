@@ -18,6 +18,13 @@
     </head>
 	
 	<body>
+		    <!-- Remainder of Bootstrap components -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		
+		
+		
 		<!-- Top Navigation Bar -->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light"> 
 			<a class="navbar-brand" href="#">Congressional Redistricting</a>
@@ -30,11 +37,13 @@
        	 		</ul>
 			
 				<!-- State select dropdown -->
-				<div class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown"> Select State</a>
+				<div class="nav-item dropdown"> 
+					<a class="btn dropdown-toggle" href="#" id="dropdown-state-select" type="button" data-toggle="dropdown"> Select State</a>
 	        		<div class="dropdown-menu" aria-labelledby="navbarDropdown1"> 
-						<a class="dropdown-item" href="#">Georgia</a> 
-						<a class="dropdown-item" href="#">Maryland</a>
-			        	<a class="dropdown-item" href="#">Texas</a> 
+						<a id="dropdown-USA" class="dropdown-item" href="#">Return To Map</a> 
+						<a id="dropdown-Georgia" class="dropdown-item" href="#">Georgia</a> 
+						<a id="dropdown-Maryland" class="dropdown-item" href="#">Maryland</a>
+			        	<a id="dropdown-Texas" class="dropdown-item" href="#">Texas</a> 
 			  	  	</div>
             	</div>
 			
@@ -44,99 +53,102 @@
 			</div>
 		</nav>
 	
-	<!-- Main Work Section -->
-	<div class="container-fluid">
-		<div class="row">
-				<!-- Leaflet -->
-				<div class="col-md-8">
+		<!-- Main Work Section -->
+		<div class="container-fluid">
+			<div class="row">
+					<!-- Leaflet -->
+					<div class="col-md-8">
 
-					<div id="leaflet-container" class="container-fluid">
+						<div id="leaflet-container" class="container-fluid">
 
-						<div id="leaflet-div">
+							<div id="leaflet-div">
+							</div>
+							<script type="text/javascript">
+								var map = L.map('leaflet-div').setView([37.8, -96], 4);
+
+								L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamxvdWdobGluIiwiYSI6ImNrN2JjMDRsZTAxaWszbG56dTN6NzBlcjQifQ.SDYDAlazcFCETZRLqQhnFg', {id: 'mapbox/light-v9',tileSize: 512,zoomOffset: -1 }).addTo(map);
+								
+
+							</script>
 						</div>
-						<script type="text/javascript">
-							var mymap = L.map('leaflet-div').setView();
-
-
-
-						</script>
 					</div>
-				</div>
 
 
-			<!-- Info Tabs -->
-				<div class="col-md-4">
-					<!-- State Info -->
-					<div class="row">
-						<div id="state-info" class="container-fluid">	
-							<h1>State Info</h1>
-							<div class="row">
-								<div id="state-voting-text" class="col-md-6" >
-									<h6>Voting Data</h6>
+				<!-- Info Tabs -->
+					<div class="col-md-4">
+						<!-- State Info -->
+						<div class="row">
+							<div id="state-info" class="container-fluid">	
+								<h1>State Info</h1>
+								<div class="row">
+									<div id="state-voting-text" class="col-md-6" >
+										<h6>Voting Data</h6>
+										<p>Democratic Votes: 1000</p>
+										<p>Republican Votes: 1000</p>
+										<p>Third Party Votes: 0</p>
+									</div>
+
+									<div id="state-demographic-text" class="col-md-6">
+										<h6>Demographic Data</h6>
+										<p>African American: </p>
+										<p>Asian:</p>
+										<p>Hispanic: </p>
+										<p>Native American: </p>
+										<p>White: </p>
+									</div>
+								</div>
+
+
+							</div>
+						<!-- End of State Info -->
+						</div>
+
+						<!-- Precinct Info -->
+						<div class="row">
+							<div id="precint-tab" class="container-fluid">
+								<div id="precint-controls" class="btn-group" role="group">
+									<button type="button" class="btn btn-outline-primary">Voting Data</button>
+									<button type="button" class="btn btn-outline-primary ">Demographic Data</button>
+									<button type="button" class="btn btn-outline-primary ">Comments</button>
+								</div>
+
+								<div id="precint-voting-data-text">
 									<p>Democratic Votes: 1000</p>
 									<p>Republican Votes: 1000</p>
 									<p>Third Party Votes: 0</p>
+
 								</div>
 
-								<div id="state-demographic-text" class="col-md-6">
+								<div id="precint-demographic-data-text" hidden>
 									<h6>Demographic Data</h6>
 									<p>African American: </p>
 									<p>Asian:</p>
 									<p>Hispanic: </p>
 									<p>Native American: </p>
-									<p>White: </p>
+									<p>White: </p>			
 								</div>
-							</div>
-							
 
+								<div id="precint-comments" hidden>
+
+
+								</div>
+							</div>	
 						</div>
-					<!-- End of State Info -->
-					</div>
 
-					<!-- Precinct Info -->
-					<div class="row">
-						<div id="precint-tab" class="container-fluid">
-							<div id="precint-controls" class="btn-group" role="group">
-								<button type="button" class="btn btn-outline-primary">Voting Data</button>
-								<button type="button" class="btn btn-outline-primary ">Demographic Data</button>
-								<button type="button" class="btn btn-outline-primary ">Comments</button>
-							</div>
-							
-							<div id="precint-voting-data-text">
-								<p>Democratic Votes: 1000</p>
-								<p>Republican Votes: 1000</p>
-								<p>Third Party Votes: 0</p>
-							
-							</div>
-							
-							<div id="precint-demographic-data-text" hidden>
-								<h6>Demographic Data</h6>
-								<p>African American: </p>
-								<p>Asian:</p>
-								<p>Hispanic: </p>
-								<p>Native American: </p>
-								<p>White: </p>			
-							</div>
-							
-							<div id="precint-comments" hidden>
-							
-							
-							</div>
-						</div>	
+					<!-- End of Info tabs-->
 					</div>
+				<!-- End of Main Work Section -->
+			</div>
 
-				<!-- End of Info tabs-->
-				</div>
-			<!-- End of Main Work Section -->
 		</div>
+        
+        
+	
+        
 
-	</div>
-        
-        
-        
-    <!-- Remainder of Bootstrap components -->
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		
+		
+	<!--JS Scripts -->
+		<script src ="js/selectstate.js"></script>
 	</body>
 </html>
