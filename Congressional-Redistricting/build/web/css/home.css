@@ -1,17 +1,57 @@
-#leaflet-div{
-	height: 800px;
-	width: auto;
-}
-
 p{
 	margin: 0;
 	padding: 0;
 }
 
+#dropdown-USA{
+	display: none;
+}
+
+
+
+#leaflet-div{
+	height: 800px;
+	width: auto;
+}
+
+
+
+
+
 #state-info{
 	height: 300px;
 	display:none;
 }
+
+#state-info-header{
+	text-align: center;
+}
+
+#election-dropdown-2016{
+	display: none;
+}
+
+#election-dropdown-2012{
+	display: block;
+}
+
+#state-dropdown-voting{
+	display: none;
+}
+
+#state-voting-text{
+	display: block;
+}
+
+#state-demographic-text{
+	display: none;
+}
+
+#state-error-text{
+	display: none;
+}
+
+
 
 #precint-tab{
 	display:none;

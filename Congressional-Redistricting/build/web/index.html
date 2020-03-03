@@ -79,22 +79,63 @@
 						<!-- State Info -->
 						<div class="row">
 							<div id="state-info" class="container-fluid">	
-								<h1>State Info</h1>
+								<h1 id="state-info-header"></h1>
 								<div class="row">
-									<div id="state-voting-text" class="col-md-6" >
-										<h6>Voting Data</h6>
+									
+									<!-- State Info dropdown -->
+									<div class="col-md-6">
+										<div class="dropdown" style="width: 100%">
+											<button id="state-info-dropdown" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+												Voting Data
+											</button> 
+											<div class="dropdown-menu" aria-labelledby="election-select-dropdown">
+												<a id="state-dropdown-voting" class="dropdown-item" href="#">Voting Data</a>
+												<a id="state-dropdown-demographic" class="dropdown-item" href="#">Demographic Data</a>
+												<a id="state-dropdown-error" class="dropdown-item" href="#">Error Data</a>
+
+											</div>
+										</div>	
+									<!-- End State Info dropdown-->
+									</div>									
+									<!-- Election dropdown -->
+									<div class="col-md-6">
+										<div class="dropdown">
+											<button id="election-select-dropdown" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+												2016 Presidential Election
+											</button> 
+											<div class="dropdown-menu" aria-labelledby="election-select-dropdown">
+												<a id="election-dropdown-2016" class="dropdown-item" href="#">2016 Presidential Election</a>
+												<a id="election-dropdown-2012" class="dropdown-item" href="#">2012 Presidential Election</a>
+											</div>
+										</div>	
+									<!-- End Election dropdown -->
+									</div>
+									
+								</div>
+								<br>
+								<div class="row">
+
+									<div id="state-voting-text">
 										<p>Democratic Votes: 1000</p>
 										<p>Republican Votes: 1000</p>
 										<p>Third Party Votes: 0</p>
 									</div>
 
-									<div id="state-demographic-text" class="col-md-6">
-										<h6>Demographic Data</h6>
+									<div id="state-demographic-text">
 										<p>African American: </p>
 										<p>Asian:</p>
 										<p>Hispanic: </p>
 										<p>Native American: </p>
 										<p>White: </p>
+									</div>
+									
+									<div id="state-error-text">
+										<p>Error 1</p>
+										<p>Error 2</p>
+										<p>Error 3</p>
+										<p>Error 4</p>
+										<p>Error 5</p>
+										<p>Error 6</p>
 									</div>
 								</div>
 
@@ -150,5 +191,7 @@
 		
 	<!--JS Scripts -->
 		<script src ="js/selectstate.js"></script>
+		<script src ="js/selectelection.js"></script>
+		<script src ="js/selectstateinfo.js"></script>
 	</body>
 </html>
