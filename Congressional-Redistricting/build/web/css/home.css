@@ -27,6 +27,9 @@ p{
 	padding-left: 5px;
 }
 
+
+
+
 #leaflet-div{
 	height: 800px;
 	width: auto;
@@ -34,7 +37,7 @@ p{
 
 
 
-
+/*#############STATE TAB/*#############*/
 
 #state-info{
 	height: 350px;
@@ -89,11 +92,12 @@ p{
 }
 
 
-
+/*#############PRECINT TAB/*#############*/
 
 #precint-tab{
 	display:block;
 }
+
 
 #precint-controls{
 	padding-bottom: 12px;
@@ -113,6 +117,7 @@ p{
 	background-color: darkgray;
 	color: black;
 }
+
 
 #precint-voting-tab{
 }
@@ -153,8 +158,6 @@ p{
 #precint-white-info{
 	padding-bottom: 10px;
 }
-
-
 
 
 #precint-comments-tab{
