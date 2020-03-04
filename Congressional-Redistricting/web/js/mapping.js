@@ -79,6 +79,7 @@ var precinctDataFront = {
     });
 
     map.addLayer(primary_layer);
+    /*
     var drawnItems = new L.FeatureGroup();
     map.addLayer(drawnItems);
     var drawControl = new L.Control.Draw({
@@ -87,7 +88,8 @@ var precinctDataFront = {
         }
     });
     map.addControl(drawControl);
-
+    */
+    
     function getColor(d) {
         return d > 1000 ? '#800026' :
                d > 500  ? '#BD0026' :
