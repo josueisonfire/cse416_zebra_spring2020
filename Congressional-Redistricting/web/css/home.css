@@ -129,9 +129,33 @@ p{
 	padding-bottom: 10px;
 }
 
+
 #precint-demographic-tab{
 	display: none;
 }
+
+#precint-africanamerican-info{
+	padding-bottom: 10px;
+}
+
+#precint-asian-info{
+	padding-bottom: 10px;
+}
+
+#precint-hispanic-info{
+	padding-bottom: 10px;
+}
+
+#precint-nativeamerican-info{
+	padding-bottom: 10px;
+}
+
+#precint-white-info{
+	padding-bottom: 10px;
+}
+
+
+
 
 #precint-comments-tab{
 	display: none;
