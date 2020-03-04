@@ -1,6 +1,20 @@
+body{
+	background-color: lightgray;
+}
+
+
 p{
 	margin: 0;
 	padding: 0;
+}
+
+
+#dropdown-state-holder{
+	padding-right: 320px;
+}
+
+#dropdown-state-select{
+	background-color: darkgray;
 }
 
 #dropdown-USA{
@@ -8,6 +22,10 @@ p{
 }
 
 
+#state-park-text{
+	color: white;
+	padding-left: 5px;
+}
 
 #leaflet-div{
 	height: 800px;
@@ -19,20 +37,21 @@ p{
 
 
 #state-info{
-	height: 300px;
+	height: 350px;
 	display:none;
 }
 
 #state-info-header{
 	text-align: center;
+	text-decoration: underline;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
-#election-dropdown-2016{
-	display: none;
-}
 
-#election-dropdown-2012{
-	display: block;
+#state-info-dropdown{
+	background-color: darkgray;
+	color: black;
 }
 
 #state-dropdown-voting{
@@ -52,7 +71,48 @@ p{
 }
 
 
+#election-select-dropdown{
+	background-color: darkgray;
+	color: black;
+}
+
+#election-dropdown-2016{
+	display: none;
+}
+
+#election-dropdown-2012{
+	display: block;
+}
+
+
+
 
 #precint-tab{
-	display:none;
+	display:block;
+}
+
+#precint-voting-btn{
+	background-color: darkgray;
+	color: black;
+}
+
+#precint-demographic-btn{
+	background-color: darkgray;
+	color: black;
+}
+
+#precint-comments-btn{
+	background-color: darkgray;
+	color: black;
+}
+
+#precint-voting-tab{
+}
+
+#precint-demographic-tab{
+	display: none;
+}
+
+#precint-comments-tab{
+	display: none;
 }

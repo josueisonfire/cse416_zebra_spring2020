@@ -26,7 +26,7 @@
 		
 		
 		<!-- Top Navigation Bar -->
-		<nav class="navbar navbar-expand-lg navbar-light bg-light"> 
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
 			<a class="navbar-brand" href="#">Congressional Redistricting</a>
 	  	
 			<div class="collapse navbar-collapse" id="navbarSupportedContent1">
@@ -37,7 +37,7 @@
        	 		</ul>
 			
 				<!-- State select dropdown -->
-				<div class="nav-item dropdown"> 
+				<div id="dropdown-state-holder" class="nav-item dropdown"> 
 					<a class="btn dropdown-toggle" href="#" id="dropdown-state-select" type="button" data-toggle="dropdown"> Select State</a>
 	        		<div class="dropdown-menu" aria-labelledby="navbarDropdown1"> 
 						<a id="dropdown-USA" class="dropdown-item" href="#">Return To Map</a> 
@@ -49,7 +49,7 @@
 			
 				<!-- Show state park checkbox -->
 				<input type="checkbox" id="stateparkcheckbox">
-				<lable for="stateparkcheckbox">Show state park boundries</lable>
+				<lable for="stateparkcheckbox" id="state-park-text">Show state park boundries</lable>
 			</div>
 		</nav>
 	
@@ -114,29 +114,35 @@
 								</div>
 								<br>
 								<div class="row">
+									<!-- State Info Text -->
+									<div class="col-md-12">
+										<div id="state-voting-text">
+											<p>Democratic Votes: 1000</p>
+											<p>Republican Votes: 1000</p>
+											<p>Third Party Votes: 0</p>
+										</div>
 
-									<div id="state-voting-text">
-										<p>Democratic Votes: 1000</p>
-										<p>Republican Votes: 1000</p>
-										<p>Third Party Votes: 0</p>
-									</div>
+										<div id="state-demographic-text">
+											<p>African American: </p>
+											<p>Asian:</p>
+											<p>Hispanic: </p>
+											<p>Native American: </p>
+											<p>White: </p>
+										</div>
 
-									<div id="state-demographic-text">
-										<p>African American: </p>
-										<p>Asian:</p>
-										<p>Hispanic: </p>
-										<p>Native American: </p>
-										<p>White: </p>
+										<div id="state-error-text">
+											<p>Error 1</p>
+											<p>Error 2</p>
+											<p>Error 3</p>
+											<p>Error 4</p>
+											<p>Error 5</p>
+											<p>Error 6</p>
+										</div>
+									<!-- End State Info Text -->	
 									</div>
 									
-									<div id="state-error-text">
-										<p>Error 1</p>
-										<p>Error 2</p>
-										<p>Error 3</p>
-										<p>Error 4</p>
-										<p>Error 5</p>
-										<p>Error 6</p>
-									</div>
+									
+									
 								</div>
 
 
@@ -148,31 +154,32 @@
 						<div class="row">
 							<div id="precint-tab" class="container-fluid">
 								<div id="precint-controls" class="btn-group" role="group">
-									<button type="button" class="btn btn-outline-primary">Voting Data</button>
-									<button type="button" class="btn btn-outline-primary ">Demographic Data</button>
-									<button type="button" class="btn btn-outline-primary ">Comments</button>
+									<button id="precint-voting-btn" type="button" class="btn btn-outline-secondary">Voting Data</button>
+									<button id="precint-demographic-btn" type="button" class="btn btn-outline-secondary ">Demographic Data</button>
+									<button id="precint-comments-btn" type="button" class="btn btn-outline-secondary ">Comments</button>
 								</div>
 
-								<div id="precint-voting-data-text">
+								<div id="precint-voting-tab">
 									<p>Democratic Votes: 1000</p>
 									<p>Republican Votes: 1000</p>
 									<p>Third Party Votes: 0</p>
 
 								</div>
 
-								<div id="precint-demographic-data-text" hidden>
-									<h6>Demographic Data</h6>
+								<div id="precint-demographic-tab">
 									<p>African American: </p>
 									<p>Asian:</p>
 									<p>Hispanic: </p>
 									<p>Native American: </p>
 									<p>White: </p>			
 								</div>
-
-								<div id="precint-comments" hidden>
-
-
+								
+								<div id="precint-comments-tab">
+								
+								
 								</div>
+
+								
 							</div>	
 						</div>
 
@@ -193,5 +200,6 @@
 		<script src ="js/selectstate.js"></script>
 		<script src ="js/selectelection.js"></script>
 		<script src ="js/selectstateinfo.js"></script>
+		<script src ="js/selectprecintinfo.js"></script>
 	</body>
 </html>
