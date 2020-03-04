@@ -2,7 +2,7 @@ var currentStateSelection = "USA"
 
 $(document).ready(function(){
     
-    
+    /*
     $("#dropdown-USA").click(function(){
         $("#dropdown-state-select").text("Select State");
         $("#dropdown-USA").css("display", "none");
@@ -37,5 +37,5 @@ $(document).ready(function(){
         $("#state-info-header").text("Texas")
 	currentStateSelection = "Texas";
     });
-    
+    */
 });
