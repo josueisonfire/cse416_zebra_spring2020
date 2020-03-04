@@ -32,4 +32,14 @@ $(document).ready(function(){
         currentStateInfoSelection = "error";
     });
     
+    
+    $("#state-dropdown-change").click(function(){
+        $("#state-dropdown-change").css("display", "none");
+        $("#state-info-dropdown").text("Change Log");
+        $("#state-change-text").css("display", "block");
+        $("#state-dropdown-" + currentStateInfoSelection).css("display", "block");
+        $("#state-" + currentStateInfoSelection + "-text").css("display", "none");
+        currentStateInfoSelection = "change";
+    });
+    
 });

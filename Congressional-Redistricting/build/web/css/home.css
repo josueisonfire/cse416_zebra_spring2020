@@ -70,6 +70,10 @@ p{
 	display: none;
 }
 
+#state-change-text{
+	display: none;
+}
+
 
 #election-select-dropdown{
 	background-color: darkgray;
