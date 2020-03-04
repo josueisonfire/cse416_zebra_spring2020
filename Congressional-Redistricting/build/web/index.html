@@ -156,19 +156,44 @@
 						<!-- Precinct Info -->
 						<div class="row">
 							<div id="precint-tab" class="container-fluid">
+								
 								<div id="precint-controls" class="btn-group" role="group">
 									<button id="precint-voting-btn" type="button" class="btn btn-outline-secondary">Voting Data</button>
 									<button id="precint-demographic-btn" type="button" class="btn btn-outline-secondary ">Demographic Data</button>
 									<button id="precint-comments-btn" type="button" class="btn btn-outline-secondary ">Comments</button>
 								</div>
-
+								
+								
+								<!-- Precint Voting Text -->
 								<div id="precint-voting-tab">
-									<p>Democratic Votes: 1000</p>
-									<p>Republican Votes: 1000</p>
-									<p>Third Party Votes: 0</p>
-
+									<div class="row" id="precint-dem-info">
+										<div class="col-md-8">
+											<p>Democratic Votes: 1000</p>
+										</div>
+										<div class="col-md-2">
+											<button id="edit-dem-btn" type="button" class="btn btn-outline-secondary">Edit</button>
+										</div>
+									</div>
+									<div class="row" id="precint-rep-info">
+										<div class="col-md-8">
+											<p>Republican Votes: 1000</p>
+										</div>
+										<div class="col-md-2">
+											<button id="edit-rep-btn" type="button" class="btn btn-outline-secondary">Edit</button>
+										</div>
+									</div>
+									<div class="row" id="precint-third-info">
+										<div class="col-md-8">
+											<p>Third Party Votes: 1000</p>
+										</div>
+										<div class="col-md-2">
+											<button id="edit-third-btn" type="button" class="btn btn-outline-secondary">Edit</button>
+										</div>
+									</div>
+								<!-- End Precint Voting -->	
 								</div>
 
+								
 								<div id="precint-demographic-tab">
 									<p>African American: </p>
 									<p>Asian:</p>

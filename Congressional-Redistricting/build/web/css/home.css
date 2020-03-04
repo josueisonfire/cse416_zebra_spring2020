@@ -71,7 +71,7 @@ p{
 }
 
 #state-change-text{
-	display: none;
+	display: none;	
 }
 
 
@@ -95,6 +95,10 @@ p{
 	display:block;
 }
 
+#precint-controls{
+	padding-bottom: 12px;
+}
+
 #precint-voting-btn{
 	background-color: darkgray;
 	color: black;
@@ -111,6 +115,18 @@ p{
 }
 
 #precint-voting-tab{
+}
+
+#precint-dem-info{
+	padding-bottom: 10px;
+}
+
+#precint-rep-info{
+	padding-bottom: 10px;
+}
+
+#precint-third-info{
+	padding-bottom: 10px;
 }
 
 #precint-demographic-tab{
