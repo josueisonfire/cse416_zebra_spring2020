@@ -76,7 +76,7 @@ var precinctDataFront = {
         id: 'mapbox/light-v9',
         tileSize: 512,
         zoomOffset: -1 
-    })
+    });
 
     map.addLayer(primary_layer);
     var drawnItems = new L.FeatureGroup();
@@ -181,7 +181,7 @@ geojson_prefr = L.geoJson(precinctDataFront, {
     });
 
     $("#dropdown-Georgia").on("click", function () {
-        map.fitBounds(geojson_s._layers[43].getBounds());
+        map.fitBounds(geojson_s._layers[66].getBounds());
         $("#dropdown-state-select").text("Georgia");
         $("#state-info").css("display", "block");
         $("#dropdown-Georgia").css("display", "none");
@@ -191,7 +191,7 @@ geojson_prefr = L.geoJson(precinctDataFront, {
     });
 
     $("#dropdown-Maryland").on("click", function () {
-        map.fitBounds(geojson_s._layers[42].getBounds());
+        map.fitBounds(geojson_s._layers[65].getBounds());
         $("#dropdown-state-select").text("Maryland");
         $("#state-info").css("display", "block");
         $("#dropdown-Maryland").css("display", "none");
@@ -201,7 +201,7 @@ geojson_prefr = L.geoJson(precinctDataFront, {
     });
 
     $("#dropdown-Texas").on("click", function () {
-        map.fitBounds(geojson_s._layers[40].getBounds());
+        map.fitBounds(geojson_s._layers[63].getBounds());
         $("#dropdown-state-select").text("Texas");
         $("#state-info").css("display", "block");
         $("#dropdown-Texas").css("display", "none");
