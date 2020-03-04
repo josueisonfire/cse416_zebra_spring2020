@@ -116,12 +116,27 @@ var precinctDataFront = {
     }
 }
 function resetHighlight(e) {
-    geojson.resetStyle(e.target);
+    geojson_s.resetStyle(e.target);
 }
 
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
+    selectStateFromMenu(e)
 }
+
+    function selectStateFromMenu(e) {
+        console.log(e.target.feature.properties.NAME);
+        console.log(geojson_s);
+        if(e.target.feature.properties.NAME.localeCompare("Georgia") == 0) {
+            $("#dropdown-Georgia").click();
+        }
+        else if(e.target.feature.properties.NAME.localeCompare("Maryland") == 0) {
+            $("#dropdown-Maryland").click();
+        }
+        else if(e.target.feature.properties.NAME.localeCompare("Texas") == 0) {
+            $("#dropdown-Texas").click();
+        }
+    }
 
 function onEachFeature(feature, layer) {
     layer.on({
@@ -148,6 +163,45 @@ geojson_prefr = L.geoJson(precinctDataFront, {
     onEachFeature: onEachFeature
 })
 
+    $("#dropdown-USA").on("click", function () {
+        map.setView([37.8, -96], 4);
+        $("#dropdown-state-select").text("Select State");
+        $("#dropdown-USA").css("display", "none");
+        $("#dropdown-" + currentStateSelection).css("display", "block");
+        $("#state-info").css("display", "none");
+        currentStateSelection = "USA";
+    });
+
+    $("#dropdown-Georgia").on("click", function () {
+        map.fitBounds(geojson_s._layers[43].getBounds());
+        $("#dropdown-state-select").text("Georgia");
+        $("#state-info").css("display", "block");
+        $("#dropdown-Georgia").css("display", "none");
+        $("#dropdown-" + currentStateSelection).css("display", "block");
+        $("#state-info-header").text("Georgia")
+        currentStateSelection = "Georgia";
+    });
+
+    $("#dropdown-Maryland").on("click", function () {
+        map.fitBounds(geojson_s._layers[42].getBounds());
+        $("#dropdown-state-select").text("Maryland");
+        $("#state-info").css("display", "block");
+        $("#dropdown-Maryland").css("display", "none");
+        $("#dropdown-" + currentStateSelection).css("display", "block");
+        $("#state-info-header").text("Maryland")
+        currentStateSelection = "Maryland";
+    });
+
+    $("#dropdown-Texas").on("click", function () {
+        map.fitBounds(geojson_s._layers[40].getBounds());
+        $("#dropdown-state-select").text("Texas");
+        $("#state-info").css("display", "block");
+        $("#dropdown-Texas").css("display", "none");
+        $("#dropdown-" + currentStateSelection).css("display", "block");
+        $("#state-info-header").text("Texas")
+        currentStateSelection = "Texas";
+    });
+
 var layergroup1 = L.layerGroup([geojson_s]);
 layergroup1.addTo(map);
 var layergroup2 = L.layerGroup([geojson_pre]);
@@ -155,18 +209,9 @@ layergroup2.addTo(map);
 var layergroup3 = L.layerGroup([geojson_prefr])
 layergroup3.addTo(map);
 
-layergroup1.bringToBack()
-layergroup2.bringToFront()
-layergroup3.bringToFront()
-layergroup3.bringToFront()
-
-
-
-
-
-
-
-
-
+layergroup1.bringToBack();
+layergroup2.bringToFront();
+layergroup3.bringToFront();
+layergroup3.bringToFront();
 
 });  

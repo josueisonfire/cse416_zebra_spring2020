@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef91033e-58cc-48a8-a635-cb2298c70c7e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Congressional-Redistricting/build/web/js/mapping.js" beforeDir="false" afterPath="$PROJECT_DIR$/Congressional-Redistricting/build/web/js/mapping.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Congressional-Redistricting/build/web/js/selectstate.js" beforeDir="false" afterPath="$PROJECT_DIR$/Congressional-Redistricting/build/web/js/selectstate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Congressional-Redistricting/web/js/mapping.js" beforeDir="false" afterPath="$PROJECT_DIR$/Congressional-Redistricting/web/js/mapping.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Congressional-Redistricting/web/js/selectstate.js" beforeDir="false" afterPath="$PROJECT_DIR$/Congressional-Redistricting/web/js/selectstate.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,25 +17,25 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Congressional-Redistricting/build/web/js/mapping.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="78" column="32" lean-forward="true" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Congressional-Redistricting/build/web/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-68">
-              <caret line="65" column="65" lean-forward="true" selection-start-line="65" selection-start-column="65" selection-end-line="65" selection-end-column="65" />
+            <state relative-caret-position="423">
+              <caret line="106" column="29" selection-start-line="106" selection-start-column="22" selection-end-line="106" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Congressional-Redistricting/build/web/js/selectstate.js">
+        <entry file="file://$PROJECT_DIR$/Congressional-Redistricting/build/web/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="539">
+            <state relative-caret-position="-1853">
+              <caret line="65" column="65" lean-forward="true" selection-start-line="65" selection-start-column="65" selection-end-line="65" selection-end-column="65" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Congressional-Redistricting/web/js/selectstate.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="663">
               <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
             </state>
           </provider>
@@ -57,6 +58,8 @@
         <option value="$PROJECT_DIR$/Congressional-Redistricting/build/web/index.html" />
         <option value="$PROJECT_DIR$/Congressional-Redistricting/build/web/js/mapping.js" />
         <option value="$PROJECT_DIR$/Congressional-Redistricting/build/web/js/selectstate.js" />
+        <option value="$PROJECT_DIR$/Congressional-Redistricting/web/js/selectstate.js" />
+        <option value="$PROJECT_DIR$/Congressional-Redistricting/web/js/mapping.js" />
       </list>
     </option>
   </component>
@@ -98,20 +101,19 @@
               <item name="cse416_zebra_spring2020" type="b2602c69:ProjectViewProjectNode" />
               <item name="cse416_zebra_spring2020" type="462c0819:PsiDirectoryNode" />
               <item name="Congressional-Redistricting" type="462c0819:PsiDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cse416_zebra_spring2020" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cse416_zebra_spring2020" type="462c0819:PsiDirectoryNode" />
-              <item name="Congressional-Redistricting" type="462c0819:PsiDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cse416_zebra_spring2020" type="b2602c69:ProjectViewProjectNode" />
               <item name="cse416_zebra_spring2020" type="462c0819:PsiDirectoryNode" />
               <item name="Congressional-Redistricting" type="462c0819:PsiDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cse416_zebra_spring2020" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cse416_zebra_spring2020" type="462c0819:PsiDirectoryNode" />
+              <item name="Congressional-Redistricting" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -123,6 +125,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -153,12 +156,12 @@
       <updated>1583291718773</updated>
       <workItem from="1583291720244" duration="80000" />
       <workItem from="1583292223975" duration="1151000" />
-      <workItem from="1583296833161" duration="8919000" />
+      <workItem from="1583296833161" duration="9854000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10150000" />
+    <option name="totallyTimeSpent" value="11085000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -233,15 +236,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Congressional-Redistricting/build/web/js/mapping.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="78" column="32" lean-forward="true" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
+        <state relative-caret-position="423">
+          <caret line="106" column="29" selection-start-line="106" selection-start-column="22" selection-end-line="106" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Congressional-Redistricting/web/js/mapping.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="194" column="50" lean-forward="true" selection-start-line="194" selection-start-column="50" selection-end-line="194" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Congressional-Redistricting/build/web/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
+        <state relative-caret-position="-1853">
           <caret line="65" column="65" lean-forward="true" selection-start-line="65" selection-start-column="65" selection-end-line="65" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Congressional-Redistricting/web/js/selectstate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
         </state>
       </provider>
     </entry>
