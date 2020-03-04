@@ -70,7 +70,7 @@ var precinctDataFront = {
 };
 
 
-    var map = L.map('leaflet-div').setView([37.8, -96], 4);
+    var map = L.map('leaflet-div', {drawControl: true}).setView([37.8, -96], 4);
 
     var primary_layer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamxvdWdobGluIiwiYSI6ImNrN2JjMDRsZTAxaWszbG56dTN6NzBlcjQifQ.SDYDAlazcFCETZRLqQhnFg',{
         id: 'mapbox/light-v9',
@@ -79,6 +79,14 @@ var precinctDataFront = {
     })
 
     map.addLayer(primary_layer);
+    var drawnItems = new L.FeatureGroup();
+    map.addLayer(drawnItems);
+    var drawControl = new L.Control.Draw({
+        edit: {
+            featureGroup: drawnItems
+        }
+    });
+    map.addControl(drawControl);
 
     function getColor(d) {
         return d > 1000 ? '#800026' :
