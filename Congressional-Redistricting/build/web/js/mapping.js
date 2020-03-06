@@ -104,7 +104,7 @@ geojson = L.geoJson(statesData, {
     });
 
     $("#dropdown-Georgia").on("click", function () {
-        map.fitBounds(geojson._layers[40].getBounds());
+        map.fitBounds(geojson._layers[60].getBounds());
         $("#dropdown-state-select").text("Georgia");
         $("#state-info").css("display", "block");
         $("#dropdown-Georgia").css("display", "none");
@@ -114,7 +114,7 @@ geojson = L.geoJson(statesData, {
     });
 
     $("#dropdown-Maryland").on("click", function () {
-        map.fitBounds(geojson._layers[39].getBounds());
+        map.fitBounds(geojson._layers[59].getBounds());
         $("#dropdown-state-select").text("Maryland");
         $("#state-info").css("display", "block");
         $("#dropdown-Maryland").css("display", "none");
@@ -124,7 +124,7 @@ geojson = L.geoJson(statesData, {
     });
 
     $("#dropdown-Texas").on("click", function () {
-        map.fitBounds(geojson._layers[37].getBounds());
+        map.fitBounds(geojson._layers[57].getBounds());
         $("#dropdown-state-select").text("Texas");
         $("#state-info").css("display", "block");
         $("#dropdown-Texas").css("display", "none");

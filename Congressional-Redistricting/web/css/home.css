@@ -1,5 +1,6 @@
 body{
 	background-color: lightgray;
+	font-size: small;
 }
 
 
@@ -7,6 +8,11 @@ p{
 	margin: 0;
 	padding: 0;
 }
+
+.no-margin{
+  margin: 0;  
+}
+
 
 
 #dropdown-state-holder{
