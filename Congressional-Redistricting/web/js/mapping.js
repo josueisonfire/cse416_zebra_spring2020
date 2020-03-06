@@ -191,7 +191,9 @@ geojson_prefr = L.geoJson(precinctDataFront, {
 				return layer
 			}
 		});
-		map.fitBounds(match.getBounds());
+		//map.fitBounds(match.getBounds());
+        map.flyTo(match.getBounds().getCenter());
+        map.flyTo(match.getBounds().getCenter(), 4);
         $("#dropdown-state-select").text("Georgia");
         $("#state-info").css("display", "inline");
         $("#dropdown-Georgia").css("display", "none");
@@ -206,7 +208,9 @@ geojson_prefr = L.geoJson(precinctDataFront, {
 				return layer
 			}
 		});
-		map.fitBounds(match.getBounds());
+		//map.fitBounds(match.getBounds());
+        map.flyTo(match.getBounds().getCenter());
+        map.flyTo(match.getBounds().getCenter(), 4);
         $("#dropdown-state-select").text("Maryland");
         $("#state-info").css("display", "inline");
         $("#dropdown-Maryland").css("display", "none");
@@ -222,7 +226,11 @@ geojson_prefr = L.geoJson(precinctDataFront, {
 				return layer
 			}
 		});
-		map.fitBounds(match.getBounds());
+		//match.getBounds();
+        map.flyTo(match.getBounds().getCenter());
+        map.flyTo(match.getBounds().getCenter(), 4);
+		//map.getBounds();
+
         $("#dropdown-state-select").text("Texas");
         $("#state-info").css("display", "inline");
         $("#dropdown-Texas").css("display", "none");
@@ -239,7 +247,7 @@ var layergroup3 = L.layerGroup([geojson_prefr])
 layergroup3.addTo(map);
 
 
-    map.on('zoomstart', function() {
+    map.on('zoomend', function() {
         var zoomlevel = map.getZoom();
 
         if (zoomlevel >6){

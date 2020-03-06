@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef91033e-58cc-48a8-a635-cb2298c70c7e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Congressional-Redistricting/build/web/js/mapping.js" beforeDir="false" afterPath="$PROJECT_DIR$/Congressional-Redistricting/build/web/js/mapping.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Congressional-Redistricting/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Congressional-Redistricting/web/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Congressional-Redistricting/web/js/mapping.js" beforeDir="false" afterPath="$PROJECT_DIR$/Congressional-Redistricting/web/js/mapping.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Congressional-Redistricting/web/js/mapping.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-14892">
-              <caret line="7" column="1591" lean-forward="true" selection-start-line="7" selection-start-column="1591" selection-end-line="7" selection-end-column="1591" />
+            <state relative-caret-position="393">
+              <caret line="212" column="52" selection-start-line="212" selection-start-column="52" selection-end-line="212" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -153,7 +152,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17769000" />
+    <option name="totallyTimeSpent" value="18488000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="39" width="1546" height="784" extended-state="0" />
@@ -255,8 +254,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Congressional-Redistricting/web/js/mapping.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-14892">
-          <caret line="7" column="1591" lean-forward="true" selection-start-line="7" selection-start-column="1591" selection-end-line="7" selection-end-column="1591" />
+        <state relative-caret-position="393">
+          <caret line="212" column="52" selection-start-line="212" selection-start-column="52" selection-end-line="212" selection-end-column="52" />
         </state>
       </provider>
     </entry>
