@@ -43,133 +43,121 @@
 					<div id="state-info">	
 						<h1 id="state-info-header"></h1>
 					</div>
-							
-						<!-- End of State Info -->
 
-						<!-- Precinct Info -->
-						<br>
-							<ul class="nav nav-tabs" id="myTab" role="tablist">
-
-								<!--
-								<div id="precint-controls" class="btn-group" role="group">
-									<button id="precint-info-btn" type="button" class="btn btn-outline-secondary">Voting Data</button>
-									<button id="precint-error-btn" type="button" class="btn btn-outline-secondary ">Demographic Data</button>
-									<button id="precint-history-btn" type="button" class="btn btn-outline-secondary ">Comments</button>
+					<!-- Precinct Info -->
+					<br>
+					<ul class="nav nav-tabs" id="myTab" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" id="precinct-info-tab" data-toggle="tab" href="#precinct-info" role="tab" aria-controls="precinct-info" aria-selected="true">Info</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="precinct-error-tab" data-toggle="tab" href="#precinct-error" role="tab" aria-controls="precinct-error" aria-selected="false">Errors</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="precinct-history-tab" data-toggle="tab" href="#precinct-comment" role="tab" aria-controls="precinct-comment" aria-selected="false">History</a>
+						</li>
+					</ul>
+					<!-- Precint Voting Text -->
+					<div class="tab-content" id="myTabContent">
+						<div class="tab-pane fade show active" id="precinct-info" role="tabpanel" aria-labelledby="precinct-info-tab">
+							<br>
+							<div class="dropdown">
+								<button id="election-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">
+									2016 Presidential Election
+								</button> 
+								<div class="dropdown-menu" aria-labelledby="election-select-dropdown">
+									<a id="election-dropdown-2016" class="dropdown-item" href="#">2016 Presidential Election</a>
+									<a id="election-dropdown-2012" class="dropdown-item" href="#">2012 Presidential Election</a>
 								</div>
-								-->
-								
-								<li class="nav-item">
-									<a class="nav-link active" id="precinct-info-tab" data-toggle="tab" href="#precinct-info" role="tab" aria-controls="precinct-info" aria-selected="true">Info</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="precinct-info-tab" data-toggle="tab" href="#precinct-error" role="tab" aria-controls="precinct-error" aria-selected="false">Errors</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="precinct-info-tab" data-toggle="tab" href="#precinct-comment" role="tab" aria-controls="precinct-comment" aria-selected="false">History</a>
-								</li>
-							</ul>
-								<!-- Precint Voting Text -->
-							<div class="tab-content" id="myTabContent">
-								<div class="tab-pane fade show active" id="precinct-info" role="tabpanel" aria-labelledby="precinct-info-tab">
-									<br>
-											<div class="dropdown">
-												<button id="election-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">
-													2016 Presidential Election
-												</button> 
-												<div class="dropdown-menu" aria-labelledby="election-select-dropdown">
-													<a id="election-dropdown-2016" class="dropdown-item" href="#">2016 Presidential Election</a>
-													<a id="election-dropdown-2012" class="dropdown-item" href="#">2012 Presidential Election</a>
-												</div>
-											</div>	
-									
-									<br>
-									<div class="row" id="precint-dem-info">
-										<div class="col-md-8">
-											<p>Democratic Votes: 1000</p>
-										</div>
-										<div class="col-md-2">
-											<button id="edit-dem-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
-										</div>
-									</div>
-									<div class="row" id="precint-rep-info">
-										<div class="col-md-8">
-											<p>Republican Votes: 1000</p>
-										</div>
-										<div class="col-md-2">
-											<button id="edit-rep-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
-										</div>
-									</div>
-									<div class="row" id="precint-third-info">
-										<div class="col-md-8">
-											<p>Third Party Votes: 1000</p>
-										</div>
-										<div class="col-md-2">
-											<button id="edit-third-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
-										</div>
-									</div>
-									<div class="row" id="precint-africanamerican-info">
-										<div class="col-md-8">
-											<p>African American:</p>
-										</div>
-										<div class="col-md-2">
-											<button id="edit-africanamerican-btn" type="button" class="btn btn-outline-secondary  btn-sm">Edit</button>
-										</div>
-									</div>
-									
-									<div class="row" id="precint-asian-info">
-										<div class="col-md-8">
-											<p>Asian:</p>
-										</div>
-										<div class="col-md-2">
-											<button id="edit-asian-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
-										</div>
-									</div>
-									
-									<div class="row" id="precint-hispanic-info">
-										<div class="col-md-8">
-											<p>Hispanic:</p>
-										</div>
-										<div class="col-md-2">
-											<button id="edit-hispanic-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
-										</div>
-									</div>
-									
-									<div class="row" id="precint-nativeamerican-info">
-										<div class="col-md-8">
-											<p>Native American:</p>
-										</div>
-										<div class="col-md-2">
-											<button id="edit-nativeamerican-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
-										</div>
-									</div>
-	
-									<div class="row" id="precint-white-info">
-										<div class="col-md-8">
-											<p>White</p>
-										</div>
-										<div class="col-md-2">
-											<button id="edit-white-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
-										</div>
-									</div>
-								<!-- End Precint Voting -->	
-								</div>
+							</div>	
 
-								
-							<div class="tab-pane fade" id="precinct-error" role="tabpanel" aria-labelledby="precinct-error-tab">>
-									<p>Error 1</p>
-									<p>Error 2</p>
-									<p>Error 3</p>
-									<p>Error 4</p>
-									<p>Error 5</p>
-									<p>Error 6</p>
+							<br>
+							<div class="row" id="precint-dem-info">
+								<div class="col-md-8">
+									<p>Democratic Votes: 1000</p>
+								</div>
+								<div class="col-md-2">
+									<button id="edit-dem-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
+								</div>
+							</div>
+							<div class="row" id="precint-rep-info">
+								<div class="col-md-8">
+									<p>Republican Votes: 1000</p>
+								</div>
+								<div class="col-md-2">
+									<button id="edit-rep-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
+								</div>
+							</div>
+							<div class="row" id="precint-third-info">
+								<div class="col-md-8">
+									<p>Third Party Votes: 1000</p>
+								</div>
+								<div class="col-md-2">
+									<button id="edit-third-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
+								</div>
+							</div>
+							<div class="row" id="precint-africanamerican-info">
+								<div class="col-md-8">
+									<p>African American:</p>
+								</div>
+								<div class="col-md-2">
+									<button id="edit-africanamerican-btn" type="button" class="btn btn-outline-secondary  btn-sm">Edit</button>
+								</div>
 							</div>
 
-							<div class="tab-pane fade" id="precinct-comment" role="tabpanel" aria-labelledby="precinct-comment-tab">>
-								<p>Change 1</p>
-								<p>Change 2</p>
-								<p>Change 3</p>
-								<p>Change 4</p>	
+							<div class="row" id="precint-asian-info">
+								<div class="col-md-8">
+									<p>Asian:</p>
+								</div>
+								<div class="col-md-2">
+									<button id="edit-asian-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
+								</div>
 							</div>
+
+							<div class="row" id="precint-hispanic-info">
+								<div class="col-md-8">
+									<p>Hispanic:</p>
+								</div>
+								<div class="col-md-2">
+									<button id="edit-hispanic-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
+								</div>
+							</div>
+
+							<div class="row" id="precint-nativeamerican-info">
+								<div class="col-md-8">
+									<p>Native American:</p>
+								</div>
+								<div class="col-md-2">
+									<button id="edit-nativeamerican-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
+								</div>
+							</div>
+
+							<div class="row" id="precint-white-info">
+								<div class="col-md-8">
+									<p>White</p>
+								</div>
+								<div class="col-md-2">
+									<button id="edit-white-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
+								</div>
+							</div>
+						<!-- End Precint Voting -->	
+						</div>
+
+						<div class="tab-pane fade" id="precinct-error" role="tabpanel" aria-labelledby="precinct-error-tab">
+								<p>Error 1</p>
+								<p>Error 2</p>
+								<p>Error 3</p>
+								<p>Error 4</p>
+								<p>Error 5</p>
+								<p>Error 6</p>
+						</div>
+
+						<div class="tab-pane fade" id="precinct-comment" role="tabpanel" aria-labelledby="precinct-comment-tab">
+							<p>Change 1</p>
+							<p>Change 2</p>
+							<p>Change 3</p>
+							<p>Change 4</p>	
+						</div>
 								
 					</div>
 
