@@ -149,11 +149,13 @@ function zoomToFeature(e) {
     }
 
 function onEachFeature(feature, layer) {
+    layer.bindPopup('<h1>'+"some data"+'</h1><p>name: '+"information"+'</p>');
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
         click: zoomToFeature
     });
+
 }
 
 
@@ -180,6 +182,7 @@ geojson_prefr = L.geoJson(precinctDataFront, {
         $("#dropdown-" + currentStateSelection).css("display", "block");
         $("#state-info").css("display", "none");
         currentStateSelection = "USA";
+
     });
 
     $("#dropdown-Georgia").on("click", function () {
@@ -230,10 +233,46 @@ geojson_prefr = L.geoJson(precinctDataFront, {
 
 var layergroup1 = L.layerGroup([geojson_s]);
 layergroup1.addTo(map);
-var layergroup2 = L.layerGroup([geojson_pre]);
+var layergroup2 = L.layerGroup();
 layergroup2.addTo(map);
 var layergroup3 = L.layerGroup([geojson_prefr])
 layergroup3.addTo(map);
+
+
+    map.on('zoomstart', function() {
+        var zoomlevel = map.getZoom();
+
+        if (zoomlevel >6){
+            if (layergroup2.hasLayer(geojson_pre)){
+                console.log("layer already added");
+            } else {
+                layergroup2.addLayer(geojson_pre);
+            }
+            if (layergroup1.hasLayer(geojson_s)){
+                layergroup1.removeLayer(geojson_s);
+
+            } else {
+                console.log("layer already added");
+            }
+
+        }
+        else {
+            if (layergroup2.hasLayer(geojson_pre)) {
+                layergroup2.removeLayer(geojson_pre);
+            } else {
+                console.log("no point layer active");
+            }
+            if (layergroup1.hasLayer(geojson_s)) {
+                console.log("no point layer active");
+            } else {
+
+                layergroup1.addLayer(geojson_s);
+            }
+        }
+        console.log("Current Zoom Level =" + zoomlevel);
+
+    });
+
 
 layergroup1.bringToBack();
 layergroup2.bringToFront();
