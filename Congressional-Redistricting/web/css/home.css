@@ -19,7 +19,7 @@ p{
 
 #dropdown-state-select{
 	background-color: darkgray;
-	width: 220PX;
+	width: 345PX;
 }
 
 #dropdown-USA{
@@ -62,26 +62,6 @@ p{
 	color: black;
 }
 
-#state-dropdown-voting{
-	display: none;
-}
-
-#state-voting-text{
-	display: block;
-}
-
-#state-demographic-text{
-	display: none;
-}
-
-#state-error-text{
-	display: none;
-}
-
-#state-change-text{
-	display: none;	
-}
-
 
 #election-select-dropdown{
 	background-color: darkgray;
@@ -108,24 +88,10 @@ p{
 	padding-bottom: 12px;
 }
 
-#precint-voting-btn{
-	background-color: darkgray;
-	color: black;
+#error-checkbox-row{
+	padding-top: 10px;
 }
 
-#precint-demographic-btn{
-	background-color: darkgray;
-	color: black;
-}
-
-#precint-comments-btn{
-	background-color: darkgray;
-	color: black;
-}
-
-
-#precint-voting-tab{
-}
 
 #precint-dem-info{
 	padding-bottom: 10px;
