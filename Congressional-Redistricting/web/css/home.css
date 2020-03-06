@@ -15,12 +15,11 @@ p{
 
 
 
-#dropdown-state-holder{
-	padding-right: 320px;
-}
+
 
 #dropdown-state-select{
 	background-color: darkgray;
+	width: 220PX;
 }
 
 #dropdown-USA{
@@ -37,7 +36,7 @@ p{
 
 
 #leaflet-div{
-	height: 800px;
+	height: 840px;
 	width: auto;
 }
 

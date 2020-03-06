@@ -19,160 +19,76 @@
     </head>
 	
 	<body>
-		    <!-- Remainder of Bootstrap components -->
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-		
-		
-		
-		<!-- Top Navigation Bar -->
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
-			<a class="navbar-brand" href="#">Congressional Redistricting</a>
-	  	
-			<div class="collapse navbar-collapse" id="navbarSupportedContent1">
-				<!-- Home and About buttons-->
-				<ul class="navbar-nav mr-auto">
-      	  			<li class="nav-item active"> <a class="nav-link " href="#">Home <span class="sr-only">(current)</span></a> </li>
-      	  			<li class="nav-item"> <a class="nav-link" href="about.html">About</a> </li>
-       	 		</ul>
-			
-				<!-- State select dropdown -->
-				<div id="dropdown-state-holder" class="nav-item dropdown"> 
-					<a class="btn dropdown-toggle" href="#" id="dropdown-state-select" type="button" data-toggle="dropdown"> Select State</a>
-	        		<div class="dropdown-menu" aria-labelledby="navbarDropdown1"> 
-						<a id="dropdown-USA" class="dropdown-item" href="#">Return To Map</a> 
-						<a id="dropdown-Georgia" class="dropdown-item" href="#">Georgia</a> 
-						<a id="dropdown-Maryland" class="dropdown-item" href="#">Maryland</a>
-			        	<a id="dropdown-Texas" class="dropdown-item" href="#">Texas</a> 
-			  	  	</div>
-            	</div>
-			
-				<!-- Show state park checkbox -->
-				<input type="checkbox" id="stateparkcheckbox">
-				<lable for="stateparkcheckbox" id="state-park-text">Show state park boundries</lable>
-			</div>
-		</nav>
 	
+
 		<!-- Main Work Section -->
-		<div class="container-fluid">
-			<div class="row">
-					<!-- Leaflet -->
-					<div class="col-md-8">
-
-						<div id="leaflet-container" class="container-fluid">
-
-							<div id="leaflet-div">
-							</div>
-							<script src="js/mapping.js"></script>
+			<div class="row" style="height:100%">
+				<!-- Leaflet -->
+				<div class="col-10 no-margin shadow" style="padding-right:0;">
+					<div id="leaflet-div"></div>
+				</div>
+				<!-- Info Tabs -->
+				<div class="col-md-2 no-margin">
+						<!-- State Info -->
+					<div id="dropdown-state-holder" class="nav-item dropdown"> 
+						<a class="btn dropdown-toggle" href="#" id="dropdown-state-select" type="button" data-toggle="dropdown"> Select State</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown1"> 
+							<a id="dropdown-USA" class="dropdown-item" href="#">Return To Map</a> 
+							<a id="dropdown-Georgia" class="dropdown-item" href="#">Georgia</a> 
+							<a id="dropdown-Maryland" class="dropdown-item" href="#">Maryland</a>
+							<a id="dropdown-Texas" class="dropdown-item" href="#">Texas</a> 
 						</div>
 					</div>
-
-
-				<!-- Info Tabs -->
-					<div class="col-md-4">
-						<!-- State Info -->
-						<div class="row">
-							<div id="state-info" class="container-fluid">	
-								<h1 id="state-info-header"></h1>
-								<div class="row">
-									
-									<!-- State Info dropdown -->
-									<div class="col-md-6">
-										<div class="dropdown" style="width: 100%">
-											<button id="state-info-dropdown" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
-												Voting Data
-											</button> 
-											<div class="dropdown-menu" aria-labelledby="election-select-dropdown">
-												<a id="state-dropdown-voting" class="dropdown-item" href="#">Voting Data</a>
-												<a id="state-dropdown-demographic" class="dropdown-item" href="#">Demographic Data</a>
-												<a id="state-dropdown-error" class="dropdown-item" href="#">Error Data</a>
-												<a id="state-dropdown-change" class="dropdown-item" href="#">Change Log</a>
-											</div>
-										</div>	
-									<!-- End State Info dropdown-->
-									</div>									
-									<!-- Election dropdown -->
-									<div class="col-md-6">
-										<div class="dropdown">
-											<button id="election-select-dropdown" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
-												2016 Presidential Election
-											</button> 
-											<div class="dropdown-menu" aria-labelledby="election-select-dropdown">
-												<a id="election-dropdown-2016" class="dropdown-item" href="#">2016 Presidential Election</a>
-												<a id="election-dropdown-2012" class="dropdown-item" href="#">2012 Presidential Election</a>
-											</div>
-										</div>	
-									<!-- End Election dropdown -->
-									</div>
-									
-								</div>
-								<br>
-								<div class="row">
-									<!-- State Info Text -->
-									<div class="col-md-12">
-										<div id="state-voting-text">
-											<p>Democratic Votes: 1000</p>
-											<p>Republican Votes: 1000</p>
-											<p>Third Party Votes: 0</p>
-										</div>
-
-										<div id="state-demographic-text">
-											<p>African American: </p>
-											<p>Asian:</p>
-											<p>Hispanic: </p>
-											<p>Native American: </p>
-											<p>White: </p>
-										</div>
-
-										<div id="state-error-text">
-											<p>Error 1</p>
-											<p>Error 2</p>
-											<p>Error 3</p>
-											<p>Error 4</p>
-											<p>Error 5</p>
-											<p>Error 6</p>
-										</div>
-										
-										<div id="state-change-text">
-											<p>Change 1</p>
-											<p>Change 2</p>
-											<p>Change 3</p>
-											<p>Change 4</p>											
-										</div>
-										
-										
-									<!-- End State Info Text -->	
-									</div>
-									
-									
-									
-								</div>
-
-
-							</div>
+												
+					<div id="state-info">	
+						<h1 id="state-info-header"></h1>
+					</div>
+							
 						<!-- End of State Info -->
-						</div>
 
 						<!-- Precinct Info -->
-						<div class="row">
-							<div id="precint-tab" class="container-fluid">
-								
+						<br>
+							<ul class="nav nav-tabs" id="myTab" role="tablist">
+
+								<!--
 								<div id="precint-controls" class="btn-group" role="group">
-									<button id="precint-voting-btn" type="button" class="btn btn-outline-secondary">Voting Data</button>
-									<button id="precint-demographic-btn" type="button" class="btn btn-outline-secondary ">Demographic Data</button>
-									<button id="precint-comments-btn" type="button" class="btn btn-outline-secondary ">Comments</button>
+									<button id="precint-info-btn" type="button" class="btn btn-outline-secondary">Voting Data</button>
+									<button id="precint-error-btn" type="button" class="btn btn-outline-secondary ">Demographic Data</button>
+									<button id="precint-history-btn" type="button" class="btn btn-outline-secondary ">Comments</button>
 								</div>
+								-->
 								
-								
+								<li class="nav-item">
+									<a class="nav-link active" id="precinct-info-tab" data-toggle="tab" href="#precinct-info" role="tab" aria-controls="precinct-info" aria-selected="true">Info</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="precinct-info-tab" data-toggle="tab" href="#precinct-error" role="tab" aria-controls="precinct-error" aria-selected="false">Errors</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="precinct-info-tab" data-toggle="tab" href="#precinct-comment" role="tab" aria-controls="precinct-comment" aria-selected="false">History</a>
+								</li>
+							</ul>
 								<!-- Precint Voting Text -->
-								<div id="precint-voting-tab">
+							<div class="tab-content" id="myTabContent">
+								<div class="tab-pane fade show active" id="precinct-info" role="tabpanel" aria-labelledby="precinct-info-tab">
+									<br>
+											<div class="dropdown">
+												<button id="election-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">
+													2016 Presidential Election
+												</button> 
+												<div class="dropdown-menu" aria-labelledby="election-select-dropdown">
+													<a id="election-dropdown-2016" class="dropdown-item" href="#">2016 Presidential Election</a>
+													<a id="election-dropdown-2012" class="dropdown-item" href="#">2012 Presidential Election</a>
+												</div>
+											</div>	
+									
+									<br>
 									<div class="row" id="precint-dem-info">
 										<div class="col-md-8">
 											<p>Democratic Votes: 1000</p>
 										</div>
 										<div class="col-md-2">
-											<button id="edit-dem-btn" type="button" class="btn btn-outline-secondary">Edit</button>
+											<button id="edit-dem-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
 										</div>
 									</div>
 									<div class="row" id="precint-rep-info">
@@ -180,7 +96,7 @@
 											<p>Republican Votes: 1000</p>
 										</div>
 										<div class="col-md-2">
-											<button id="edit-rep-btn" type="button" class="btn btn-outline-secondary">Edit</button>
+											<button id="edit-rep-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
 										</div>
 									</div>
 									<div class="row" id="precint-third-info">
@@ -188,20 +104,15 @@
 											<p>Third Party Votes: 1000</p>
 										</div>
 										<div class="col-md-2">
-											<button id="edit-third-btn" type="button" class="btn btn-outline-secondary">Edit</button>
+											<button id="edit-third-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
 										</div>
 									</div>
-								<!-- End Precint Voting -->	
-								</div>
-
-								
-								<div id="precint-demographic-tab">
 									<div class="row" id="precint-africanamerican-info">
 										<div class="col-md-8">
 											<p>African American:</p>
 										</div>
 										<div class="col-md-2">
-											<button id="edit-africanamerican-btn" type="button" class="btn btn-outline-secondary">Edit</button>
+											<button id="edit-africanamerican-btn" type="button" class="btn btn-outline-secondary  btn-sm">Edit</button>
 										</div>
 									</div>
 									
@@ -210,7 +121,7 @@
 											<p>Asian:</p>
 										</div>
 										<div class="col-md-2">
-											<button id="edit-asian-btn" type="button" class="btn btn-outline-secondary">Edit</button>
+											<button id="edit-asian-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
 										</div>
 									</div>
 									
@@ -219,7 +130,7 @@
 											<p>Hispanic:</p>
 										</div>
 										<div class="col-md-2">
-											<button id="edit-hispanic-btn" type="button" class="btn btn-outline-secondary">Edit</button>
+											<button id="edit-hispanic-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
 										</div>
 									</div>
 									
@@ -228,7 +139,7 @@
 											<p>Native American:</p>
 										</div>
 										<div class="col-md-2">
-											<button id="edit-nativeamerican-btn" type="button" class="btn btn-outline-secondary">Edit</button>
+											<button id="edit-nativeamerican-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
 										</div>
 									</div>
 	
@@ -237,41 +148,52 @@
 											<p>White</p>
 										</div>
 										<div class="col-md-2">
-											<button id="edit-white-btn" type="button" class="btn btn-outline-secondary">Edit</button>
+											<button id="edit-white-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
 										</div>
 									</div>
-									
-								</div>
-								
-								<div id="precint-comments-tab">
-									<div class="row">
-										<div class="col-md-12">
-											<textarea id="precint-comments-textarea" rows="15" cols="60"></textarea>
-										</div>
-									</div>								
+								<!-- End Precint Voting -->	
 								</div>
 
 								
-							</div>	
-						</div>
+							<div class="tab-pane fade" id="precinct-error" role="tabpanel" aria-labelledby="precinct-error-tab">>
+									<p>Error 1</p>
+									<p>Error 2</p>
+									<p>Error 3</p>
+									<p>Error 4</p>
+									<p>Error 5</p>
+									<p>Error 6</p>
+							</div>
+
+							<div class="tab-pane fade" id="precinct-comment" role="tabpanel" aria-labelledby="precinct-comment-tab">>
+								<p>Change 1</p>
+								<p>Change 2</p>
+								<p>Change 3</p>
+								<p>Change 4</p>	
+							</div>
+								
+					</div>
 
 					<!-- End of Info tabs-->
-					</div>
+				</div>
 				<!-- End of Main Work Section -->
-			</div>
-
-		</div>
-        
+			</div>        
         
 	
         
 
-		
+		<!-- Remainder of Bootstrap components -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 		
 	<!--JS Scripts -->
+		<script src="js/mapping.js"></script>
+
 		<script src ="js/selectstate.js"></script>
 		<script src ="js/selectelection.js"></script>
 		<script src ="js/selectstateinfo.js"></script>
 		<script src ="js/selectprecintinfo.js"></script>
+		
+		
 	</body>
 </html>
