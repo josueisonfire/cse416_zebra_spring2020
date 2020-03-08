@@ -1,8 +1,0 @@
-
-h1.title { font-size: 35px; text-transform: uppercase; color: white; letter-spacing: 1px; background:darkgray no-repeat center bottom; padding-bottom: 30px; font-weight: bold; margin: 70px 0 0; }
-.wrap { margin: 70px 0 0; display: flex;}
-.icon { height: 175px; width: 175px; line-height: 175px; max-width: 100%; background: darkslategray; border-radius: 50%; -o-border-radius: 50%; -moz-border-radius: 50%; -webkit-border-radius: 50%; display: block; color: #fff; font-size: 55px; text-align: center; vertical-align: middle; position: relative; margin: 0 auto 50px; }
-
-body{
-    background-color: lightgray;
-}
