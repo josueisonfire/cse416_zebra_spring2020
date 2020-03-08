@@ -21,15 +21,18 @@
 	<body>
 	
 
-		<!-- Main Work Section -->
+			<!-- Main Work Section -->
 			<div class="row" style="height:100%">
+				
 				<!-- Leaflet -->
 				<div class="col-9 no-margin shadow" style="padding-right:0;">
 					<div id="leaflet-div"></div>
 				</div>
-				<!-- Info Tabs -->
+				
+				<!-- Main Opertaion Container-->
 				<div class="col-md-3 no-margin">
-						<!-- State Info -->
+					
+					<!-- State Info -->
 					<div id="dropdown-state-holder" class="nav-item dropdown"> 
 						<a class="btn dropdown-toggle" href="#" id="dropdown-state-select" type="button" data-toggle="dropdown"> Select State</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown1"> 
@@ -44,22 +47,25 @@
 						<h1 id="state-info-header"></h1>
 					</div>
 
-					<!-- Precinct Info -->
-					<br>
-					<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<!--Operation Tab Selectors -->
+					<ul class="nav nav-tabs" id="main-operation-tab" role="tablist">
 						<li class="nav-item">
-							<a class="nav-link active" id="precinct-info-tab" data-toggle="tab" href="#precinct-info" role="tab" aria-controls="precinct-info" aria-selected="true">Info</a>
+							<a class="nav-link active" id="operation-info-tab" data-toggle="tab" href="#operation-info" role="tab" aria-controls="precinct-info" aria-selected="true">Info</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="precinct-error-tab" data-toggle="tab" href="#precinct-error" role="tab" aria-controls="precinct-error" aria-selected="false">Errors</a>
+							<a class="nav-link" id="operation-error-tab" data-toggle="tab" href="#operation-error" role="tab" aria-controls="precinct-error" aria-selected="false">Errors</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="precinct-history-tab" data-toggle="tab" href="#precinct-comment" role="tab" aria-controls="precinct-comment" aria-selected="false">History</a>
+							<a class="nav-link" id="operation-history-tab" data-toggle="tab" href="#operation-comment" role="tab" aria-controls="precinct-comment" aria-selected="false">History</a>
 						</li>
 					</ul>
-					<!-- Precint Voting Text -->
-					<div class="tab-content" id="myTabContent">
-						<div class="tab-pane fade show active" id="precinct-info" role="tabpanel" aria-labelledby="precinct-info-tab">
+					
+					<!--Full Operation Content Container-->
+					<div class="tab-content" id="operation-content-container">
+						
+						<!--Operation Info Container-->
+						<div class="tab-pane fade show active" id="operation-info" role="tabpanel" aria-labelledby="precinct-info-tab">
+							<!--Election Data Dropdown menu-->
 							<br>
 							<div class="dropdown">
 								<button id="election-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">
@@ -70,10 +76,9 @@
 									<a id="election-dropdown-2012" class="dropdown-item" href="#">2012 Presidential Election</a>
 								</div>
 							</div>	
-
 							<br>
 							
-							
+							<!--Voting Info Table-->
 							<table class="table">
 								<thead>
 									<tr>
@@ -111,7 +116,7 @@
 								</tbody>
 							</table>	
 							
-							
+							<!--Demographic Info Table-->
 							<table class="table">
 								<thead>
 									<tr>
@@ -164,10 +169,11 @@
 									</tr>
 								</tbody>
 							</table>	
-						<!-- End Precint Voting -->	
+						<!-- End of Opertaion Info Container-->	
 						</div>
-
-						<div class="tab-pane fade" id="precinct-error" role="tabpanel" aria-labelledby="precinct-error-tab">							
+						
+						<!--Operation Error Container-->
+						<div class="tab-pane fade" id="operation-error" role="tabpanel" aria-labelledby="precinct-error-tab">							
 							<table class="table">
 								<thead>
 									<tr>
@@ -220,10 +226,11 @@
 									</tr>
 								</tbody>
 							</table>	
-							
+						<!--End of Operation Error Container-->
 						</div>
 
-						<div class="tab-pane fade" id="precinct-comment" role="tabpanel" aria-labelledby="precinct-comment-tab">
+						<!--Operation Comment Container-->
+						<div class="tab-pane fade" id="operation-comment" role="tabpanel" aria-labelledby="precinct-comment-tab">
 							<table class="table">
 								<thead>
 									<tr>
@@ -254,15 +261,16 @@
 									</tr>
 								</tbody>
 							</table>
-							
-							
+						<!--End of Operation Comment Container-->
 						</div>
-								
+					
+					<!--End of Full Operation Content Container-->
 					</div>
 
-					<!-- End of Info tabs-->
+				<!-- End of Main Opertaion Container-->
 				</div>
-				<!-- End of Main Work Section -->
+
+			<!-- End of Main Work Section -->
 			</div>        
         
 	
@@ -273,7 +281,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 		
-	<!--JS Scripts -->
+		<!--JS Scripts -->
 		<script src="js/mapping.js"></script>
 
 		<script src ="js/selectstate.js"></script>
