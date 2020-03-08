@@ -1,4 +1,5 @@
-body{
+html, body{
+	height: 100%;
 	background-color: lightgray;
 	font-size: small;
 }
@@ -15,11 +16,11 @@ p{
 
 
 
-
+/*#############STATE SELECT DROPDOWN TAB/*#############*/
 
 #dropdown-state-select{
 	background-color: darkgray;
-	width: 220PX;
+	width: 345PX;
 }
 
 #dropdown-USA{
@@ -36,7 +37,7 @@ p{
 
 
 #leaflet-div{
-	height: 840px;
+	height: 100%;
 	width: auto;
 }
 
@@ -60,26 +61,6 @@ p{
 #state-info-dropdown{
 	background-color: darkgray;
 	color: black;
-}
-
-#state-dropdown-voting{
-	display: none;
-}
-
-#state-voting-text{
-	display: block;
-}
-
-#state-demographic-text{
-	display: none;
-}
-
-#state-error-text{
-	display: none;
-}
-
-#state-change-text{
-	display: none;	
 }
 
 
@@ -108,24 +89,6 @@ p{
 	padding-bottom: 12px;
 }
 
-#precint-voting-btn{
-	background-color: darkgray;
-	color: black;
-}
-
-#precint-demographic-btn{
-	background-color: darkgray;
-	color: black;
-}
-
-#precint-comments-btn{
-	background-color: darkgray;
-	color: black;
-}
-
-
-#precint-voting-tab{
-}
 
 #precint-dem-info{
 	padding-bottom: 10px;

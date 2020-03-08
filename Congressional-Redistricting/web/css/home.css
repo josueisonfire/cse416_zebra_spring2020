@@ -1,4 +1,5 @@
-body{
+html, body{
+	height: 100%;
 	background-color: lightgray;
 	font-size: small;
 }
@@ -15,7 +16,7 @@ p{
 
 
 
-
+/*#############STATE SELECT DROPDOWN TAB/*#############*/
 
 #dropdown-state-select{
 	background-color: darkgray;
@@ -36,7 +37,7 @@ p{
 
 
 #leaflet-div{
-	height: 840px;
+	height: 100%;
 	width: auto;
 }
 
