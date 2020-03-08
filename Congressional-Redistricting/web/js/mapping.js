@@ -94,7 +94,12 @@ $(document).ready(function(){
     // event handler when user clicks on a polygon. <Generic>
     function zoomToFeature(e) {
         map.fitBounds(e.target.getBounds());
+    }
+    
+    function onStateSelect(e){
+        map.fitBounds(e.target.getBounds());
         selectStateFromMenu(e);
+        map.setMaxBounds(e.target.getBounds());
     }
     
     //dropdown menu event handlers.
@@ -107,6 +112,10 @@ $(document).ready(function(){
                 $("#dropdown-" + currentStateSelection).css("display", "block");
                 $("#state-info-header").text("Georgia")
                 currentStateSelection = "Georgia";
+                
+                $("#dropdown-Maryland").hide();
+                $("#dropdown-Texas").hide();
+                map.options.minZoom = 7;
             }
             else if(e.target.feature.properties.NAME.localeCompare("Maryland") == 0) {
                 $("#dropdown-state-select").text("Maryland");
@@ -115,6 +124,11 @@ $(document).ready(function(){
                 $("#dropdown-" + currentStateSelection).css("display", "block");
                 $("#state-info-header").text("Maryland")
                 currentStateSelection = "Maryland";
+                
+                $("#dropdown-Georgia").hide();
+                $("#dropdown-Texas").hide();
+                map.options.minZoom = 8;
+
             }
             else if(e.target.feature.properties.NAME.localeCompare("Texas") == 0) {
                 $("#dropdown-state-select").text("Texas");
@@ -123,12 +137,22 @@ $(document).ready(function(){
                 $("#dropdown-" + currentStateSelection).css("display", "block");
                 $("#state-info-header").text("Texas")
                 currentStateSelection = "Texas";
+                
+                $("#dropdown-Maryland").hide();
+                $("#dropdown-Georgia").hide();
+                map.options.minZoom = 6;
+
             }
         };
     
         
         $("#dropdown-USA").on("click", function () {
+            map.setMaxBounds(null);
+            map.options.minZoom = null;
+            
             map.setView([37.8, -96], 4);
+
+
             $("#dropdown-state-select").text("Select State");
             $("#dropdown-USA").css("display", "none");
             $("#dropdown-" + currentStateSelection).css("display", "block");
@@ -136,7 +160,9 @@ $(document).ready(function(){
             currentStateSelection = "USA";
             console.log(map._layers);
     
-    
+            $("#dropdown-Texas").show();
+            $("#dropdown-Georgia").show();
+            $("#dropdown-Maryland").show();
         });
     
         $("#dropdown-Georgia").on("click", function () {
@@ -162,6 +188,16 @@ $(document).ready(function(){
             click: zoomToFeature
         });
     }
+    
+        function onEachFeatureS(feature, layer) {
+            layer._leaflet_id = feature.properties.NAME;
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                click: onStateSelect
+            });
+    
+        }
     
         function onEachFeatureP(feature, layer) {
             layer.bindPopup('<p>JURIS: '+feature.properties.JURIS+'</p>'+'<p>NAME: '+feature.properties.NAME+'</p>Republican:'+feature.properties.G16PRERTru+'</p>'+'</p>Democratic:'+feature.properties.G16PREDCli+'</p>');
@@ -229,7 +265,7 @@ $(document).ready(function(){
     // load state boundaries, and define interaction behaviors.
     geojson_s = L.geoJson(statesData, {
         style: style,
-        onEachFeature: onEachFeature
+        onEachFeature: onEachFeatureS
     });
     //load county boundaries, and define interaction behaviors.
     geojson_counties = L.geoJson(countyData, {
