@@ -24,11 +24,11 @@
 		<!-- Main Work Section -->
 			<div class="row" style="height:100%">
 				<!-- Leaflet -->
-				<div class="col-10 no-margin shadow" style="padding-right:0;">
+				<div class="col-9 no-margin shadow" style="padding-right:0;">
 					<div id="leaflet-div"></div>
 				</div>
 				<!-- Info Tabs -->
-				<div class="col-md-2 no-margin">
+				<div class="col-md-3 no-margin">
 						<!-- State Info -->
 					<div id="dropdown-state-holder" class="nav-item dropdown"> 
 						<a class="btn dropdown-toggle" href="#" id="dropdown-state-select" type="button" data-toggle="dropdown"> Select State</a>
@@ -72,91 +72,190 @@
 							</div>	
 
 							<br>
-							<div class="row" id="precint-dem-info">
-								<div class="col-md-8">
-									<p>Democratic Votes: 1000</p>
-								</div>
-								<div class="col-md-2">
-									<button id="edit-dem-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
-								</div>
-							</div>
-							<div class="row" id="precint-rep-info">
-								<div class="col-md-8">
-									<p>Republican Votes: 1000</p>
-								</div>
-								<div class="col-md-2">
-									<button id="edit-rep-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
-								</div>
-							</div>
-							<div class="row" id="precint-third-info">
-								<div class="col-md-8">
-									<p>Third Party Votes: 1000</p>
-								</div>
-								<div class="col-md-2">
-									<button id="edit-third-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
-								</div>
-							</div>
-							<div class="row" id="precint-africanamerican-info">
-								<div class="col-md-8">
-									<p>African American:</p>
-								</div>
-								<div class="col-md-2">
-									<button id="edit-africanamerican-btn" type="button" class="btn btn-outline-secondary  btn-sm">Edit</button>
-								</div>
-							</div>
-
-							<div class="row" id="precint-asian-info">
-								<div class="col-md-8">
-									<p>Asian:</p>
-								</div>
-								<div class="col-md-2">
-									<button id="edit-asian-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
-								</div>
-							</div>
-
-							<div class="row" id="precint-hispanic-info">
-								<div class="col-md-8">
-									<p>Hispanic:</p>
-								</div>
-								<div class="col-md-2">
-									<button id="edit-hispanic-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
-								</div>
-							</div>
-
-							<div class="row" id="precint-nativeamerican-info">
-								<div class="col-md-8">
-									<p>Native American:</p>
-								</div>
-								<div class="col-md-2">
-									<button id="edit-nativeamerican-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
-								</div>
-							</div>
-
-							<div class="row" id="precint-white-info">
-								<div class="col-md-8">
-									<p>White</p>
-								</div>
-								<div class="col-md-2">
-									<button id="edit-white-btn" type="button" class="btn btn-outline-secondary btn-sm">Edit</button>
-								</div>
-							</div>
+							
+							
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">Party</th>
+										<th scope="col">Votes</th>
+										<th scope="col">Percentage of Votes</th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">Democratic:</th>
+										<td>50</td>
+										<td>50%</td>
+										<td>
+											<button class="btn btn-secondary btn-sm">Edit</button>
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">Republican:</th>
+										<td>49</td>
+										<td>49%</td>
+										<td>
+											<button class="btn btn-secondary btn-sm">Edit</button>
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">Third Party:</th>
+										<td>1</td>
+										<td>01%</td>
+										<td>
+											<button class="btn btn-secondary btn-sm">Edit</button>
+										</td>		
+									</tr>
+								</tbody>
+							</table>	
+							
+							
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">Ethnicity</th>
+										<th scope="col">Population #</th>
+										<th scope="col">Population #</th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">African American:</th>
+										<td>50</td>
+										<td>50%</td>
+										<td>
+											<button class="btn btn-secondary btn-sm">Edit</button>
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">Asian:</th>
+										<td>49</td>
+										<td>49%</td>
+										<td>
+											<button class="btn btn-secondary btn-sm">Edit</button>
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">Hispanic:</th>
+										<td>1</td>
+										<td>01%</td>
+										<td>
+											<button class="btn btn-secondary btn-sm">Edit</button>
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">Native American:</th>
+										<td>1</td>
+										<td>01%</td>
+										<td>
+											<button class="btn btn-secondary btn-sm">Edit</button>
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">White:</th>
+										<td>1</td>
+										<td>01%</td>
+										<td>
+											<button class="btn btn-secondary btn-sm">Edit</button>
+										</td>		
+									</tr>
+								</tbody>
+							</table>	
 						<!-- End Precint Voting -->	
 						</div>
 
-						<div class="tab-pane fade" id="precinct-error" role="tabpanel" aria-labelledby="precinct-error-tab">
-								<p>Error 1</p>
-								<p>Error 2</p>
-								<p>Error 3</p>
-								<p>Error 4</p>
-								<p>Error 5</p>
-								<p>Error 6</p>
+						<div class="tab-pane fade" id="precinct-error" role="tabpanel" aria-labelledby="precinct-error-tab">							
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">Error</th>
+										<th scope="col">Location</th>
+										<th scope="col">Error Type</th>
+										<th scope="col">Fixed?</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">1</th>
+										<td>x,y</td>
+										<td>Overlaping Boarders</td>
+										<td>
+											<input type="checkbox">
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">2</th>
+										<td>x,y</td>
+										<td>Self-Intersecting Boarders</td>
+										<td>
+											<input type="checkbox">
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">3</th>
+										<td>x,y</td>
+										<td>Coverage Gap</td>
+										<td>
+											<input type="checkbox">
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">4</th>
+										<td>x,y</td>
+										<td>Open Boarders</td>
+										<td>
+											<input type="checkbox">
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">5</th>
+										<td>x,y</td>
+										<td>Muli-poligons</td>
+										<td>
+											<input type="checkbox">
+										</td>		
+									</tr>
+								</tbody>
+							</table>	
+							
 						</div>
 
 						<div class="tab-pane fade" id="precinct-comment" role="tabpanel" aria-labelledby="precinct-comment-tab">
-							<p>Change 1</p>
-							<p>Change 2</p>
-							<p>Change 3</p>
-							<p>Change 4</p>	
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">Change #</th>
+										<th scope="col">Action</th>
+										<th scope="col">Location</th>
+										<th scope="col">Time</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">3</th>
+										<td>Precint reshaped</td>
+										<td>(x,y)</td>
+										<td>12:00:00</td>	
+									</tr>
+									<tr>
+										<th scope="row">2</th>
+										<td>Vertex added</td>
+										<td>(x,y)</td>
+										<td>12:00:00</td>	
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Precints Merged</td>
+										<td>(x,y)</td>
+										<td>12:00:00</td>	
+									</tr>
+								</tbody>
+							</table>
+							
+							
 						</div>
 								
 					</div>
