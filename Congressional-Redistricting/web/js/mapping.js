@@ -24,17 +24,20 @@ $(document).ready(function(){
 
     //Selective Maryland county boundary data.
     var countyData = getJSON_data("http://localhost:8080/Congressional-Redistricting/maryland_counties.json")
-    console.log('loaded json for')
+    console.log('loaded json for county')
     console.log(countyData)
     // Selective precinct data.
     var precinctData = getJSON_data("http://localhost:8080/Congressional-Redistricting/maryland_precincts.json")
-    console.log('loaded json for')
+    console.log('loaded json for precinct')
     console.log(countyData)
     // State boundaries.
     var statesData = getJSON_data("http://localhost:8080/Congressional-Redistricting/us_states.json")
-    console.log('loaded json for')
+    console.log('loaded json for states')
     console.log(countyData)
-    
+    //Park data
+    var parkData = getJSON_data("http://localhost:8080/Congressional-Redistricting/maryland_parks.json")
+    console.log('loaded json for parks')
+    console.log(parkData)
     
     // Init map.
         //define map type and initial view location.
@@ -182,13 +185,13 @@ $(document).ready(function(){
             var zoomlevel = map.getZoom();
     
             if (zoomlevel >6){
-                if (layergroup2.hasLayer(geojson_pre)){
+                if (precinct_layer.hasLayer(geojson_pre)){
                     console.log("layer already added");
                 } else {
-                    layergroup2.addLayer(geojson_pre);
+                    precinct_layer.addLayer(geojson_pre);
                 }
-                if (layergroup1.hasLayer(geojson_s)){
-                    layergroup1.removeLayer(geojson_s);
+                if (state_layer.hasLayer(geojson_s)){
+                    state_layer.removeLayer(geojson_s);
     
                 } else {
                     console.log("layer already added");
@@ -196,16 +199,16 @@ $(document).ready(function(){
     
             }
             else {
-                if (layergroup2.hasLayer(geojson_pre)) {
-                    layergroup2.removeLayer(geojson_pre);
+                if (precinct_layer.hasLayer(geojson_pre)) {
+                    precinct_layer.removeLayer(geojson_pre);
                 } else {
                     console.log("no point layer active");
                 }
-                if (layergroup1.hasLayer(geojson_s)) {
+                if (state_layer.hasLayer(geojson_s)) {
                     console.log("no point layer active");
                 } else {
     
-                    layergroup1.addLayer(geojson_s);
+                    state_layer.addLayer(geojson_s);
                 }
             }
             console.log("Current Zoom Level =" + zoomlevel);
@@ -229,26 +232,33 @@ $(document).ready(function(){
         onEachFeature: onEachFeature
     });
     //load county boundaries, and define interaction behaviors.
-    geojson_prefr = L.geoJson(countyData, {
+    geojson_counties = L.geoJson(countyData, {
+        style: countyStyle,
+        onEachFeature: onEachFeature
+    });
+
+    geojson_parks = L.geoJson(countyData, {
         style: countyStyle,
         onEachFeature: onEachFeature
     });
     
-    var layergroup1 = L.layerGroup([geojson_s]);
-    layergroup1.addTo(map);
-    var layergroup2 = L.layerGroup(geojson_pre);
-    layergroup2.addTo(map);
-    var layergroup3 = L.layerGroup([geojson_prefr])
-    layergroup3.addTo(map);
+    var state_layer = L.layerGroup([geojson_s]);
+    state_layer.addTo(map);
+    var precinct_layer = L.layerGroup(geojson_pre);
+    precinct_layer.addTo(map);
+    var county_layer = L.layerGroup([geojson_counties])
+    county_layer.addTo(map);
+    var park_layer = L.layerGroup([geojson_parks])
+    park_layer.addTo(map);
     
     
-    
-    
-    
-    layergroup1.bringToBack();
-    layergroup2.bringToFront();
-    layergroup3.bringToFront();
-    layergroup3.bringToFront();
+    state_layer.bringToBack();
+    county_layer.bringToFront();
+    precinct_layer.bringToFront();
+    precinct_layer.bringToFront();
+    park_layer.bringToFront();
+    park_layer.bringToFront();
+    park_layer.bringToFront();
 
 
     // var state_layer = new L.GeoJSON.AJAX("http://localhost:8080/Congressional-Redistricting/us_states.geojson");
