@@ -15,8 +15,14 @@ p{
 }
 
 
+/*#############LEAFLET MAP TAB#############*/
 
-/*#############STATE SELECT DROPDOWN TAB/*#############*/
+#leaflet-div{
+	height: 100%;
+	width: auto;
+}
+
+/*#############STATE SELECT DROPDOWN TAB#############*/
 
 #dropdown-state-select{
 	background-color: darkgray;
@@ -27,23 +33,7 @@ p{
 	display: none;
 }
 
-
-#state-park-text{
-	color: white;
-	padding-left: 5px;
-}
-
-
-
-
-#leaflet-div{
-	height: 100%;
-	width: auto;
-}
-
-
-
-/*#############STATE TAB/*#############*/
+/*#############STATE TAB#############*/
 
 #state-info{
 	height: 350px;
@@ -58,11 +48,7 @@ p{
 }
 
 
-#state-info-dropdown{
-	background-color: darkgray;
-	color: black;
-}
-
+/*#############STATE TAB#############*/
 
 #election-select-dropdown{
 	background-color: darkgray;
@@ -78,56 +64,5 @@ p{
 }
 
 
-/*#############PRECINT TAB/*#############*/
+/*#############VOTING INFO TABLE #############*/
 
-#precint-tab{
-	display:block;
-}
-
-
-#precint-controls{
-	padding-bottom: 12px;
-}
-
-
-#precint-dem-info{
-	padding-bottom: 10px;
-}
-
-#precint-rep-info{
-	padding-bottom: 10px;
-}
-
-#precint-third-info{
-	padding-bottom: 10px;
-}
-
-
-#precint-demographic-tab{
-	display: none;
-}
-
-#precint-africanamerican-info{
-	padding-bottom: 10px;
-}
-
-#precint-asian-info{
-	padding-bottom: 10px;
-}
-
-#precint-hispanic-info{
-	padding-bottom: 10px;
-}
-
-#precint-nativeamerican-info{
-	padding-bottom: 10px;
-}
-
-#precint-white-info{
-	padding-bottom: 10px;
-}
-
-
-#precint-comments-tab{
-	display: none;
-}

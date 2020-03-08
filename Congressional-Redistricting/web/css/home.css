@@ -15,14 +15,14 @@ p{
 }
 
 
-/*#############LEAFLET MAP TAB/*#############*/
+/*#############LEAFLET MAP TAB#############*/
 
 #leaflet-div{
 	height: 100%;
 	width: auto;
 }
 
-/*#############STATE SELECT DROPDOWN TAB/*#############*/
+/*#############STATE SELECT DROPDOWN TAB#############*/
 
 #dropdown-state-select{
 	background-color: darkgray;
@@ -33,7 +33,7 @@ p{
 	display: none;
 }
 
-/*#############STATE TAB/*#############*/
+/*#############STATE TAB#############*/
 
 #state-info{
 	height: 350px;
@@ -48,6 +48,8 @@ p{
 }
 
 
+/*#############STATE TAB#############*/
+
 #election-select-dropdown{
 	background-color: darkgray;
 	color: black;
@@ -60,3 +62,7 @@ p{
 #election-dropdown-2012{
 	display: block;
 }
+
+
+/*#############VOTING INFO TABLE #############*/
+
