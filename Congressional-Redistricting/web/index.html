@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Congressional Redistricting</title>
+        <meta charset="UTF-8">        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Import Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <!-- Import CSS -->
+        <link rel="stylesheet" href="css/home.css"/>
+		
+		<!-- Import Leaflet -->
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
+    </head>
+	
+	<body>
+	
+
+		<!-- Main Work Section -->
+			<div class="row" style="height:100%">
+				<!-- Leaflet -->
+				<div class="col-9 no-margin shadow" style="padding-right:0;">
+					<div id="leaflet-div"></div>
+				</div>
+				<!-- Info Tabs -->
+				<div class="col-md-3 no-margin">
+						<!-- State Info -->
+					<div id="dropdown-state-holder" class="nav-item dropdown"> 
+						<a class="btn dropdown-toggle" href="#" id="dropdown-state-select" type="button" data-toggle="dropdown"> Select State</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown1"> 
+							<a id="dropdown-USA" class="dropdown-item" href="#">Return To Map</a> 
+							<a id="dropdown-Georgia" class="dropdown-item" href="#">Georgia</a> 
+							<a id="dropdown-Maryland" class="dropdown-item" href="#">Maryland</a>
+							<a id="dropdown-Texas" class="dropdown-item" href="#">Texas</a> 
+						</div>
+					</div>
+												
+					<div id="state-info">	
+						<h1 id="state-info-header"></h1>
+					</div>
+
+					<!-- Precinct Info -->
+					<br>
+					<ul class="nav nav-tabs" id="myTab" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" id="precinct-info-tab" data-toggle="tab" href="#precinct-info" role="tab" aria-controls="precinct-info" aria-selected="true">Info</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="precinct-error-tab" data-toggle="tab" href="#precinct-error" role="tab" aria-controls="precinct-error" aria-selected="false">Errors</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="precinct-history-tab" data-toggle="tab" href="#precinct-comment" role="tab" aria-controls="precinct-comment" aria-selected="false">History</a>
+						</li>
+					</ul>
+					<!-- Precint Voting Text -->
+					<div class="tab-content" id="myTabContent">
+						<div class="tab-pane fade show active" id="precinct-info" role="tabpanel" aria-labelledby="precinct-info-tab">
+							<br>
+							<div class="dropdown">
+								<button id="election-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">
+									2016 Presidential Election
+								</button> 
+								<div class="dropdown-menu" aria-labelledby="election-select-dropdown">
+									<a id="election-dropdown-2016" class="dropdown-item" href="#">2016 Presidential Election</a>
+									<a id="election-dropdown-2012" class="dropdown-item" href="#">2012 Presidential Election</a>
+								</div>
+							</div>	
+
+							<br>
+							
+							
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">Party</th>
+										<th scope="col">Votes</th>
+										<th scope="col">Percentage of Votes</th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">Democratic:</th>
+										<td>50</td>
+										<td>50%</td>
+										<td>
+											<button class="btn btn-secondary btn-sm">Edit</button>
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">Republican:</th>
+										<td>49</td>
+										<td>49%</td>
+										<td>
+											<button class="btn btn-secondary btn-sm">Edit</button>
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">Third Party:</th>
+										<td>1</td>
+										<td>01%</td>
+										<td>
+											<button class="btn btn-secondary btn-sm">Edit</button>
+										</td>		
+									</tr>
+								</tbody>
+							</table>	
+							
+							
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">Ethnicity</th>
+										<th scope="col">Population #</th>
+										<th scope="col">Population #</th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">African American:</th>
+										<td>50</td>
+										<td>50%</td>
+										<td>
+											<button class="btn btn-secondary btn-sm">Edit</button>
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">Asian:</th>
+										<td>49</td>
+										<td>49%</td>
+										<td>
+											<button class="btn btn-secondary btn-sm">Edit</button>
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">Hispanic:</th>
+										<td>1</td>
+										<td>01%</td>
+										<td>
+											<button class="btn btn-secondary btn-sm">Edit</button>
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">Native American:</th>
+										<td>1</td>
+										<td>01%</td>
+										<td>
+											<button class="btn btn-secondary btn-sm">Edit</button>
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">White:</th>
+										<td>1</td>
+										<td>01%</td>
+										<td>
+											<button class="btn btn-secondary btn-sm">Edit</button>
+										</td>		
+									</tr>
+								</tbody>
+							</table>	
+						<!-- End Precint Voting -->	
+						</div>
+
+						<div class="tab-pane fade" id="precinct-error" role="tabpanel" aria-labelledby="precinct-error-tab">							
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">Error</th>
+										<th scope="col">Location</th>
+										<th scope="col">Error Type</th>
+										<th scope="col">Fixed?</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">1</th>
+										<td>x,y</td>
+										<td>Overlaping Boarders</td>
+										<td>
+											<input type="checkbox">
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">2</th>
+										<td>x,y</td>
+										<td>Self-Intersecting Boarders</td>
+										<td>
+											<input type="checkbox">
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">3</th>
+										<td>x,y</td>
+										<td>Coverage Gap</td>
+										<td>
+											<input type="checkbox">
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">4</th>
+										<td>x,y</td>
+										<td>Open Boarders</td>
+										<td>
+											<input type="checkbox">
+										</td>		
+									</tr>
+									<tr>
+										<th scope="row">5</th>
+										<td>x,y</td>
+										<td>Muli-poligons</td>
+										<td>
+											<input type="checkbox">
+										</td>		
+									</tr>
+								</tbody>
+							</table>	
+							
+						</div>
+
+						<div class="tab-pane fade" id="precinct-comment" role="tabpanel" aria-labelledby="precinct-comment-tab">
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">Change #</th>
+										<th scope="col">Action</th>
+										<th scope="col">Location</th>
+										<th scope="col">Time</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">3</th>
+										<td>Precint reshaped</td>
+										<td>(x,y)</td>
+										<td>12:00:00</td>	
+									</tr>
+									<tr>
+										<th scope="row">2</th>
+										<td>Vertex added</td>
+										<td>(x,y)</td>
+										<td>12:00:00</td>	
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Precints Merged</td>
+										<td>(x,y)</td>
+										<td>12:00:00</td>	
+									</tr>
+								</tbody>
+							</table>
+							
+							
+						</div>
+								
+					</div>
+
+					<!-- End of Info tabs-->
+				</div>
+				<!-- End of Main Work Section -->
+			</div>        
+        
+	
+        
+
+		<!-- Remainder of Bootstrap components -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		
+	<!--JS Scripts -->
+		<script src="js/mapping.js"></script>
+
+		<script src ="js/selectstate.js"></script>
+		<script src ="js/selectelection.js"></script>
+		<script src ="js/selectstateinfo.js"></script>
+		<script src ="js/selectprecintinfo.js"></script>
+		
+		
+	</body>
+</html>
