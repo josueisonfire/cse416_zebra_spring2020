@@ -19,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Congressional-Redistricting/web/js/mapping.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="473" column="43" selection-start-line="473" selection-start-column="43" selection-end-line="473" selection-end-column="43" />
+            <state relative-caret-position="260">
+              <caret line="389" column="9" lean-forward="true" selection-start-line="389" selection-start-column="9" selection-end-line="389" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -31,6 +31,7 @@
     <findStrings>
       <find>state</find>
       <find>console.</find>
+      <find>highlightFea</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -58,9 +59,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="48" />
-    <option name="width" value="1933" />
+    <option name="x" value="-9" />
+    <option name="y" value="47" />
+    <option name="width" value="1934" />
     <option name="height" value="980" />
   </component>
   <component name="ProjectView">
@@ -142,17 +143,18 @@
       <workItem from="1583292223975" duration="1151000" />
       <workItem from="1583296833161" duration="11029000" />
       <workItem from="1583346312908" duration="3571000" />
+      <workItem from="1583624184953" duration="5471000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29862000" />
+    <option name="totallyTimeSpent" value="35927000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="39" width="1546" height="784" extended-state="0" />
+    <frame x="-7" y="38" width="1547" height="784" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2604307" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2642905" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -248,8 +250,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Congressional-Redistricting/web/js/mapping.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="473" column="43" selection-start-line="473" selection-start-column="43" selection-end-line="473" selection-end-column="43" />
+        <state relative-caret-position="260">
+          <caret line="389" column="9" lean-forward="true" selection-start-line="389" selection-start-column="9" selection-end-line="389" selection-end-column="9" />
         </state>
       </provider>
     </entry>
