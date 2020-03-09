@@ -381,9 +381,9 @@ function randombetween(min, max) {
     //style park
     function onEachFeaturepark(feature, layer){
         layer.on({
-                mouseover: highlightFeature,
-                mouseout: resetHighlightpark,
-                click: zoomToFeature
+                //mouseover: highlightFeature,
+                //mouseout: resetHighlightpark,
+                //click: zoomToFeature
             });
     }
     //style errors
