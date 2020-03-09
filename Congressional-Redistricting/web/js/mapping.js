@@ -105,7 +105,7 @@ $(document).ready(function(){
         }
 
         var congDistStyle = {
-            "color": "#8eede1",
+            "color": "#549c93",
             "weight": .5,
             "opacity": 0.65
         }
@@ -426,8 +426,8 @@ function randombetween(min, max) {
         };
 
     function resetHighlightCongDist(e) {
-        geojson_parks.resetStyle(e.target);
-        geojson_parks.resetStyle(congDistStyle);
+        geojson_cong_dist.resetStyle(e.target);
+        geojson_cong_dist.resetStyle(congDistStyle);
     }
 
     function onEachFeatureCongDist(feature, layer){
@@ -490,29 +490,70 @@ function randombetween(min, max) {
     cong_dist_layer.addTo(map);
 
 
+
     map.on('zoomend', function() {
             var zoomlevel = map.getZoom();
             if (zoomlevel >6){
-                if (county_layer.hasLayer(geojson_counties)){
-                    console.log("layer already added");
+                //check if 'show cong_distr checkbox is checked or not.
+                if (document.getElementById("congressional-district-checkbox").checked == true)
+                {
+                    if (county_layer.hasLayer(geojson_counties)) {
+                        county_layer.removeLayer(geojson_counties);
+                    }
+                    if (cong_dist_layer.hasLayer(geojson_cong_dist)){
+                        console.log("layer already added");
+                    } else {
+                        //layergroup2.addLayer(geojson_pre);
+                        cong_dist_layer.addLayer(geojson_cong_dist);
+                    }
+                    if (state_layer.hasLayer(geojson_s)){
+                        state_layer.removeLayer(geojson_s);
+        
+                    } else {
+                        console.log("layer already added");
+                    }
                 } else {
-                    //layergroup2.addLayer(geojson_pre);
-                    county_layer.addLayer(geojson_counties);
+                    if (cong_dist_layer.hasLayer(geojson_cong_dist)) {
+                        cong_dist_layer.removeLayer(geojson_cong_dist);
+                    }
+                    if (county_layer.hasLayer(geojson_counties)){
+                        console.log("layer already added");
+                    } else {
+                        //layergroup2.addLayer(geojson_pre);
+                        county_layer.addLayer(geojson_counties);
+                    }
+                    if (state_layer.hasLayer(geojson_s)){
+                        state_layer.removeLayer(geojson_s);
+        
+                    } else {
+                        console.log("layer already added");
+                    }
                 }
-                if (state_layer.hasLayer(geojson_s)){
-                    state_layer.removeLayer(geojson_s);
-    
-                } else {
-                    console.log("layer already added");
-                }
+                
     
             }
             else if (zoomlevel <=6){ 
-                if (county_layer.hasLayer(geojson_counties)) {
-                    county_layer.removeLayer(geojson_counties);
+                if (document.getElementById("congressional-district-checkbox").checked == true)
+                {
+                    if (county_layer.hasLayer(geojson_counties)) {
+                        county_layer.removeLayer(geojson_counties);
+                    }
+                    if (cong_dist_layer.hasLayer(geojson_cong_dist)) {
+                        cong_dist_layer.removeLayer(geojson_cong_dist);
+                    } else {
+                        console.log("no point layer active");
+                    }
                 } else {
-                    console.log("no point layer active");
+                    if (cong_dist_layer.hasLayer(geojson_cong_dist)) {
+                        cong_dist_layer.removeLayer(geojson_cong_dist);
+                    }
+                    if (county_layer.hasLayer(geojson_counties)) {
+                        county_layer.removeLayer(geojson_counties);
+                    } else {
+                        console.log("no point layer active");
+                    }
                 }
+                
                 if (state_layer.hasLayer(geojson_s)) {
                     console.log("no point layer active");
                 } else {
@@ -522,6 +563,7 @@ function randombetween(min, max) {
             console.log("Current Zoom Level =" + zoomlevel);
 
             if (zoomlevel >8){
+                
                 if (precinct_layer.hasLayer(geojson_pre)){
                     console.log("layer already added");
                 } else {
@@ -532,15 +574,33 @@ function randombetween(min, max) {
                     
                    
                 }
-                if (county_layer.hasLayer(geojson_counties)){
-                    county_layer.removeLayer(geojson_counties);
-    
+                if (document.getElementById("congressional-district-checkbox").checked == true)
+                {
+                    if (county_layer.hasLayer(geojson_counties)) {
+                        county_layer.removeLayer(geojson_counties);
+                    }
+                    if (cong_dist_layer.hasLayer(geojson_cong_dist)){
+                        cong_dist_layer.removeLayer(geojson_cong_dist);
+        
+                    } else {
+                        console.log("layer already added");
+                    }
                 } else {
-                    console.log("layer already added");
+                    if (cong_dist_layer.hasLayer(geojson_cong_dist)) {
+                        cong_dist_layer.removeLayer(geojson_cong_dist);
+                    }
+                    if (county_layer.hasLayer(geojson_counties)){
+                        county_layer.removeLayer(geojson_counties);
+        
+                    } else {
+                        console.log("layer already added");
+                    }
                 }
+                
     
             }
             else if (zoomlevel <=8 && zoomlevel>6){
+                
                 if (precinct_layer.hasLayer(geojson_pre)) {
                     park_layer.removeLayer(geojson_parks);
                     precinct_layer.removeLayer(geojson_pre);
@@ -549,11 +609,28 @@ function randombetween(min, max) {
                 } else {
                     console.log("no point layer active");
                 }
-                if (county_layer.hasLayer(geojson_counties)) {
-                    console.log("no point layer active");
+                if (document.getElementById("congressional-district-checkbox").checked == true)
+                {
+                    if (county_layer.hasLayer(geojson_counties)) {
+                        county_layer.removeLayer(geojson_counties);
+                    }
+                    if (cong_dist_layer.hasLayer(geojson_cong_dist)) {
+                        console.log("no point layer active");
+                    } else {
+        
+                        cong_dist_layer.addLayer(geojson_cong_dist);
+                    }
+                    
                 } else {
-    
-                    county_layer.addLayer(geojson_counties);
+                    if (cong_dist_layer.hasLayer(geojson_cong_dist)) {
+                        cong_dist_layer.removeLayer(geojson_cong_dist);
+                    }
+                    if (county_layer.hasLayer(geojson_counties)) {
+                        console.log("no point layer active");
+                    } else {
+        
+                        county_layer.addLayer(geojson_counties);
+                    }
                 }
             }});
     
