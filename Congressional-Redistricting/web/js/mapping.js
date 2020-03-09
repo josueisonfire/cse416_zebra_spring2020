@@ -286,6 +286,30 @@ $(document).ready(function(){
         document.getElementById("raw-democratic-num-prec").innerHTML=Math.round(e.target.feature.properties.G16PREDCli/total*100).toString()+"%";
         document.getElementById("raw-republican-num-prec").innerHTML = Math.round(e.target.feature.properties.G16PRERTru/total*100).toString()+"%";
         document.getElementById("raw-thirdparty-num-prec").innerHTML = Math.round((e.target.feature.properties.G16PRELJoh+e.target.feature.properties.G16PREGSte+e.target.feature.properties.G16PREOth)/total*100).toString()+"%";
+
+        var max = e.target.feature.properties.G16PREDCli + e.target.feature.properties.G16PRERTru + e.target.feature.properties.G16PRELJoh+e.target.feature.properties.G16PREGSte+e.target.feature.properties.G16PREOth;
+        var r0 = randombetween(1, max-4);
+        var r1 = randombetween(1, max-3-r0);
+        var r2 = randombetween(1, max-2-r0-r1);
+        var r3 = randombetween(1, max-1-r0-r1-r2);
+        var r4 = max - r0 - r1 - r2 - r3;
+
+        document.getElementById("raw-nativeamerican-num").innerHTML = r4;
+        document.getElementById("raw-africanamerican-num").innerHTML = r3;
+        document.getElementById("raw-hispanic-num").innerHTML = r2;
+        document.getElementById("raw-asian-num").innerHTML = r1;
+        document.getElementById("raw-white-num").innerHTML = r0;
+
+        document.getElementById("raw-nativeamerican-num-perc").innerHTML=(Math.round(r4/total*10000)/100).toString()+"%";
+        document.getElementById("raw-africanamerican-num-perc").innerHTML=(Math.round(r3/total*10000)/100).toString()+"%";
+        document.getElementById("raw-hispanic-num-perc").innerHTML=(Math.round(r2/total*10000)/100).toString()+"%";
+        document.getElementById("raw-asian-num-perc").innerHTML=(Math.round(r1/total*10000)/100).toString()+"%";
+        document.getElementById("raw-white-num-perc").innerHTML=(Math.round(r0/total*10000)/100).toString()+"%";
+
+
+function randombetween(min, max) {
+  return Math.floor(Math.random()*(max-min+1)+min);
+}
         
         map.fitBounds(e.target.getBounds());
     }
