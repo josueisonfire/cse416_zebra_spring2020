@@ -566,7 +566,13 @@ function randombetween(min, max) {
 
     var cong_dist_layer = L.layerGroup();
     cong_dist_layer.addTo(map);
-
+var drawControl = new L.Control.Draw({
+         draw: false,
+         edit: {
+             featureGroup: geojson_errors
+         }
+     });
+     map.addControl(drawControl);
 
 
     map.on('zoomend', function() {
