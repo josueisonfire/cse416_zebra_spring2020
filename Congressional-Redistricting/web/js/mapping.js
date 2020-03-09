@@ -222,6 +222,8 @@ $(document).ready(function(){
             $("#dropdown-USA").css("display", "none");
             $("#dropdown-" + currentStateSelection).css("display", "block");
             $("#state-info").css("display", "none");
+            $("#precinct-info").css("display", "none");
+
             currentStateSelection = "USA";
             console.log(map._layers);
     
@@ -382,6 +384,9 @@ $(document).ready(function(){
     // Data
     // style P
   function zoomToFeatureP(e) {
+        $("#precinct-info").css("display", "inline");
+        $("#precinct-info-header").text(e.target.feature.properties.NAME);
+
         var total=e.target.feature.properties.G16PREDCli+e.target.feature.properties.G16PRERTru+e.target.feature.properties.G16PRELJoh+e.target.feature.properties.G16PREGSte+e.target.feature.properties.G16PREOth;
         
         document.getElementById("raw-democratic-num").innerHTML=e.target.feature.properties.G16PREDCli;
@@ -417,9 +422,7 @@ function randombetween(min, max) {
   return Math.floor(Math.random()*(max-min+1)+min);
 }
         
-        map.fitBounds(e.target.getBounds());
-        $("#state-info-header").text(e.target.feature.properties.NAME);
-        
+        map.fitBounds(e.target.getBounds());        
     }
  function onEachFeatureP(feature, layer) {
             layer.bindPopup('<p>JURIS: '+feature.properties.JURIS+'</p>'+'<p>NAME: '+feature.properties.NAME+'</p>Republican:'+feature.properties.G16PRERTru+'</p>'+'</p>Democratic:'+feature.properties.G16PREDCli+'</p>');
