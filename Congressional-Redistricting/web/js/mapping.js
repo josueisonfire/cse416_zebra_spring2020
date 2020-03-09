@@ -48,6 +48,11 @@ $(document).ready(function(){
             tileSize: 512,
             zoomOffset: -1 
         });
+//        var front_layer=L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png',{
+//            id: 'mapbox/light-v9',
+//            tileSize: 512,
+//            zoomOffset: -1 
+//        });
         //init primarylayer (map)
         map.addLayer(primary_layer);
     
@@ -312,6 +317,11 @@ $(document).ready(function(){
         geojson_parks.resetStyle(e.target);
         geojson_parks.resetStyle(countyStyle);
     }
+    var parkStyle = {
+            "color": "green",
+            "weight": 5,
+            "opacity": 0.65
+        };
 
     
     
@@ -333,7 +343,7 @@ $(document).ready(function(){
     });
 
     geojson_parks = L.geoJson(countyData, {
-        style: countyStyle,
+        style: parkStyle,
         onEachFeature: onEachFeaturepark
     });
     
