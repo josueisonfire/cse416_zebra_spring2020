@@ -38,6 +38,11 @@ $(document).ready(function(){
     var parkData = getJSON_data("http://localhost:8080/Congressional-Redistricting/maryland_parks.json")
     console.log('loaded json for parks')
     console.log(parkData)
+    //error data
+    var errorData = getJSON_data("http://localhost:8080/Congressional-Redistricting/err_list.json")
+    console.log('loaded json for errors')
+    console.log(errorData)
+
     
     // Init map.
         //define map type and initial view location.
@@ -88,6 +93,12 @@ $(document).ready(function(){
             "weight": .5,
             "opacity": 0.65
         };
+
+        var errorStyle = {
+            "color": "red",
+            "weight": .5,
+            "opacity": 0.65
+        }
         
         function highlightFeature(e) {
         var layer = e.target;
@@ -288,8 +299,8 @@ $(document).ready(function(){
         }
        function getColorP(feature){
             if (feature.properties.G16PRERTru>feature.properties.G16PREDCli){
-                return 'red';
-            } else return 'blue';
+                return '#ffa08f';
+            } else return '#8fa4ff';
 
         } 
         function resetHighlightP(e) {
@@ -317,14 +328,27 @@ $(document).ready(function(){
                 mouseout: resetHighlightpark,
                 click: zoomToFeature
             });
-    
     }
+    //style errors
+    function onEachFeatureErrors(feature, layer){
+        layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlightErrors,
+                click: zoomToFeature
+            });
+    }
+
+    function resetHighlightErrors(e) {
+        geojson_parks.resetStyle(e.target);
+        geojson_parks.resetStyle(errorStyle);
+    }
+
     function resetHighlightpark(e) {
         geojson_parks.resetStyle(e.target);
         geojson_parks.resetStyle(countyStyle);
     }
     var parkStyle = {
-            "color": "green",
+            "color": "#98ff8f",
             "weight": .5,
             "opacity": 0.65
         };
@@ -352,6 +376,13 @@ $(document).ready(function(){
         style: parkStyle,
         onEachFeature: onEachFeaturepark
     });
+
+    //add errors layer, and defines behavior on interaction.
+    //TODO right now: define unique interaction, and color it with bright red.
+    geojson_errors = L.geoJson(errorData, {
+        style: errorStyle,
+        onEachFeature: onEachFeatureErrors
+    });
     
     var state_layer = L.layerGroup([geojson_s]);
     state_layer.addTo(map);
@@ -361,6 +392,12 @@ $(document).ready(function(){
     county_layer.addTo(map);
     var park_layer = L.layerGroup()
     park_layer.addTo(map);
+    // error layer is here!
+    // we need event handlers to zoom into these
+    var error_layer = L.layergroup(geojson_errors)
+    error_layer.addTo(map);
+
+
     map.on('zoomend', function() {
             var zoomlevel = map.getZoom();
             if (zoomlevel >6){
@@ -434,6 +471,10 @@ $(document).ready(function(){
     park_layer.bringToFront();
     park_layer.bringToFront();
     park_layer.bringToFront();
+    error_layer.bringToFront();
+    error_layer.bringToFront();
+    error_layer.bringToFront();
+    error_layer.bringToFront();
 
 
     // var state_layer = new L.GeoJSON.AJAX("http://localhost:8080/Congressional-Redistricting/us_states.geojson");
