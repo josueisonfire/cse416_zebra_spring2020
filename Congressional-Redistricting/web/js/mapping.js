@@ -199,6 +199,23 @@ $(document).ready(function(){
         $("#dropdown-Texas").on("click", function () {
             map._layers["Texas"].fire('click');
         });
+        featureByName={};
+        $("#error1").on("click", function () {
+            map.fitBounds(featureByName["err_1"].getBounds()); 
+
+        });
+        $("#error2").on("click", function () {
+            map.fitBounds(featureByName["err_2"].getBounds()); 
+
+        });
+        $("#error3").on("click", function () {
+            map.fitBounds(featureByName["err_3"].getBounds()); 
+
+        });
+        $("#error4").on("click", function () {
+            map.fitBounds(featureByName["err_4"].getBounds()); 
+
+        });
     
     // Interaction behaviors.
     function onEachFeature(feature, layer) {
@@ -371,6 +388,7 @@ function randombetween(min, max) {
     }
     //style errors
     function onEachFeatureErrors(feature, layer){
+        featureByName[feature.properties.error_area] = layer;
         layer.on({
                 mouseover: highlightFeature,
                 mouseout: resetHighlightErrors,
