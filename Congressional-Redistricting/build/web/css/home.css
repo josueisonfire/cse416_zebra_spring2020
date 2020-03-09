@@ -10,6 +10,18 @@ p{
 	padding: 0;
 }
 
+.bottomdiv {
+    height: 20px;
+    width:100%;
+    background: #6c757d;
+    color:#fff;
+    position:absolute;
+    text-align: center;
+    left:0;
+    bottom:0;
+}
+
+
 .no-margin{
   margin: 0;  
 }

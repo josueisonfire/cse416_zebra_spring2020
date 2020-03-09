@@ -30,7 +30,7 @@
 				</div>
 				
 				<!-- Main Opertaion Container-->
-				<div class="col-md-3 no-margin">
+				<div class="container col-md-3 no-margin">
 					
 					<!-- State Info -->
 					<div id="dropdown-state-holder" class="nav-item dropdown"> 
@@ -187,16 +187,20 @@
 										<th scope="col">Location</th>
 										<th scope="col">Error Type</th>
 										<th scope="col">Fixed?</th>
+                                                                                <th scope="col">Comment</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<th scope="row">1</th>
 										<td>x,y</td>
-										<td>Overlaping Boarders</td>
+										<td>Overlapping Boarders</td>
 										<td>
 											<input type="checkbox">
-										</td>		
+										</td>
+                                                                                <td>
+											<button class="btn btn-secondary btn-sm" id="edit-comment-btn">Edit</button>
+										</td>
 									</tr>
 									<tr>
 										<th scope="row">2</th>
@@ -204,7 +208,10 @@
 										<td>Self-Intersecting Boarders</td>
 										<td>
 											<input type="checkbox">
-										</td>		
+										</td>
+                                                                                <td>
+											<button class="btn btn-secondary btn-sm" id="edit-comment-btn">Edit</button>
+										</td>
 									</tr>
 									<tr>
 										<th scope="row">3</th>
@@ -212,7 +219,10 @@
 										<td>Coverage Gap</td>
 										<td>
 											<input type="checkbox">
-										</td>		
+										</td>
+                                                                                <td>
+											<button class="btn btn-secondary btn-sm" id="edit-comment-btn">Edit</button>
+										</td>
 									</tr>
 									<tr>
 										<th scope="row">4</th>
@@ -220,7 +230,10 @@
 										<td>Open Boarders</td>
 										<td>
 											<input type="checkbox">
-										</td>		
+										</td>
+                                                                                <td>
+											<button class="btn btn-secondary btn-sm" id="edit-comment-btn">Edit</button>
+										</td>
 									</tr>
 									<tr>
 										<th scope="row">5</th>
@@ -228,7 +241,10 @@
 										<td>Muli-poligons</td>
 										<td>
 											<input type="checkbox">
-										</td>		
+										</td>
+                                                                                <td>
+											<button class="btn btn-secondary btn-sm" id="edit-comment-btn">Edit</button>
+										</td>
 									</tr>
 								</tbody>
 							</table>	
@@ -272,13 +288,14 @@
 					
 					<!--End of Full Operation Content Container-->
 					</div>
-
+                                      
+                                        <div class="bottomdiv">  Sources: National Historical GIS, Harvard Election Data Archive</div>
 				<!-- End of Main Opertaion Container-->
 				</div>
 
 			<!-- End of Main Work Section -->
 			</div>        
-        
+
 	
         
 
