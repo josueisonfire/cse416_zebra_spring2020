@@ -116,12 +116,17 @@ $(document).ready(function(){
     // event handler when user clicks on a polygon. <Generic>
     function zoomToFeature(e) {
         map.fitBounds(e.target.getBounds());
+        $("#state-info-header").text(e.target.feature.properties.NAME);
     }
     
     function onStateSelect(e){
         map.fitBounds(e.target.getBounds());
         selectStateFromMenu(e);
         map.setMaxBounds(e.target.getBounds());
+        
+        $("#dropdown-Georgia").hide();
+        $("#dropdown-Maryland").hide();
+        $("#dropdown-Texas").hide();
     }
     
     //dropdown menu event handlers.
@@ -134,9 +139,7 @@ $(document).ready(function(){
                 $("#dropdown-" + currentStateSelection).css("display", "block");
                 $("#state-info-header").text("Georgia")
                 currentStateSelection = "Georgia";
-                
-                $("#dropdown-Maryland").hide();
-                $("#dropdown-Texas").hide();
+             
                 map.options.minZoom = 7;
             }
             else if(e.target.feature.properties.NAME.localeCompare("Maryland") == 0) {
@@ -146,9 +149,7 @@ $(document).ready(function(){
                 $("#dropdown-" + currentStateSelection).css("display", "block");
                 $("#state-info-header").text("Maryland")
                 currentStateSelection = "Maryland";
-                
-                $("#dropdown-Georgia").hide();
-                $("#dropdown-Texas").hide();
+                              
                 map.options.minZoom = 8;
 
             }
@@ -160,8 +161,7 @@ $(document).ready(function(){
                 $("#state-info-header").text("Texas")
                 currentStateSelection = "Texas";
                 
-                $("#dropdown-Maryland").hide();
-                $("#dropdown-Georgia").hide();
+               
                 map.options.minZoom = 6;
 
             }
@@ -314,6 +314,8 @@ function randombetween(min, max) {
 }
         
         map.fitBounds(e.target.getBounds());
+        $("#state-info-header").text(e.target.feature.properties.NAME);
+        
     }
  function onEachFeatureP(feature, layer) {
             layer.bindPopup('<p>JURIS: '+feature.properties.JURIS+'</p>'+'<p>NAME: '+feature.properties.NAME+'</p>Republican:'+feature.properties.G16PRERTru+'</p>'+'</p>Democratic:'+feature.properties.G16PREDCli+'</p>');
