@@ -41,7 +41,7 @@ $(document).ready(function(){
     
     // Init map.
         //define map type and initial view location.
-        var map = L.map('leaflet-div', {drawControl: true}).setView([37.8, -96], 4);
+        var map = L.map('leaflet-div', {drawControl: true}).setView([37.8, -96], 5);
         // get mapbox map layers.
 //        var primary_layer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamxvdWdobGluIiwiYSI6ImNrN2JjMDRsZTAxaWszbG56dTN6NzBlcjQifQ.SDYDAlazcFCETZRLqQhnFg',{
 //            id: 'mapbox/light-v9',
@@ -161,7 +161,7 @@ $(document).ready(function(){
             map.setMaxBounds(null);
             map.options.minZoom = null;
             
-            map.setView([37.8, -96], 4);
+            map.setView([37.8, -96], 5);
 
 
             $("#dropdown-state-select").text("Select State");
