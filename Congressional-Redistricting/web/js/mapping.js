@@ -217,49 +217,108 @@ $(document).ready(function(){
             layer.fireEvent('click');
         };
     
-        map.on('zoomend', function() {
-            var zoomlevel = map.getZoom();
-    
-            if (zoomlevel >6){
-                if (precinct_layer.hasLayer(geojson_pre)){
-                    console.log("layer already added");
-                } else {
-                    precinct_layer.addLayer(geojson_pre);
-                }
-                if (state_layer.hasLayer(geojson_s)){
-                    state_layer.removeLayer(geojson_s);
-    
-                } else {
-                    console.log("layer already added");
-                }
-    
-            }
-            else {
-                if (precinct_layer.hasLayer(geojson_pre)) {
-                    precinct_layer.removeLayer(geojson_pre);
-                } else {
-                    console.log("no point layer active");
-                }
-                if (state_layer.hasLayer(geojson_s)) {
-                    console.log("no point layer active");
-                } else {
-    
-                    state_layer.addLayer(geojson_s);
-                }
-            }
-            console.log("Current Zoom Level =" + zoomlevel);
-    
-        });
+//        map.on('zoomend', function() {
+//            var zoomlevel = map.getZoom();
+//    
+//            if (zoomlevel >6){
+//                if (precinct_layer.hasLayer(geojson_pre)){
+//                    console.log("layer already added");
+//                } else {
+//                    precinct_layer.addLayer(geojson_pre);
+//                }
+//                if (state_layer.hasLayer(geojson_s)){
+//                    state_layer.removeLayer(geojson_s);
+//    
+//                } else {
+//                    console.log("layer already added");
+//                }
+//    
+//            }
+//            else {
+//                if (precinct_layer.hasLayer(geojson_pre)) {
+//                    precinct_layer.removeLayer(geojson_pre);
+//                } else {
+//                    console.log("no point layer active");
+//                }
+//                if (state_layer.hasLayer(geojson_s)) {
+//                    console.log("no point layer active");
+//                } else {
+//    
+//                    state_layer.addLayer(geojson_s);
+//                }
+//            }
+//            console.log("Current Zoom Level =" + zoomlevel);
+//    
+//        });
     
     
     
     // Data
+    // style P
+ function onEachFeatureP(feature, layer) {
+            layer.bindPopup('<p>JURIS: '+feature.properties.JURIS+'</p>'+'<p>NAME: '+feature.properties.NAME+'</p>Republican:'+feature.properties.G16PRERTru+'</p>'+'</p>Democratic:'+feature.properties.G16PREDCli+'</p>');
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlightP,
+                click: zoomToFeature
+            });
+    
+        }
+    
+        function styleP(feature) {
+            return {
+                fillColor: getColorP(feature),
+                weight: 2,
+                opacity: 1,
+                color: 'white',
+                dashArray: '3',
+                fillOpacity: 0.7
+            };
+        }
+       function getColorP(feature){
+            if (feature.properties.G16PRERTru>feature.properties.G16PREDCli){
+                return 'red';
+            } else return 'blue';
+
+        } 
+        function resetHighlightP(e) {
+            geojson_pre.resetStyle(e.target);
+            geojson_pre.resetStyle(styleP);
+    }
+    
+    //style prefr
+    function onEachFeaturePrefr(feature, layer){
+        layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlightPrefr,
+                click: zoomToFeature
+            });
+    
+    }
+    function resetHighlightPrefr(e) {
+        geojson_counties.resetStyle(e.target);
+        geojson_counties.resetStyle(countyStyle);
+    }
+    //style park
+    function onEachFeaturepark(feature, layer){
+        layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlightpark,
+                click: zoomToFeature
+            });
+    
+    }
+    function resetHighlightpark(e) {
+        geojson_parks.resetStyle(e.target);
+        geojson_parks.resetStyle(countyStyle);
+    }
+
     
     
         //load geodata onto map.
         // Load precinct data. define interaction behaviors.
     geojson_pre = L.geoJson(precinctData, {
-        style: style,
+        style: styleP,
         onEachFeature: onEachFeatureP
     });
     // load state boundaries, and define interaction behaviors.
@@ -270,22 +329,85 @@ $(document).ready(function(){
     //load county boundaries, and define interaction behaviors.
     geojson_counties = L.geoJson(countyData, {
         style: countyStyle,
-        onEachFeature: onEachFeature
+        onEachFeature: onEachFeaturePrefr
     });
 
     geojson_parks = L.geoJson(countyData, {
         style: countyStyle,
-        onEachFeature: onEachFeature
+        onEachFeature: onEachFeaturepark
     });
     
     var state_layer = L.layerGroup([geojson_s]);
     state_layer.addTo(map);
-    var precinct_layer = L.layerGroup(geojson_pre);
+    var precinct_layer = L.layerGroup();
     precinct_layer.addTo(map);
-    var county_layer = L.layerGroup([geojson_counties])
+    var county_layer = L.layerGroup()
     county_layer.addTo(map);
-    var park_layer = L.layerGroup([geojson_parks])
+    var park_layer = L.layerGroup()
     park_layer.addTo(map);
+    map.on('zoomend', function() {
+            var zoomlevel = map.getZoom();
+            if (zoomlevel >6){
+                if (county_layer.hasLayer(geojson_counties)){
+                    console.log("layer already added");
+                } else {
+                    //layergroup2.addLayer(geojson_pre);
+                    county_layer.addLayer(geojson_counties);
+                }
+                if (state_layer.hasLayer(geojson_s)){
+                    state_layer.removeLayer(geojson_s);
+    
+                } else {
+                    console.log("layer already added");
+                }
+    
+            }
+            else if (zoomlevel <=6){ 
+                if (county_layer.hasLayer(geojson_counties)) {
+                    county_layer.removeLayer(geojson_counties);
+                } else {
+                    console.log("no point layer active");
+                }
+                if (state_layer.hasLayer(geojson_s)) {
+                    console.log("no point layer active");
+                } else {
+                    state_layer.addLayer(geojson_s);
+                }
+            }
+            console.log("Current Zoom Level =" + zoomlevel);
+
+            if (zoomlevel >8){
+                if (precinct_layer.hasLayer(geojson_pre)){
+                    console.log("layer already added");
+                } else {
+                    park_layer.addLayer(geojson_parks);
+                    precinct_layer.addLayer(geojson_pre);
+                    
+                   
+                }
+                if (county_layer.hasLayer(geojson_counties)){
+                    county_layer.removeLayer(geojson_counties);
+    
+                } else {
+                    console.log("layer already added");
+                }
+    
+            }
+            else if (zoomlevel <=8 && zoomlevel>6){
+                if (precinct_layer.hasLayer(geojson_pre)) {
+                    park_layer.removeLayer(geojson_parks);
+                    precinct_layer.removeLayer(geojson_pre);
+                    
+                } else {
+                    console.log("no point layer active");
+                }
+                if (county_layer.hasLayer(geojson_counties)) {
+                    console.log("no point layer active");
+                } else {
+    
+                    county_layer.addLayer(geojson_counties);
+                }
+            }});
     
     
     state_layer.bringToBack();
