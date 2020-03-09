@@ -221,15 +221,15 @@ $(document).ready(function(){
     
         }
     
-        function onEachFeatureP(feature, layer) {
-            layer.bindPopup('<p>JURIS: '+feature.properties.JURIS+'</p>'+'<p>NAME: '+feature.properties.NAME+'</p>Republican:'+feature.properties.G16PRERTru+'</p>'+'</p>Democratic:'+feature.properties.G16PREDCli+'</p>');
-            layer.on({
-                mouseover: highlightFeature,
-                mouseout: resetHighlight,
-                click: zoomToFeature
-            });
-    
-        }
+//        function onEachFeatureP(feature, layer) {
+//            layer.bindPopup('<p>JURIS: '+feature.properties.JURIS+'</p>'+'<p>NAME: '+feature.properties.NAME+'</p>Republican:'+feature.properties.G16PRERTru+'</p>'+'</p>Democratic:'+feature.properties.G16PREDCli+'</p>');
+//            layer.on({
+//                mouseover: highlightFeature,
+//                mouseout: resetHighlight,
+//                click: zoomToFeature
+//            });
+//    
+//        }
     
         function clickOnMapItem(itemId) {
             var id = parseInt(itemId);
@@ -277,12 +277,24 @@ $(document).ready(function(){
     
     // Data
     // style P
+  function zoomToFeatureP(e) {
+        var total=e.target.feature.properties.G16PREDCli+e.target.feature.properties.G16PRERTru+e.target.feature.properties.G16PRELJoh+e.target.feature.properties.G16PREGSte+e.target.feature.properties.G16PREOth;
+        
+        document.getElementById("raw-democratic-num").innerHTML=e.target.feature.properties.G16PREDCli;
+        document.getElementById("raw-republican-num").innerHTML = e.target.feature.properties.G16PRERTru;
+        document.getElementById("raw-thirdparty-num").innerHTML = e.target.feature.properties.G16PRELJoh+e.target.feature.properties.G16PREGSte+e.target.feature.properties.G16PREOth;
+        document.getElementById("raw-democratic-num-prec").innerHTML=Math.round(e.target.feature.properties.G16PREDCli/total*100).toString()+"%";
+        document.getElementById("raw-republican-num-prec").innerHTML = Math.round(e.target.feature.properties.G16PRERTru/total*100).toString()+"%";
+        document.getElementById("raw-thirdparty-num-prec").innerHTML = Math.round((e.target.feature.properties.G16PRELJoh+e.target.feature.properties.G16PREGSte+e.target.feature.properties.G16PREOth)/total*100).toString()+"%";
+        
+        map.fitBounds(e.target.getBounds());
+    }
  function onEachFeatureP(feature, layer) {
             layer.bindPopup('<p>JURIS: '+feature.properties.JURIS+'</p>'+'<p>NAME: '+feature.properties.NAME+'</p>Republican:'+feature.properties.G16PRERTru+'</p>'+'</p>Democratic:'+feature.properties.G16PREDCli+'</p>');
             layer.on({
                 mouseover: highlightFeature,
                 mouseout: resetHighlightP,
-                click: zoomToFeature
+                click: zoomToFeatureP
             });
     
         }
