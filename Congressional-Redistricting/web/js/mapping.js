@@ -216,6 +216,10 @@ $(document).ready(function(){
             map.fitBounds(featureByName["err_4"].getBounds()); 
 
         });
+        $("#error5").on("click", function () {
+            map.fitBounds(featureByName["err_5"].getBounds()); 
+
+        });
     
     // Interaction behaviors.
     function onEachFeature(feature, layer) {
