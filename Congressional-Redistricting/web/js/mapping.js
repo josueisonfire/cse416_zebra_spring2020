@@ -222,7 +222,7 @@ $(document).ready(function(){
             $("#dropdown-USA").css("display", "none");
             $("#dropdown-" + currentStateSelection).css("display", "block");
             $("#state-info").css("display", "none");
-            $("#precinct-info").css("display", "none");
+            $("#precinct-info-name").css("display", "none");
 
             currentStateSelection = "USA";
             console.log(map._layers);
