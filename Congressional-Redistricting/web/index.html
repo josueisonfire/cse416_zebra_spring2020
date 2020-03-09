@@ -56,7 +56,7 @@
 							<a class="nav-link" id="operation-error-tab" data-toggle="tab" href="#operation-error" role="tab" aria-controls="precinct-error" aria-selected="false">Errors</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="operation-history-tab" data-toggle="tab" href="#operation-comment" role="tab" aria-controls="precinct-comment" aria-selected="false">History</a>
+							<a class="nav-link" id="operation-history-tab" data-toggle="tab" href="#operation-history" role="tab" aria-controls="precinct-comment" aria-selected="false">History</a>
 						</li>
 					</ul>
 					
@@ -198,8 +198,8 @@
 										<td>
 											<input type="checkbox">
 										</td>
-                                                                                <td>
-											<button class="btn btn-secondary btn-sm" id="edit-comment-btn">Edit</button>
+										<td>
+											<button class="btn btn-secondary btn-sm" id="comment-btn-1">Edit</button>
 										</td>
 									</tr>
 									<tr>
@@ -209,8 +209,8 @@
 										<td>
 											<input type="checkbox">
 										</td>
-                                                                                <td>
-											<button class="btn btn-secondary btn-sm" id="edit-comment-btn">Edit</button>
+										<td>
+											<button class="btn btn-secondary btn-sm" id="comment-btn-2">Edit</button>
 										</td>
 									</tr>
 									<tr>
@@ -220,8 +220,8 @@
 										<td>
 											<input type="checkbox">
 										</td>
-                                                                                <td>
-											<button class="btn btn-secondary btn-sm" id="edit-comment-btn">Edit</button>
+										<td>
+											<button class="btn btn-secondary btn-sm" id="comment-btn-3">Edit</button>
 										</td>
 									</tr>
 									<tr>
@@ -231,8 +231,8 @@
 										<td>
 											<input type="checkbox">
 										</td>
-                                                                                <td>
-											<button class="btn btn-secondary btn-sm" id="edit-comment-btn">Edit</button>
+										<td>
+											<button class="btn btn-secondary btn-sm" id="comment-btn-4">Edit</button>
 										</td>
 									</tr>
 									<tr>
@@ -242,17 +242,26 @@
 										<td>
 											<input type="checkbox">
 										</td>
-                                                                                <td>
-											<button class="btn btn-secondary btn-sm" id="edit-comment-btn">Edit</button>
+										<td>
+											<button class="btn btn-secondary btn-sm" id="comment-btn-5">Edit</button>
 										</td>
 									</tr>
 								</tbody>
-							</table>	
+							</table>
+							<br>
+							<br>
+							<textarea id="error-comment-1" rows="10" cols="50" placeholder="Insert comment here"></textarea>
+							<textarea id="error-comment-2" rows="10" cols="50" placeholder="Insert comment here"></textarea>
+							<textarea id="error-comment-3" rows="10" cols="50" placeholder="Insert comment here"></textarea>
+							<textarea id="error-comment-4" rows="10" cols="50" placeholder="Insert comment here"></textarea>
+							<textarea id="error-comment-5" rows="10" cols="50" placeholder="Insert comment here"></textarea>
+						
+							
 						<!--End of Operation Error Container-->
 						</div>
 
-						<!--Operation Comment Container-->
-						<div class="tab-pane fade" id="operation-comment" role="tabpanel" aria-labelledby="precinct-comment-tab">
+						<!--Operation History Container-->
+						<div class="tab-pane fade" id="operation-history" role="tabpanel" aria-labelledby="precinct-comment-tab">
 							<table class="table">
 								<thead>
 									<tr>
@@ -315,6 +324,7 @@
 		<script src ="js/selectprecintinfo.js"></script>
 		
 		<script src="js/editinfo.js"></script>
+		<script src="js/editcomment.js"></script>
 		
 		
 	</body>

@@ -76,5 +76,25 @@ p{
 }
 
 
-/*#############VOTING INFO TABLE #############*/
+/*#############COMMENT TEXTAREAS #############*/
+#error-comment-1{
+	display: none;
+}
+
+#error-comment-2{
+	display: none;
+}
+
+#error-comment-3{
+	display: none;
+}
+
+#error-comment-4{
+	display: none;
+}
+
+#error-comment-5{
+	display: none;
+}
+
 
