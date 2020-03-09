@@ -95,9 +95,9 @@ $(document).ready(function(){
         };
 
         var errorStyle = {
-            "color": "red",
+            "color": "black",
             "weight": .5,
-            "opacity": 0.65
+            "opacity": .5
         }
         
         function highlightFeature(e) {
@@ -339,8 +339,8 @@ $(document).ready(function(){
     }
 
     function resetHighlightErrors(e) {
-        geojson_parks.resetStyle(e.target);
-        geojson_parks.resetStyle(errorStyle);
+        geojson_errors.resetStyle(e.target);
+        geojson_errors.resetStyle(errorStyle);
     }
 
     function resetHighlightpark(e) {
@@ -388,13 +388,13 @@ $(document).ready(function(){
     state_layer.addTo(map);
     var precinct_layer = L.layerGroup();
     precinct_layer.addTo(map);
-    var county_layer = L.layerGroup()
+    var county_layer = L.layerGroup();
     county_layer.addTo(map);
-    var park_layer = L.layerGroup()
+    var park_layer = L.layerGroup();
     park_layer.addTo(map);
     // error layer is here!
-    // we need event handlers to zoom into these
-    var error_layer = L.layergroup(geojson_errors)
+    //we need event handlers to zoom into these
+    var error_layer = L.layerGroup();
     error_layer.addTo(map);
 
 
@@ -436,6 +436,7 @@ $(document).ready(function(){
                     
                     precinct_layer.addLayer(geojson_pre);
                     park_layer.addLayer(geojson_parks);
+                    error_layer.addLayer(geojson_errors);
                     
                    
                 }
@@ -451,6 +452,7 @@ $(document).ready(function(){
                 if (precinct_layer.hasLayer(geojson_pre)) {
                     park_layer.removeLayer(geojson_parks);
                     precinct_layer.removeLayer(geojson_pre);
+                    error_layer.removeLayer(geojson_errors);
                     
                 } else {
                     console.log("no point layer active");
