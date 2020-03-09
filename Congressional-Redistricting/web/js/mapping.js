@@ -301,6 +301,7 @@ $(document).ready(function(){
         document.getElementById("raw-asian-num").innerHTML = r1;
         document.getElementById("raw-white-num").innerHTML = r0;
 
+        document.getElementById("tot_pre_pop_perc").innerHTML = '100%';
         document.getElementById("raw-nativeamerican-num-perc").innerHTML=(Math.round(r4/total*10000)/100).toString()+"%";
         document.getElementById("raw-africanamerican-num-perc").innerHTML=(Math.round(r3/total*10000)/100).toString()+"%";
         document.getElementById("raw-hispanic-num-perc").innerHTML=(Math.round(r2/total*10000)/100).toString()+"%";
