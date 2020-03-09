@@ -66,8 +66,27 @@
 						<!--Operation Info Container-->
 						<div class="tab-pane fade show active" id="operation-info" role="tabpanel" aria-labelledby="precinct-info-tab">
 							<!--Election Data Dropdown menu-->
+<<<<<<< HEAD
                                                        
                                                         
+=======
+							<div id="precinct-info">	
+								<h1 id="precinct-info-header"></h1>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="dropdown">
+										<button id="district-county-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">Select a Congressional District/County</button> 
+										<div class="dropdown-menu" aria-labelledby="district-county-select-dropdown">
+											<a id="district-county-dropdown-1" class="dropdown-item" href="#">District 1</a>
+											<a id="district-county-dropdown-2" class="dropdown-item" href="#">County 1</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							
+>>>>>>> 01593fe1f6c92b002ee6a94337a2bc9d1e8702da
 							<br>
 							<div class="row">
 								<div class="col-md-5">
@@ -85,7 +104,7 @@
 								<div class="col-md-7">
 									<div class="row">
 										<input type="checkbox" id="state-park-checkbox">
-										<label for="state-park-checkbox"> Show State Park Boundries</label>
+										<label for="state-park-checkbox"> Show State Park Boundaries</label>
 									</div>
 									<div class="row">
 										<input type="checkbox" id="congressional-district-checkbox">
@@ -195,7 +214,25 @@
 						</div>
 						
 						<!--Operation Error Container-->
-						<div class="tab-pane fade" id="operation-error" role="tabpanel" aria-labelledby="precinct-error-tab">							
+						<div class="tab-pane fade" id="operation-error" role="tabpanel" aria-labelledby="precinct-error-tab">	
+							<br>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="dropdown">
+										<button id="merge-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" disabled>Select Precint to Merge With</button> 
+										<div class="dropdown-menu" aria-labelledby="merge-select-dropdown">
+											<a id="merge-dropdown-1" class="dropdown-item" href="#">Precinct A</a>
+											<a id="merge-dropdown-2" class="dropdown-item" href="#">Precinct B</a>
+											<a id="merge-dropdown-3" class="dropdown-item" href="#">Precinct C</a>
+											<a id="merge-dropdown-4" class="dropdown-item" href="#">Precinct D</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<button class="btn btn-secondary" id="merge-selector" disabled>Confirm Merge</button>
+								</div>
+							</div>
+							<br>
 							<table class="table">
 								<thead>
 									<tr>
@@ -254,7 +291,7 @@
 									<tr id="error-row-5">
 										<th scope="row">5</th>
 										<td id ="error5"><button>x,y</button></td>
-										<td>Muli-poligons</td>
+										<td>Enclosed Precinct</td>
 										<td>
 											<input type="checkbox" id="error-checkbox-5">
 										</td>
@@ -300,13 +337,13 @@
 										<th scope="row">3</th>
 										<td>Precint reshaped</td>
 										<td>(x,y)</td>
-										<td>12:00:00</td>	
+										<td>12:02:00</td>	
 									</tr>
 									<tr>
 										<th scope="row">2</th>
 										<td>Vertex added</td>
 										<td>(x,y)</td>
-										<td>12:00:00</td>	
+										<td>12:01:00</td>	
 									</tr>
 									<tr>
 										<th scope="row">1</th>
