@@ -67,17 +67,25 @@
 						<div class="tab-pane fade show active" id="operation-info" role="tabpanel" aria-labelledby="precinct-info-tab">
 							<!--Election Data Dropdown menu-->
 							<br>
-							<div class="dropdown">
-								<button id="election-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">
-									2016 Presidential Election
-								</button> 
-								<div class="dropdown-menu" aria-labelledby="election-select-dropdown">
-									<a id="election-dropdown-2016" class="dropdown-item" href="#">2016 Presidential Election</a>
-									<a id="election-dropdown-2012" class="dropdown-item" href="#">2012 Presidential Election</a>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="dropdown">
+										<button id="election-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">
+											2016 Presidential Election
+										</button> 
+										<div class="dropdown-menu" aria-labelledby="election-select-dropdown">
+											<a id="election-dropdown-2016" class="dropdown-item" href="#">2016 Presidential Election</a>
+											<a id="election-dropdown-2012" class="dropdown-item" href="#">2012 Presidential Election</a>
+										</div>
+									</div>
 								</div>
-							</div>	
-							<br>
-							
+								
+								<div class="col-md-6">
+									<input type="checkbox" id="state-park-checkbox">
+									<label for="state-park-checkbox">Show State Park Boundries</label>
+								</div>
+								<br>
+							</div>
 							<!--Voting Info Table-->
 							<table class="table">
 								<thead>
