@@ -294,6 +294,7 @@ $(document).ready(function(){
         var r3 = randombetween(1, max-1-r0-r1-r2);
         var r4 = max - r0 - r1 - r2 - r3;
 
+        document.getElementById("tot_pre_pop").innerHTML = total;
         document.getElementById("raw-nativeamerican-num").innerHTML = r4;
         document.getElementById("raw-africanamerican-num").innerHTML = r3;
         document.getElementById("raw-hispanic-num").innerHTML = r2;
