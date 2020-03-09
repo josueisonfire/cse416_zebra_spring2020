@@ -42,6 +42,10 @@ $(document).ready(function(){
     var errorData = getJSON_data("http://localhost:8080/Congressional-Redistricting/err_list.json")
     console.log('loaded json for errors')
     console.log(errorData)
+    //congressional districy data
+    var congDistrData = getJSON_data("http://localhost:8080/Congressional-Redistricting/all_cong_districts.json")
+    console.log('loaded json for congressional district data')
+    console.log(congDistrData)
 
     
     // Init map.
@@ -63,7 +67,40 @@ $(document).ready(function(){
         attribution: '©OpenStreetMap, ©CartoDB',
         pane: 'labels'
     }).addTo(map);
+    
+    /*
+    L.CountrySelect = L.Control.extend({
+	options: {
+		position: 'topright',
+		title: 'Precinct',
+	
+	},
+	onAdd: function(map) {
+		this.div = L.DomUtil.create('div','precinct-select-container');
+		this.select = L.DomUtil.create('select','precinct-select',this.div);
+		var content = '';
+		
+                content += '<option>'+this.options.title+'</option>';
+		
+		
+                content+='<option>'+'PrecinctA'+'</option>';
+                content+='<option>'+'PrecinctB'+'</option>';
+                content+='<option>'+'PrecinctC'+'</option>';
+                content+='<option>'+'PrecinctD'+'</option>';
+                content+='<option>'+'PrecinctE'+'</option>';
+			
+		this.select.innerHTML = content;
 
+		this.select.onmousedown = L.DomEvent.stopPropagation;
+		
+		return this.div;
+	}
+    });
+    
+    var select = new L.CountrySelect();
+    select.addTo(map);
+    */
+   
         //init primarylayer (map)
         //map.addLayer(primary_layer);
     
@@ -98,6 +135,12 @@ $(document).ready(function(){
             "color": "black",
             "weight": .5,
             "opacity": .5
+        }
+
+        var congDistStyle = {
+            "color": "#549c93",
+            "weight": .5,
+            "opacity": 0.65
         }
         
         function highlightFeature(e) {
@@ -185,6 +228,28 @@ $(document).ready(function(){
             $("#dropdown-Texas").show();
             $("#dropdown-Georgia").show();
             $("#dropdown-Maryland").show();
+            
+            document.getElementById("raw-democratic-num").innerHTML="";
+            document.getElementById("raw-republican-num").innerHTML = "";
+            document.getElementById("raw-thirdparty-num").innerHTML = "";
+            document.getElementById("raw-democratic-num-prec").innerHTML="";
+            document.getElementById("raw-republican-num-prec").innerHTML = "";
+            document.getElementById("raw-thirdparty-num-prec").innerHTML = "";
+
+            document.getElementById("tot_pre_pop").innerHTML = "";
+            document.getElementById("raw-nativeamerican-num").innerHTML = "";
+            document.getElementById("raw-africanamerican-num").innerHTML = "";
+            document.getElementById("raw-hispanic-num").innerHTML = "";
+            document.getElementById("raw-asian-num").innerHTML = "";
+            document.getElementById("raw-white-num").innerHTML = "";
+
+            document.getElementById("tot_pre_pop_perc").innerHTML = "";
+            document.getElementById("raw-nativeamerican-num-perc").innerHTML="";
+            document.getElementById("raw-africanamerican-num-perc").innerHTML="";
+            document.getElementById("raw-hispanic-num-perc").innerHTML="";
+            document.getElementById("raw-asian-num-perc").innerHTML="";
+            document.getElementById("raw-white-num-perc").innerHTML="";
+
         });
     
         $("#dropdown-Georgia").on("click", function () {
@@ -216,6 +281,27 @@ $(document).ready(function(){
             map.fitBounds(featureByName["err_4"].getBounds()); 
 
         });
+        $("#error5").on("click", function () {
+            map.fitBounds(featureByName["err_5"].getBounds()); 
+
+        });
+        $("#error5").on("click", function () {
+            map.fitBounds(featureByName["err_5"].getBounds()); 
+
+        });
+        document.getElementById('state-park-checkbox').onclick = function() {
+    // access properties using this keyword
+    if ( this.checked ) {
+        if (!park_layer.hasLayer(geojson_parks)){
+                   park_layer.addLayer(geojson_parks);
+                }
+    } else {
+         if (park_layer.hasLayer(geojson_parks)){
+                   park_layer.removeLayer(geojson_parks);
+                }
+        
+    }
+};
     
     // Interaction behaviors.
     function onEachFeature(feature, layer) {
@@ -411,7 +497,18 @@ function randombetween(min, max) {
             "opacity": 0.65
         };
 
-    
+    function resetHighlightCongDist(e) {
+        geojson_cong_dist.resetStyle(e.target);
+        geojson_cong_dist.resetStyle(congDistStyle);
+    }
+
+    function onEachFeatureCongDist(feature, layer){
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlightCongDist,
+            click: zoomToFeature
+        });
+    }
     
         //load geodata onto map.
         // Load precinct data. define interaction behaviors.
@@ -441,6 +538,12 @@ function randombetween(min, max) {
         style: errorStyle,
         onEachFeature: onEachFeatureErrors
     });
+
+    //add congressional district layers.
+    geojson_cong_dist = L.geoJson(congDistrData, {
+        style: congDistStyle,
+        onEachFeature: onEachFeatureCongDist
+    });
     
     var state_layer = L.layerGroup([geojson_s]);
     state_layer.addTo(map);
@@ -455,30 +558,74 @@ function randombetween(min, max) {
     var error_layer = L.layerGroup();
     error_layer.addTo(map);
 
+    var cong_dist_layer = L.layerGroup();
+    cong_dist_layer.addTo(map);
+
+
 
     map.on('zoomend', function() {
             var zoomlevel = map.getZoom();
             if (zoomlevel >6){
-                if (county_layer.hasLayer(geojson_counties)){
-                    console.log("layer already added");
+                //check if 'show cong_distr checkbox is checked or not.
+                if (document.getElementById("congressional-district-checkbox").checked == true)
+                {
+                    if (county_layer.hasLayer(geojson_counties)) {
+                        county_layer.removeLayer(geojson_counties);
+                    }
+                    if (cong_dist_layer.hasLayer(geojson_cong_dist)){
+                        console.log("layer already added");
+                    } else {
+                        //layergroup2.addLayer(geojson_pre);
+                        cong_dist_layer.addLayer(geojson_cong_dist);
+                    }
+                    if (state_layer.hasLayer(geojson_s)){
+                        state_layer.removeLayer(geojson_s);
+        
+                    } else {
+                        console.log("layer already added");
+                    }
                 } else {
-                    //layergroup2.addLayer(geojson_pre);
-                    county_layer.addLayer(geojson_counties);
+                    if (cong_dist_layer.hasLayer(geojson_cong_dist)) {
+                        cong_dist_layer.removeLayer(geojson_cong_dist);
+                    }
+                    if (county_layer.hasLayer(geojson_counties)){
+                        console.log("layer already added");
+                    } else {
+                        //layergroup2.addLayer(geojson_pre);
+                        county_layer.addLayer(geojson_counties);
+                    }
+                    if (state_layer.hasLayer(geojson_s)){
+                        state_layer.removeLayer(geojson_s);
+        
+                    } else {
+                        console.log("layer already added");
+                    }
                 }
-                if (state_layer.hasLayer(geojson_s)){
-                    state_layer.removeLayer(geojson_s);
-    
-                } else {
-                    console.log("layer already added");
-                }
+                
     
             }
             else if (zoomlevel <=6){ 
-                if (county_layer.hasLayer(geojson_counties)) {
-                    county_layer.removeLayer(geojson_counties);
+                if (document.getElementById("congressional-district-checkbox").checked == true)
+                {
+                    if (county_layer.hasLayer(geojson_counties)) {
+                        county_layer.removeLayer(geojson_counties);
+                    }
+                    if (cong_dist_layer.hasLayer(geojson_cong_dist)) {
+                        cong_dist_layer.removeLayer(geojson_cong_dist);
+                    } else {
+                        console.log("no point layer active");
+                    }
                 } else {
-                    console.log("no point layer active");
+                    if (cong_dist_layer.hasLayer(geojson_cong_dist)) {
+                        cong_dist_layer.removeLayer(geojson_cong_dist);
+                    }
+                    if (county_layer.hasLayer(geojson_counties)) {
+                        county_layer.removeLayer(geojson_counties);
+                    } else {
+                        console.log("no point layer active");
+                    }
                 }
+                
                 if (state_layer.hasLayer(geojson_s)) {
                     console.log("no point layer active");
                 } else {
@@ -488,38 +635,74 @@ function randombetween(min, max) {
             console.log("Current Zoom Level =" + zoomlevel);
 
             if (zoomlevel >8){
+                
                 if (precinct_layer.hasLayer(geojson_pre)){
                     console.log("layer already added");
                 } else {
                     
                     precinct_layer.addLayer(geojson_pre);
-                    park_layer.addLayer(geojson_parks);
+                //    park_layer.addLayer(geojson_parks);
                     error_layer.addLayer(geojson_errors);
                     
                    
                 }
-                if (county_layer.hasLayer(geojson_counties)){
-                    county_layer.removeLayer(geojson_counties);
-    
+                if (document.getElementById("congressional-district-checkbox").checked == true)
+                {
+                    if (county_layer.hasLayer(geojson_counties)) {
+                        county_layer.removeLayer(geojson_counties);
+                    }
+                    if (cong_dist_layer.hasLayer(geojson_cong_dist)){
+                        cong_dist_layer.removeLayer(geojson_cong_dist);
+        
+                    } else {
+                        console.log("layer already added");
+                    }
                 } else {
-                    console.log("layer already added");
+                    if (cong_dist_layer.hasLayer(geojson_cong_dist)) {
+                        cong_dist_layer.removeLayer(geojson_cong_dist);
+                    }
+                    if (county_layer.hasLayer(geojson_counties)){
+                        county_layer.removeLayer(geojson_counties);
+        
+                    } else {
+                        console.log("layer already added");
+                    }
                 }
+                
     
             }
             else if (zoomlevel <=8 && zoomlevel>6){
+                
                 if (precinct_layer.hasLayer(geojson_pre)) {
-                    park_layer.removeLayer(geojson_parks);
+               //     park_layer.removeLayer(geojson_parks);
                     precinct_layer.removeLayer(geojson_pre);
                     error_layer.removeLayer(geojson_errors);
                     
                 } else {
                     console.log("no point layer active");
                 }
-                if (county_layer.hasLayer(geojson_counties)) {
-                    console.log("no point layer active");
+                if (document.getElementById("congressional-district-checkbox").checked == true)
+                {
+                    if (county_layer.hasLayer(geojson_counties)) {
+                        county_layer.removeLayer(geojson_counties);
+                    }
+                    if (cong_dist_layer.hasLayer(geojson_cong_dist)) {
+                        console.log("no point layer active");
+                    } else {
+        
+                        cong_dist_layer.addLayer(geojson_cong_dist);
+                    }
+                    
                 } else {
-    
-                    county_layer.addLayer(geojson_counties);
+                    if (cong_dist_layer.hasLayer(geojson_cong_dist)) {
+                        cong_dist_layer.removeLayer(geojson_cong_dist);
+                    }
+                    if (county_layer.hasLayer(geojson_counties)) {
+                        console.log("no point layer active");
+                    } else {
+        
+                        county_layer.addLayer(geojson_counties);
+                    }
                 }
             }});
     

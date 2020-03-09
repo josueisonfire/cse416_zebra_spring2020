@@ -67,7 +67,40 @@ $(document).ready(function(){
         attribution: '©OpenStreetMap, ©CartoDB',
         pane: 'labels'
     }).addTo(map);
+    
+    /*
+    L.CountrySelect = L.Control.extend({
+	options: {
+		position: 'topright',
+		title: 'Precinct',
+	
+	},
+	onAdd: function(map) {
+		this.div = L.DomUtil.create('div','precinct-select-container');
+		this.select = L.DomUtil.create('select','precinct-select',this.div);
+		var content = '';
+		
+                content += '<option>'+this.options.title+'</option>';
+		
+		
+                content+='<option>'+'PrecinctA'+'</option>';
+                content+='<option>'+'PrecinctB'+'</option>';
+                content+='<option>'+'PrecinctC'+'</option>';
+                content+='<option>'+'PrecinctD'+'</option>';
+                content+='<option>'+'PrecinctE'+'</option>';
+			
+		this.select.innerHTML = content;
 
+		this.select.onmousedown = L.DomEvent.stopPropagation;
+		
+		return this.div;
+	}
+    });
+    
+    var select = new L.CountrySelect();
+    select.addTo(map);
+    */
+   
         //init primarylayer (map)
         //map.addLayer(primary_layer);
     
@@ -195,6 +228,28 @@ $(document).ready(function(){
             $("#dropdown-Texas").show();
             $("#dropdown-Georgia").show();
             $("#dropdown-Maryland").show();
+            
+            document.getElementById("raw-democratic-num").innerHTML="";
+            document.getElementById("raw-republican-num").innerHTML = "";
+            document.getElementById("raw-thirdparty-num").innerHTML = "";
+            document.getElementById("raw-democratic-num-prec").innerHTML="";
+            document.getElementById("raw-republican-num-prec").innerHTML = "";
+            document.getElementById("raw-thirdparty-num-prec").innerHTML = "";
+
+            document.getElementById("tot_pre_pop").innerHTML = "";
+            document.getElementById("raw-nativeamerican-num").innerHTML = "";
+            document.getElementById("raw-africanamerican-num").innerHTML = "";
+            document.getElementById("raw-hispanic-num").innerHTML = "";
+            document.getElementById("raw-asian-num").innerHTML = "";
+            document.getElementById("raw-white-num").innerHTML = "";
+
+            document.getElementById("tot_pre_pop_perc").innerHTML = "";
+            document.getElementById("raw-nativeamerican-num-perc").innerHTML="";
+            document.getElementById("raw-africanamerican-num-perc").innerHTML="";
+            document.getElementById("raw-hispanic-num-perc").innerHTML="";
+            document.getElementById("raw-asian-num-perc").innerHTML="";
+            document.getElementById("raw-white-num-perc").innerHTML="";
+
         });
     
         $("#dropdown-Georgia").on("click", function () {
