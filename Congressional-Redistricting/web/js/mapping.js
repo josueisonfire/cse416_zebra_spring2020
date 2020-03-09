@@ -43,18 +43,24 @@ $(document).ready(function(){
         //define map type and initial view location.
         var map = L.map('leaflet-div', {drawControl: true}).setView([37.8, -96], 4);
         // get mapbox map layers.
-        var primary_layer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamxvdWdobGluIiwiYSI6ImNrN2JjMDRsZTAxaWszbG56dTN6NzBlcjQifQ.SDYDAlazcFCETZRLqQhnFg',{
-            id: 'mapbox/light-v9',
-            tileSize: 512,
-            zoomOffset: -1 
-        });
-//        var front_layer=L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png',{
+//        var primary_layer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamxvdWdobGluIiwiYSI6ImNrN2JjMDRsZTAxaWszbG56dTN6NzBlcjQifQ.SDYDAlazcFCETZRLqQhnFg',{
 //            id: 'mapbox/light-v9',
 //            tileSize: 512,
 //            zoomOffset: -1 
 //        });
+    map.createPane('labels');
+    map.getPane('labels').style.zIndex = 650;
+    map.getPane('labels').style.pointerEvents = 'none';
+    var positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+          attribution: '©OpenStreetMap, ©CartoDB'
+    }).addTo(map);
+    var positronLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+        attribution: '©OpenStreetMap, ©CartoDB',
+        pane: 'labels'
+    }).addTo(map);
+
         //init primarylayer (map)
-        map.addLayer(primary_layer);
+        //map.addLayer(primary_layer);
     
         // styling options...
         function getColor(d) {
