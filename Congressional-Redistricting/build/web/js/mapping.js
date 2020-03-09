@@ -290,18 +290,19 @@ $(document).ready(function(){
 
         });
         document.getElementById('state-park-checkbox').onclick = function() {
-    // access properties using this keyword
-    if ( this.checked ) {
-        if (!park_layer.hasLayer(geojson_parks)){
-                   park_layer.addLayer(geojson_parks);
-                }
-    } else {
-         if (park_layer.hasLayer(geojson_parks)){
-                   park_layer.removeLayer(geojson_parks);
-                }
+            // access properties using this keyword
+            if ( this.checked ) {
+                if (!park_layer.hasLayer(geojson_parks)){
+                        park_layer.addLayer(geojson_parks);
+                        }
+            } else {
+                if (park_layer.hasLayer(geojson_parks)){
+                        park_layer.removeLayer(geojson_parks);
+                        }
+                
+            }
+        };
         
-    }
-};
     
     // Interaction behaviors.
     function onEachFeature(feature, layer) {
@@ -705,6 +706,35 @@ function randombetween(min, max) {
                     }
                 }
             }});
+
+            //event handler when user clicks on 'show congressional districts boundaries'
+            document.getElementById('congressional-district-checkbox').onclick = function() {
+                var zoomlevel = map.getZoom();
+                // access properties using this keyword
+                if (zoomlevel <=8 && zoomlevel>6){
+                    if ( this.checked ) {
+                        // remove counties layer, and add cong_dist layer.
+                        county_layer.removeLayer(geojson_counties);
+                        cong_dist_layer.addLayer(geojson_cong_dist);
+                    } else {
+                        // remove cong_dist layer and add counties layer.
+                        cong_dist_layer.removeLayer(geojson_cong_dist);
+                        county_layer.addLayer(geojson_counties);
+                    }
+                }
+                //if zoom levels are out of diplay range, then do nothing.
+
+                if ( this.checked ) {
+                    if (!park_layer.hasLayer(geojson_parks)){
+                            park_layer.addLayer(geojson_parks);
+                            }
+                } else {
+                    if (park_layer.hasLayer(geojson_parks)){
+                            park_layer.removeLayer(geojson_parks);
+                            }
+                    
+                }
+            };
     
     
     state_layer.bringToBack();
