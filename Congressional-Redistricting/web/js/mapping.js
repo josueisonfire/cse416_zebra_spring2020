@@ -230,6 +230,23 @@ $(document).ready(function(){
             map.fitBounds(featureByName["err_5"].getBounds()); 
 
         });
+        $("#error5").on("click", function () {
+            map.fitBounds(featureByName["err_5"].getBounds()); 
+
+        });
+        document.getElementById('state-park-checkbox').onclick = function() {
+    // access properties using this keyword
+    if ( this.checked ) {
+        if (!park_layer.hasLayer(geojson_parks)){
+                   park_layer.addLayer(geojson_parks);
+                }
+    } else {
+         if (park_layer.hasLayer(geojson_parks)){
+                   park_layer.removeLayer(geojson_parks);
+                }
+        
+    }
+};
     
     // Interaction behaviors.
     function onEachFeature(feature, layer) {
@@ -569,7 +586,7 @@ function randombetween(min, max) {
                 } else {
                     
                     precinct_layer.addLayer(geojson_pre);
-                    park_layer.addLayer(geojson_parks);
+                //    park_layer.addLayer(geojson_parks);
                     error_layer.addLayer(geojson_errors);
                     
                    
@@ -602,7 +619,7 @@ function randombetween(min, max) {
             else if (zoomlevel <=8 && zoomlevel>6){
                 
                 if (precinct_layer.hasLayer(geojson_pre)) {
-                    park_layer.removeLayer(geojson_parks);
+               //     park_layer.removeLayer(geojson_parks);
                     precinct_layer.removeLayer(geojson_pre);
                     error_layer.removeLayer(geojson_errors);
                     
