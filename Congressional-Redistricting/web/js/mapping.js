@@ -76,7 +76,7 @@ $(document).ready(function(){
         function style(feature) {
             return {
                 fillColor: getColor(feature.properties.density),
-                weight: 2,
+                weight: .5,
                 opacity: 1,
                 color: 'white',
                 dashArray: '3',
@@ -85,7 +85,7 @@ $(document).ready(function(){
         }
         var countyStyle = {
             "color": "#ff7800",
-            "weight": 5,
+            "weight": .5,
             "opacity": 0.65
         };
         
@@ -93,7 +93,7 @@ $(document).ready(function(){
         var layer = e.target;
     
         layer.setStyle({
-            weight: 5,
+            weight: 1,
             color: '#666',
             dashArray: '',
             fillOpacity: 0.7
@@ -279,7 +279,7 @@ $(document).ready(function(){
         function styleP(feature) {
             return {
                 fillColor: getColorP(feature),
-                weight: 2,
+                weight: .5,
                 opacity: 1,
                 color: 'white',
                 dashArray: '3',
@@ -325,7 +325,7 @@ $(document).ready(function(){
     }
     var parkStyle = {
             "color": "green",
-            "weight": 5,
+            "weight": .5,
             "opacity": 0.65
         };
 
@@ -348,7 +348,7 @@ $(document).ready(function(){
         onEachFeature: onEachFeaturePrefr
     });
 
-    geojson_parks = L.geoJson(countyData, {
+    geojson_parks = L.geoJson(parkData, {
         style: parkStyle,
         onEachFeature: onEachFeaturepark
     });
@@ -396,8 +396,9 @@ $(document).ready(function(){
                 if (precinct_layer.hasLayer(geojson_pre)){
                     console.log("layer already added");
                 } else {
-                    park_layer.addLayer(geojson_parks);
+                    
                     precinct_layer.addLayer(geojson_pre);
+                    park_layer.addLayer(geojson_parks);
                     
                    
                 }
