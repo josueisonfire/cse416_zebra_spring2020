@@ -68,7 +68,7 @@
 							<!--Election Data Dropdown menu-->
 							<br>
 							<div class="row">
-								<div class="col-md-6">
+								<div class="col-md-5">
 									<div class="dropdown">
 										<button id="election-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">
 											2016 Presidential Election
@@ -80,9 +80,15 @@
 									</div>
 								</div>
 								
-								<div class="col-md-6">
-									<input type="checkbox" id="state-park-checkbox">
-									<label for="state-park-checkbox">Show State Park Boundries</label>
+								<div class="col-md-7">
+									<div class="row">
+										<input type="checkbox" id="state-park-checkbox">
+										<label for="state-park-checkbox"> Show State Park Boundries</label>
+									</div>
+									<div class="row">
+										<input type="checkbox" id="congressional-district-checkbox">
+										<label for="state-park-checkbox"> Show Congressional Districts</label>
+									</div>
 								</div>
 								<br>
 							</div>
@@ -270,6 +276,14 @@
 
 						<!--Operation History Container-->
 						<div class="tab-pane fade" id="operation-history" role="tabpanel" aria-labelledby="precinct-comment-tab">
+							
+							<div class="row">
+								<div class="col-md-12">
+									<br>
+									<button class="btn btn-secondary" id="revert-btn" style="float: right">Revert Recent Change</button>
+								</div>
+							</div>
+							
 							<table class="table">
 								<thead>
 									<tr>
@@ -280,7 +294,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
+									<tr id="change-row-3">
 										<th scope="row">3</th>
 										<td>Precint reshaped</td>
 										<td>(x,y)</td>
@@ -334,6 +348,7 @@
 		<script src="js/editinfo.js"></script>
 		<script src="js/editcomment.js"></script>
 		<script src="js/updateerrorrow.js"></script>
+		<script src="js/revertrecent.js"></script>
 		
 		
 	</body>
