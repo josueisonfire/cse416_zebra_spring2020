@@ -42,6 +42,10 @@ $(document).ready(function(){
     var errorData = getJSON_data("http://localhost:8080/Congressional-Redistricting/err_list.json")
     console.log('loaded json for errors')
     console.log(errorData)
+    //congressional districy data
+    var congDistrData = getJSON_data("http://localhost:8080/Congressional-Redistricting/all_cong_districts.json")
+    console.log('loaded json for congressional district data')
+    console.log(congDistrData)
 
     
     // Init map.
@@ -98,6 +102,12 @@ $(document).ready(function(){
             "color": "black",
             "weight": .5,
             "opacity": .5
+        }
+
+        var congDistStyle = {
+            "color": "#8eede1",
+            "weight": .5,
+            "opacity": 0.65
         }
         
         function highlightFeature(e) {
@@ -411,7 +421,18 @@ function randombetween(min, max) {
             "opacity": 0.65
         };
 
-    
+    function resetHighlightCongDist(e) {
+        geojson_parks.resetStyle(e.target);
+        geojson_parks.resetStyle(congDistStyle);
+    }
+
+    function onEachFeatureCongDist(feature, layer){
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlightCongDist,
+            click: zoomToFeature
+        });
+    }
     
         //load geodata onto map.
         // Load precinct data. define interaction behaviors.
@@ -441,6 +462,12 @@ function randombetween(min, max) {
         style: errorStyle,
         onEachFeature: onEachFeatureErrors
     });
+
+    //add congressional district layers.
+    geojson_cong_dist = L.geoJson(congDistrData, {
+        style: congDistStyle,
+        onEachFeature: onEachFeatureCongDist
+    });
     
     var state_layer = L.layerGroup([geojson_s]);
     state_layer.addTo(map);
@@ -454,6 +481,9 @@ function randombetween(min, max) {
     //we need event handlers to zoom into these
     var error_layer = L.layerGroup();
     error_layer.addTo(map);
+
+    var cong_dist_layer = L.layerGroup();
+    cong_dist_layer.addTo(map);
 
 
     map.on('zoomend', function() {
