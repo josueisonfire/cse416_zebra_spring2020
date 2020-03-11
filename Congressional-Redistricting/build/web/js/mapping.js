@@ -222,7 +222,7 @@ $(document).ready(function(){
             $("#dropdown-USA").css("display", "none");
             $("#dropdown-" + currentStateSelection).css("display", "block");
             $("#state-info").css("display", "none");
-            $("#precinct-info").css("display", "none");
+            $("#precinct-info-name").css("display", "none");
 
             currentStateSelection = "USA";
             console.log(map._layers);
@@ -385,8 +385,8 @@ $(document).ready(function(){
     // style P
   function zoomToFeatureP(e) {
       
-        $("#precinct-info").css("display", "inline");
-        $("#precinct-info-header").text(e.target.feature.properties.NAME);
+        $("#precinct-info-name").css("display", "inline");
+        $("#precinct-info-name-header").text(e.target.feature.properties.NAME);
 
         var total=e.target.feature.properties.G16PREDCli+e.target.feature.properties.G16PRERTru+e.target.feature.properties.G16PRELJoh+e.target.feature.properties.G16PREGSte+e.target.feature.properties.G16PREOth;
         
@@ -566,7 +566,13 @@ function randombetween(min, max) {
 
     var cong_dist_layer = L.layerGroup();
     cong_dist_layer.addTo(map);
-
+var drawControl = new L.Control.Draw({
+         draw: false,
+         edit: {
+             featureGroup: geojson_errors
+         }
+     });
+     map.addControl(drawControl);
 
 
     map.on('zoomend', function() {
