@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
     
     // Geojson data vars... inefficient code for now, but it works.
@@ -42,6 +41,34 @@ $(document).ready(function(){
     var errorData = getJSON_data("http://localhost:8080/Congressional-Redistricting/err_list.json")
     console.log('loaded json for errors')
     console.log(errorData)
+    //var error_layer = L.layerGroup();
+    
+//$.ajax({
+//
+//url: 'http://localhost:8080/Congressional-Redistricting/err_list.json',
+//dataType: 'json',
+//success: function(data){
+//
+//    var latLong = [];
+//    var thisTime = true;
+//    data.features.forEach(function(currentFeature){
+//
+//        currentFeature.geometry.coordinates[0].forEach(function(locationArray){
+//
+//            locationArray.forEach(function(location){
+//
+//                latLong.push([location[1] , location[0]]);
+//            });
+//        });
+//
+//        var errorData = L.polygon(latLong).addTo(error_layer);
+//        errorData.enableEdit();
+//        latLong = [];
+//        
+//        
+//    });
+//}});
+
     //congressional districy data
     var congDistrData = getJSON_data("http://localhost:8080/Congressional-Redistricting/all_cong_districts.json")
     console.log('loaded json for congressional district data')
@@ -50,7 +77,7 @@ $(document).ready(function(){
     
     // Init map.
         //define map type and initial view location.
-        var map = L.map('leaflet-div', {drawControl: true}).setView([37.8, -96], 5);
+        var map = L.map('leaflet-div', {editable: true}).setView([37.8, -96], 5);
         // get mapbox map layers.
 //        var primary_layer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamxvdWdobGluIiwiYSI6ImNrN2JjMDRsZTAxaWszbG56dTN6NzBlcjQifQ.SDYDAlazcFCETZRLqQhnFg',{
 //            id: 'mapbox/light-v9',
@@ -67,6 +94,127 @@ $(document).ready(function(){
         attribution: '©OpenStreetMap, ©CartoDB',
         pane: 'labels'
     }).addTo(map);
+    
+    
+    L.EditControl = L.Control.extend({
+
+        options: {
+            position: 'topleft',
+            callback: null,
+            kind: '',
+            html: ''
+        },
+
+        onAdd: function (map) {
+            var container = L.DomUtil.create('div', 'leaflet-control leaflet-bar'),
+                link = L.DomUtil.create('a', '', container);
+
+            link.href = '#';
+            link.title = 'Create a new ' + this.options.kind;
+            link.innerHTML = this.options.html;
+            L.DomEvent.on(link, 'click', L.DomEvent.stop)
+                      .on(link, 'click', function () {
+                        window.LAYER = this.options.callback.call(map.editTools);
+                      }, this);
+
+            return container;
+        }
+
+    });
+
+    L.NewLineControl = L.EditControl.extend({
+
+        options: {
+            position: 'topleft',
+            callback: map.editTools.startPolyline,
+            kind: 'line',
+            html: '\\/\\'
+        }
+
+    });
+
+    L.NewPolygonControl = L.EditControl.extend({
+
+        options: {
+            position: 'topleft',
+            callback: map.editTools.startPolygon,
+            kind: 'polygon',
+            html: '▰'
+        }
+
+    });
+
+    L.NewMarkerControl = L.EditControl.extend({
+
+        options: {
+            position: 'topleft',
+            callback: map.editTools.startMarker,
+            kind: 'marker',
+            html: '🖈'
+        }
+
+    });
+
+    L.NewRectangleControl = L.EditControl.extend({
+
+        options: {
+            position: 'topleft',
+            callback: map.editTools.startRectangle,
+            kind: 'rectangle',
+            html: '⬛'
+        }
+
+    });
+
+    L.NewCircleControl = L.EditControl.extend({
+
+        options: {
+            position: 'topleft',
+            callback: map.editTools.startCircle,
+            kind: 'circle',
+            html: '⬤'
+        }
+
+    });
+    
+    L.EditPolControl = L.EditControl.extend({
+
+        options: {
+            position: 'topleft',
+            callback: stratEdit,
+            kind: 'circle',
+            html: 'edit'
+        }
+
+    });
+     L.UnEditPolControl = L.EditControl.extend({
+
+        options: {
+            position: 'topleft',
+            callback: EndEdit,
+            kind: 'circle',
+            html: 'Fin'
+        }
+
+    });
+    var editable=0;
+    function stratEdit(){
+        editable=1;
+    }
+    function EndEdit(){
+        
+        editable=0;
+    }
+
+    map.addControl(new L.NewMarkerControl());
+    map.addControl(new L.NewLineControl());
+    map.addControl(new L.NewPolygonControl());
+    map.addControl(new L.NewRectangleControl());
+    map.addControl(new L.NewCircleControl());
+    map.addControl(new L.EditPolControl());
+    map.addControl(new L.UnEditPolControl());
+
+    
     
     /*
     L.CountrySelect = L.Control.extend({
@@ -90,7 +238,6 @@ $(document).ready(function(){
                 content+='<option>'+'PrecinctE'+'</option>';
 			
 		this.select.innerHTML = content;
-
 		this.select.onmousedown = L.DomEvent.stopPropagation;
 		
 		return this.div;
@@ -161,6 +308,12 @@ $(document).ready(function(){
         map.fitBounds(e.target.getBounds());
         $("#state-info-header").text(e.target.feature.properties.NAME);
     }
+    var editLayer;
+    var deleteLayer;
+    function zoomToFeatureE(e) {
+        map.fitBounds(e.target.getBounds());
+       
+    }
     
     function onStateSelect(e){
         map.fitBounds(e.target.getBounds());
@@ -222,7 +375,7 @@ $(document).ready(function(){
             $("#dropdown-USA").css("display", "none");
             $("#dropdown-" + currentStateSelection).css("display", "block");
             $("#state-info").css("display", "none");
-            $("#precinct-info").css("display", "none");
+            $("#precinct-info-name").css("display", "none");
 
             currentStateSelection = "USA";
             console.log(map._layers);
@@ -385,8 +538,8 @@ $(document).ready(function(){
     // style P
   function zoomToFeatureP(e) {
       
-        $("#precinct-info").css("display", "inline");
-        $("#precinct-info-header").text(e.target.feature.properties.NAME);
+        $("#precinct-info-name").css("display", "inline");
+        $("#precinct-info-name-header").text(e.target.feature.properties.NAME);
 
         var total=e.target.feature.properties.G16PREDCli+e.target.feature.properties.G16PRERTru+e.target.feature.properties.G16PRELJoh+e.target.feature.properties.G16PREGSte+e.target.feature.properties.G16PREOth;
         
@@ -424,6 +577,24 @@ function randombetween(min, max) {
 }
         
         map.fitBounds(e.target.getBounds());
+    if (editLayer!= undefined) map.removeLayer(editLayer);
+    if (deleteLayer!= undefined) deleteLayer.addTo(map);
+    if (editable==1){
+        
+                 var latLong = [];
+        e.target.feature.geometry.coordinates[0].forEach(function(locationArray){  
+            locationArray.forEach(function(location){
+
+                latLong.push([location[1] , location[0]]);
+            });
+        });
+        var errorData = L.polygon(latLong).addTo(map);
+        errorData.enableEdit();
+        editLayer=errorData;
+        deleteLayer=e.target;
+        map.removeLayer(e.target);}
+        
+
         
     }
  function onEachFeatureP(feature, layer) {
@@ -484,7 +655,7 @@ function randombetween(min, max) {
         layer.on({
                 mouseover: highlightFeature,
                 mouseout: resetHighlightErrors,
-                click: zoomToFeature
+                click: zoomToFeatureE
             });
     }
 
@@ -566,13 +737,15 @@ function randombetween(min, max) {
 
     var cong_dist_layer = L.layerGroup();
     cong_dist_layer.addTo(map);
-var drawControl = new L.Control.Draw({
-         draw: false,
-         edit: {
-             featureGroup: geojson_errors
-         }
-     });
-     map.addControl(drawControl);
+//var drawControl = new L.Control.Draw({
+//         draw: false,
+//         edit: {
+//             featureGroup: geojson_errors
+//         }
+//     });
+//     map.addControl(drawControl);
+
+
 
 
     map.on('zoomend', function() {
@@ -651,10 +824,14 @@ var drawControl = new L.Control.Draw({
                 if (precinct_layer.hasLayer(geojson_pre)){
                     console.log("layer already added");
                 } else {
-                    
+                    //error_layer.addTo(map);
                     precinct_layer.addLayer(geojson_pre);
                 //    park_layer.addLayer(geojson_parks);
-                    error_layer.addLayer(geojson_errors);
+                   error_layer.addLayer(geojson_errors);
+                  
+                  
+                 
+                 
                     
                    
                 }
@@ -689,6 +866,7 @@ var drawControl = new L.Control.Draw({
                //     park_layer.removeLayer(geojson_parks);
                     precinct_layer.removeLayer(geojson_pre);
                     error_layer.removeLayer(geojson_errors);
+                  map.removeLayer(error_layer);
                     
                 } else {
                     console.log("no point layer active");
@@ -746,6 +924,9 @@ var drawControl = new L.Control.Draw({
                     
                 }
             };
+            
+            
+            
     
     
     state_layer.bringToBack();
