@@ -1,417 +1,417 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Congressional Redistricting</title>
-        <meta charset="UTF-8">        
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <!-- Import Bootstrap -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<head>
+    <title>Congressional Redistricting</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Import CSS -->
-        <link rel="stylesheet" href="css/home.css"/>
-		
-		<!-- Import Leaflet -->
-		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
-    	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
-                
-    </head>
-	
-	<body>
-	
+    <!-- Import Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-			<!-- Main Work Section -->
-			<div class="row" style="height:100%">
-				
-				<!-- Leaflet -->
-				<div class="col-9 no-margin shadow" style="padding-right:0;">
-					<div id="leaflet-div"></div>
-				</div>
-				
-				<!-- Main Opertaion Container-->
-				<div class="container col-md-3 no-margin">
-									<br>
-									<div class="row" >
-										<div style="align-content: center; padding-left: 15px">
-											<input type="checkbox" id="state-park-checkbox" >
-											<label for="state-park-checkbox"> Show State Park Boundaries</label>
-										</div>
-									</div>
-									<div class="row">
-										<div style="align-content: center; padding-left: 15px">
-											<input type="checkbox" id="congressional-district-checkbox">
-											<label for="state-park-checkbox"> Show Congressional District Boundaries</label>
-										</div>
-									</div>
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="css/home.css"/>
 
-                                    <br>
-					<!-- State Info -->
-					<div id="dropdown-state-holder" class="nav-item dropdown" style="align-content: center;"> 
-						<a class="btn dropdown-toggle" href="#" id="dropdown-state-select" type="button" data-toggle="dropdown"> Select State</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown1"> 
-							<a id="dropdown-USA" class="dropdown-item" href="#">Return To Map</a> 
-							<a id="dropdown-Georgia" class="dropdown-item" href="#">Georgia</a> 
-							<a id="dropdown-Maryland" class="dropdown-item" href="#">Maryland</a>
-							<a id="dropdown-Texas" class="dropdown-item" href="#">Texas</a> 
-						</div>
-					</div>
-                                        <br>							
-					<div id="state-info">	
-						<h1 id="state-info-header"></h1>
-					</div>
+    <!-- Import Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
 
-					<!--Operation Tab Selectors -->
-					<ul class="nav nav-tabs" id="main-operation-tab" role="tablist">
-						<li class="nav-item">
-							<a class="nav-link active" id="operation-info-tab" data-toggle="tab" href="#operation-info" role="tab" aria-controls="precinct-info" aria-selected="true">Precinct Information</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="operation-error-tab" data-toggle="tab" href="#operation-error" role="tab" aria-controls="precinct-error" aria-selected="false">Errors</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="operation-history-tab" data-toggle="tab" href="#operation-history" role="tab" aria-controls="precinct-comment" aria-selected="false">History</a>
-						</li>
-					</ul>
-					
-					<!--Full Operation Content Container-->
-					<div class="tab-content" id="operation-content-container">
-						
-						<!--Operation Info Container-->
-						<div class="tab-pane fade show active" id="operation-info" role="tabpanel" aria-labelledby="precinct-info-tab">
-							<!--Election Data Dropdown menu-->
-							<br>
-							<div class="row">
-								<div class="col-md-8">
-									<div class="dropdown">
-										<button id="district-county-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">Select a Congressional District/County</button> 
-										<div class="dropdown-menu" aria-labelledby="district-county-select-dropdown">
-											<a id="district-county-dropdown-1" class="dropdown-item" href="#">District 1</a>
-											<a id="district-county-dropdown-2" class="dropdown-item" href="#">County 1</a>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="dropdown">
-										<button id="precinct-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">Select a Precinct</button> 
-										<div class="dropdown-menu" aria-labelledby="district-county-select-dropdown">
-											<a id="precinct-dropdown-1" class="dropdown-item" href="#">Precinct 1</a>
-											<a id="precinct-dropdown-2" class="dropdown-item" href="#">Precinct 2</a>
-										</div>
-									</div>
-								</div>
-							</div>
-                                                        <br>
-							<div id="precinct-info-name">	
-								<h3 id="precinct-info-name-header" ></h3>
-							</div>
-                                                        <br>
-							<div class="row">
-								<div class="col-md-5">
-									<div class="dropdown">
-										<button id="election-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">
-											2016 Presidential Election
-										</button> 
-										<div class="dropdown-menu" aria-labelledby="election-select-dropdown">
-											<a id="election-dropdown-2016" class="dropdown-item" href="#">2016 Presidential Election</a>
-											<a id="election-dropdown-2012" class="dropdown-item" href="#">2012 Presidential Election</a>
-										</div>
-									</div>
-								</div>
-								
-								<div class="col-md-7">
-									<!--
-									<div class="row">
-										<input type="checkbox" id="state-park-checkbox">
-										<label for="state-park-checkbox"> Show State Park Boundaries</label>
-									</div>
-									<div class="row">
-										<input type="checkbox" id="congressional-district-checkbox">
-										<label for="state-park-checkbox"> Show Congressional District Boundaries</label>
-									</div>
+</head>
+
+<body>
+
+
+<!-- Main Work Section -->
+<div class="row" style="height:100%">
+
+    <!-- Leaflet -->
+    <div class="col-9 no-margin shadow" style="padding-right:0;">
+        <div id="leaflet-div"></div>
+    </div>
+
+    <!-- Main Opertaion Container-->
+    <div class="container col-md-3 no-margin">
+        <br>
+        <div class="row" >
+            <div style="align-content: center; padding-left: 15px">
+                <input type="checkbox" id="state-park-checkbox" >
+                <label for="state-park-checkbox"> Show State Park Boundaries</label>
+            </div>
+        </div>
+        <div class="row">
+            <div style="align-content: center; padding-left: 15px">
+                <input type="checkbox" id="congressional-district-checkbox">
+                <label for="state-park-checkbox"> Show Congressional District Boundaries</label>
+            </div>
+        </div>
+
+        <br>
+        <!-- State Info -->
+        <div id="dropdown-state-holder" class="nav-item dropdown" style="align-content: center;">
+            <a class="btn dropdown-toggle" href="#" id="dropdown-state-select" type="button" data-toggle="dropdown"> Select State</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <a id="dropdown-USA" class="dropdown-item" href="#">Return To Map</a>
+                <a id="dropdown-Georgia" class="dropdown-item" href="#">Georgia</a>
+                <a id="dropdown-Maryland" class="dropdown-item" href="#">Maryland</a>
+                <a id="dropdown-Texas" class="dropdown-item" href="#">Texas</a>
+            </div>
+        </div>
+        <br>
+        <div id="state-info">
+            <h1 id="state-info-header"></h1>
+        </div>
+
+        <!--Operation Tab Selectors -->
+        <ul class="nav nav-tabs" id="main-operation-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="operation-info-tab" data-toggle="tab" href="#operation-info" role="tab" aria-controls="precinct-info" aria-selected="true">Precinct Information</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="operation-error-tab" data-toggle="tab" href="#operation-error" role="tab" aria-controls="precinct-error" aria-selected="false">Errors</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="operation-history-tab" data-toggle="tab" href="#operation-history" role="tab" aria-controls="precinct-comment" aria-selected="false">History</a>
+            </li>
+        </ul>
+
+        <!--Full Operation Content Container-->
+        <div class="tab-content" id="operation-content-container">
+
+            <!--Operation Info Container-->
+            <div class="tab-pane fade show active" id="operation-info" role="tabpanel" aria-labelledby="precinct-info-tab">
+                <!--Election Data Dropdown menu-->
+                <br>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="dropdown">
+                            <button id="district-county-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">Select a Congressional District/County</button>
+                            <div class="dropdown-menu" aria-labelledby="district-county-select-dropdown">
+                                <a id="district-county-dropdown-1" class="dropdown-item" href="#">District 1</a>
+                                <a id="district-county-dropdown-2" class="dropdown-item" href="#">County 1</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="dropdown">
+                            <button id="precinct-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">Select a Precinct</button>
+                            <div class="dropdown-menu" aria-labelledby="district-county-select-dropdown">
+                                <a id="precinct-dropdown-1" class="dropdown-item" href="#">Precinct 1</a>
+                                <a id="precinct-dropdown-2" class="dropdown-item" href="#">Precinct 2</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div id="precinct-info-name">
+                    <h3 id="precinct-info-name-header" ></h3>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="dropdown">
+                            <button id="election-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">
+                                2016 Presidential Election
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="election-select-dropdown">
+                                <a id="election-dropdown-2016" class="dropdown-item" href="#">2016 Presidential Election</a>
+                                <a id="election-dropdown-2012" class="dropdown-item" href="#">2012 Presidential Election</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-7">
+                        <!--
+                        <div class="row">
+                            <input type="checkbox" id="state-park-checkbox">
+                            <label for="state-park-checkbox"> Show State Park Boundaries</label>
+                        </div>
+                        <div class="row">
+                            <input type="checkbox" id="congressional-district-checkbox">
+                            <label for="state-park-checkbox"> Show Congressional District Boundaries</label>
+                        </div>
 -->
-								</div>
-								<br>
-							</div>
-							<!--Voting Info Table-->
-							<table class="table">
-								<thead>
-									<tr>
-										<th scope="col">Party</th>
-										<th scope="col">Votes</th>
-										<th scope="col">Percentage of Votes</th>
-										<th scope="col"></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th scope="row">Democratic:</th>
-										<td id="raw-democratic-num"></td>
-										<td id="raw-democratic-num-prec"></td>
-										<td>
-											<button class="btn btn-secondary btn-sm" id="edit-democratic-btn">Edit</button>
-										</td>		
-									</tr>
-									<tr>
-										<th scope="row">Republican:</th>
-										<td id="raw-republican-num"></td>
-										<td id="raw-republican-num-prec"></td>
-										<td>
-											<button class="btn btn-secondary btn-sm" id="edit-republican-btn">Edit</button>
-										</td>		
-									</tr>
-									<tr>
-										<th scope="row">Third Party:</th>
-										<td id="raw-thirdparty-num"></td>
-										<td id="raw-thirdparty-num-prec"></td>
-										<td>
-											<button class="btn btn-secondary btn-sm" id="edit-thirdparty-btn">Edit</button>
-										</td>		
-									</tr>
-								</tbody>
-							</table>	
-							
-							<!--Demographic Info Table-->
-							<table class="table">
-								<thead>
-									<tr>
-										<th scope="col">Ethnicity</th>
-										<th scope="col">Population #</th>
-										<th scope="col">Population #</th>
-										<th scope="col"></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th scope="row">Total population:</th>
-										<td id="tot_pre_pop">-</td>
-										<td id="tot_pre_pop_perc">-</td>
-												
-									</tr>
-									<tr>
-										<th scope="row">African American:</th>
-										<td id="raw-africanamerican-num">-</td>
-										<td id="raw-africanamerican-num-perc">-</td>
-										<td>
-											<button class="btn btn-secondary btn-sm" id="edit-africanamerican-btn">Edit</button>
-										</td>		
-									</tr>
-									<tr>
-										<th scope="row">Asian:</th>
-										<td id="raw-asian-num">-</td>
-										<td id="raw-asian-num-perc">-</td>
-										<td>
-											<button class="btn btn-secondary btn-sm" id="edit-asian-btn">Edit</button>
-										</td>		
-									</tr>
-									<tr>
-										<th scope="row">Hispanic:</th>
-										<td id="raw-hispanic-num">-</td>
-										<td id="raw-hispanic-num-perc">-</td>
-										<td>
-											<button class="btn btn-secondary btn-sm" id="edit-hispanic-btn">Edit</button>
-										</td>		
-									</tr>
-									<tr>
-										<th scope="row">Native American:</th>
-										<td id="raw-nativeamerican-num">-</td>
-										<td id="raw-nativeamerican-num-perc">-</td>
-										<td>
-											<button class="btn btn-secondary btn-sm" id="edit-nativeamerican-btn">Edit</button>
-										</td>		
-									</tr>
-									<tr>
-										<th scope="row">White:</th>
-										<td id="raw-white-num">-</td>
-										<td id="raw-white-num-perc">-</td>
-										<td>
-											<button class="btn btn-secondary btn-sm" id="edit-white-btn">Edit</button>
-										</td>		
-									</tr>
-								</tbody>
-							</table>	
-						<!-- End of Opertaion Info Container-->	
-						</div>
-						
-						<!--Operation Error Container-->
-						<div class="tab-pane fade" id="operation-error" role="tabpanel" aria-labelledby="precinct-error-tab">	
-							<br>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="dropdown">
-										<button id="merge-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" disabled>Select Precint to Merge With</button> 
-										<div class="dropdown-menu" aria-labelledby="merge-select-dropdown">
-											<a id="merge-dropdown-1" class="dropdown-item" href="#">Precinct A</a>
-											<a id="merge-dropdown-2" class="dropdown-item" href="#">Precinct B</a>
-											<a id="merge-dropdown-3" class="dropdown-item" href="#">Precinct C</a>
-											<a id="merge-dropdown-4" class="dropdown-item" href="#">Precinct D</a>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<button class="btn btn-secondary" id="merge-selector" disabled>Confirm Merge</button>
-								</div>
-							</div>
-							<br>
-							<table class="table">
-								<thead>
-									<tr>
-										<th scope="col">Error</th>
-										<th scope="col">Location</th>
-										<th scope="col">Error Type</th>
-										<th scope="col">Fixed?</th>
-                                                                                <th scope="col">Comment</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr id="error-row-1">
-										<th scope="row">1</th>
-										<td id ="error1"><button>x,y</button></td>
-										<td>Overlapping Boarders</td>
-										<td>
-											<input type="checkbox" id="error-checkbox-1">
-										</td>
-										<td>
-											<button class="btn btn-secondary btn-sm" id="comment-btn-1">Edit</button>
-										</td>
-									</tr>
-									<tr id="error-row-2">
-										<th scope="row">2</th>
-                                                                                <td id ="error2"><button>x,y</button></td>
-										<td>Self-Intersecting Boarders</td>
-										<td>
-											<input type="checkbox" id="error-checkbox-2">
-										</td>
-										<td>
-											<button class="btn btn-secondary btn-sm" id="comment-btn-2">Edit</button>
-										</td>
-									</tr>
-									<tr id="error-row-3">
-										<th scope="row">3</th>
-										<td id ="error3"><button>x,y</button></td>
-										<td>Coverage Gap</td>
-										<td>
-											<input type="checkbox" id="error-checkbox-3">
-										</td>
-										<td>
-											<button class="btn btn-secondary btn-sm" id="comment-btn-3">Edit</button>
-										</td>
-									</tr>
-									<tr id="error-row-4">
-										<th scope="row">4</th>
-										<td id ="error4"><button>x,y</button></td>
-										<td>Open Boarders</td>
-										<td>
-											<input type="checkbox" id="error-checkbox-4">
-										</td>
-										<td>
-											<button class="btn btn-secondary btn-sm" id="comment-btn-4">Edit</button>
-										</td>
-									</tr>
-									<tr id="error-row-5">
-										<th scope="row">5</th>
-										<td id ="error5"><button>x,y</button></td>
-										<td>Enclosed Precinct</td>
-										<td>
-											<input type="checkbox" id="error-checkbox-5">
-										</td>
-										<td>
-											<button class="btn btn-secondary btn-sm" id="comment-btn-5">Edit</button>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<br>
-							<br>
-							<textarea id="error-comment-1" rows="10" cols="47" placeholder="Insert comment here"></textarea>
-							<textarea id="error-comment-2" rows="10" cols="47" placeholder="Insert comment here"></textarea>
-							<textarea id="error-comment-3" rows="10" cols="47" placeholder="Insert comment here"></textarea>
-							<textarea id="error-comment-4" rows="10" cols="47" placeholder="Insert comment here"></textarea>
-							<textarea id="error-comment-5" rows="10" cols="47" placeholder="Insert comment here"></textarea>
-						
-							
-						<!--End of Operation Error Container-->
-						</div>
+                    </div>
+                    <br>
+                </div>
+                <!--Voting Info Table-->
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Party</th>
+                        <th scope="col">Votes</th>
+                        <th scope="col">Percentage of Votes</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Democratic:</th>
+                        <td id="raw-democratic-num"></td>
+                        <td id="raw-democratic-num-prec"></td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" id="edit-democratic-btn">Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Republican:</th>
+                        <td id="raw-republican-num"></td>
+                        <td id="raw-republican-num-prec"></td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" id="edit-republican-btn">Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Third Party:</th>
+                        <td id="raw-thirdparty-num"></td>
+                        <td id="raw-thirdparty-num-prec"></td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" id="edit-thirdparty-btn">Edit</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
 
-						<!--Operation History Container-->
-						<div class="tab-pane fade" id="operation-history" role="tabpanel" aria-labelledby="precinct-comment-tab">
-							
-							<div class="row">
-								<div class="col-md-12">
-									<br>
-									<button class="btn btn-secondary" id="revert-btn" style="float: right">Revert Recent Change</button>
-								</div>
-							</div>
-							
-							<table class="table">
-								<thead>
-									<tr>
-										<th scope="col">Change #</th>
-										<th scope="col">Action</th>
-										<th scope="col">Location</th>
-										<th scope="col">Time</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr id="change-row-3">
-										<th scope="row">3</th>
-										<td>Precint reshaped</td>
-										<td>(x,y)</td>
-										<td>12:02:00</td>	
-									</tr>
-									<tr>
-										<th scope="row">2</th>
-										<td>Vertex added</td>
-										<td>(x,y)</td>
-										<td>12:01:00</td>	
-									</tr>
-									<tr>
-										<th scope="row">1</th>
-										<td>Precints Merged</td>
-										<td>(x,y)</td>
-										<td>12:00:00</td>	
-									</tr>
-								</tbody>
-							</table>
-						<!--End of Operation Comment Container-->
-						</div>
-					
-					<!--End of Full Operation Content Container-->
-					</div>
-                                      
-                                        <div class="bottomdiv">  Sources: National Historical GIS, Harvard Election Data Archive</div>
-				<!-- End of Main Opertaion Container-->
-				</div>
+                <!--Demographic Info Table-->
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Ethnicity</th>
+                        <th scope="col">Population #</th>
+                        <th scope="col">Population #</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Total population:</th>
+                        <td id="tot_pre_pop">-</td>
+                        <td id="tot_pre_pop_perc">-</td>
 
-			<!-- End of Main Work Section -->
-			</div>        
+                    </tr>
+                    <tr>
+                        <th scope="row">African American:</th>
+                        <td id="raw-africanamerican-num">-</td>
+                        <td id="raw-africanamerican-num-perc">-</td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" id="edit-africanamerican-btn">Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Asian:</th>
+                        <td id="raw-asian-num">-</td>
+                        <td id="raw-asian-num-perc">-</td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" id="edit-asian-btn">Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Hispanic:</th>
+                        <td id="raw-hispanic-num">-</td>
+                        <td id="raw-hispanic-num-perc">-</td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" id="edit-hispanic-btn">Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Native American:</th>
+                        <td id="raw-nativeamerican-num">-</td>
+                        <td id="raw-nativeamerican-num-perc">-</td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" id="edit-nativeamerican-btn">Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">White:</th>
+                        <td id="raw-white-num">-</td>
+                        <td id="raw-white-num-perc">-</td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" id="edit-white-btn">Edit</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!-- End of Opertaion Info Container-->
+            </div>
 
-	
-        
+            <!--Operation Error Container-->
+            <div class="tab-pane fade" id="operation-error" role="tabpanel" aria-labelledby="precinct-error-tab">
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="dropdown">
+                            <button id="merge-select-dropdown" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" disabled>Select Precint to Merge With</button>
+                            <div class="dropdown-menu" aria-labelledby="merge-select-dropdown">
+                                <a id="merge-dropdown-1" class="dropdown-item" href="#">Precinct A</a>
+                                <a id="merge-dropdown-2" class="dropdown-item" href="#">Precinct B</a>
+                                <a id="merge-dropdown-3" class="dropdown-item" href="#">Precinct C</a>
+                                <a id="merge-dropdown-4" class="dropdown-item" href="#">Precinct D</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-secondary" id="merge-selector" disabled>Confirm Merge</button>
+                    </div>
+                </div>
+                <br>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Error</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Error Type</th>
+                        <th scope="col">Fixed?</th>
+                        <th scope="col">Comment</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr id="error-row-1">
+                        <th scope="row">1</th>
+                        <td id ="error1"><button>x,y</button></td>
+                        <td>Overlapping Boarders</td>
+                        <td>
+                            <input type="checkbox" id="error-checkbox-1">
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" id="comment-btn-1">Edit</button>
+                        </td>
+                    </tr>
+                    <tr id="error-row-2">
+                        <th scope="row">2</th>
+                        <td id ="error2"><button>x,y</button></td>
+                        <td>Self-Intersecting Boarders</td>
+                        <td>
+                            <input type="checkbox" id="error-checkbox-2">
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" id="comment-btn-2">Edit</button>
+                        </td>
+                    </tr>
+                    <tr id="error-row-3">
+                        <th scope="row">3</th>
+                        <td id ="error3"><button>x,y</button></td>
+                        <td>Coverage Gap</td>
+                        <td>
+                            <input type="checkbox" id="error-checkbox-3">
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" id="comment-btn-3">Edit</button>
+                        </td>
+                    </tr>
+                    <tr id="error-row-4">
+                        <th scope="row">4</th>
+                        <td id ="error4"><button>x,y</button></td>
+                        <td>Open Boarders</td>
+                        <td>
+                            <input type="checkbox" id="error-checkbox-4">
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" id="comment-btn-4">Edit</button>
+                        </td>
+                    </tr>
+                    <tr id="error-row-5">
+                        <th scope="row">5</th>
+                        <td id ="error5"><button>x,y</button></td>
+                        <td>Enclosed Precinct</td>
+                        <td>
+                            <input type="checkbox" id="error-checkbox-5">
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" id="comment-btn-5">Edit</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <textarea id="error-comment-1" rows="10" cols="47" placeholder="Insert comment here"></textarea>
+                <textarea id="error-comment-2" rows="10" cols="47" placeholder="Insert comment here"></textarea>
+                <textarea id="error-comment-3" rows="10" cols="47" placeholder="Insert comment here"></textarea>
+                <textarea id="error-comment-4" rows="10" cols="47" placeholder="Insert comment here"></textarea>
+                <textarea id="error-comment-5" rows="10" cols="47" placeholder="Insert comment here"></textarea>
 
-		<!-- Remainder of Bootstrap components -->
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-		
-		
-		<!--JS Scripts -->
-                <script src="https://npmcdn.com/leaflet.path.drag/src/Path.Drag.js"></script>
-                <script src="js/Leaflet.Editable.js"></script>
-		<script src="/js/leaflet-0.7.2/leaflet.ajax.min.js"></script>
-		<script src="js/mapping.js"></script>
 
-		<script src ="js/selectstate.js"></script>
-		<script src ="js/selectelection.js"></script>
-		<script src ="js/selectstateinfo.js"></script>
-		<script src ="js/selectprecintinfo.js"></script>
-		
-		<script src="js/editinfo.js"></script>
-		<script src="js/editcomment.js"></script>
-		<script src="js/updateerrorrow.js"></script>
-		<script src="js/revertrecent.js"></script>
-		
-		
-	</body>
+                <!--End of Operation Error Container-->
+            </div>
+
+            <!--Operation History Container-->
+            <div class="tab-pane fade" id="operation-history" role="tabpanel" aria-labelledby="precinct-comment-tab">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <br>
+                        <button class="btn btn-secondary" id="revert-btn" style="float: right">Revert Recent Change</button>
+                    </div>
+                </div>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Change #</th>
+                        <th scope="col">Action</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr id="change-row-3">
+                        <th scope="row">3</th>
+                        <td>Precint reshaped</td>
+                        <td>(x,y)</td>
+                        <td>12:02:00</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Vertex added</td>
+                        <td>(x,y)</td>
+                        <td>12:01:00</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Precints Merged</td>
+                        <td>(x,y)</td>
+                        <td>12:00:00</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!--End of Operation Comment Container-->
+            </div>
+
+            <!--End of Full Operation Content Container-->
+        </div>
+
+        <div class="bottomdiv">  Sources: National Historical GIS, Harvard Election Data Archive</div>
+        <!-- End of Main Opertaion Container-->
+    </div>
+
+    <!-- End of Main Work Section -->
+</div>
+
+
+
+
+<!-- Remainder of Bootstrap components -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+<!--JS Scripts -->
+<script src="https://npmcdn.com/leaflet.path.drag/src/Path.Drag.js"></script>
+<script src="js/Leaflet.Editable.js"></script>
+<script src="/js/leaflet-0.7.2/leaflet.ajax.min.js"></script>
+<script src="js/mapping.js"></script>
+
+<script src ="js/selectstate.js"></script>
+<script src ="js/selectelection.js"></script>
+<script src ="js/selectstateinfo.js"></script>
+<script src ="js/selectprecintinfo.js"></script>
+
+<script src="js/editinfo.js"></script>
+<script src="js/editcomment.js"></script>
+<script src="js/updateerrorrow.js"></script>
+<script src="js/revertrecent.js"></script>
+
+
+</body>
 </html>
