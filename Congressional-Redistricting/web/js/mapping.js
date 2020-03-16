@@ -362,6 +362,7 @@ $(document).ready(function(){
     var editLayer;
     var deleteLayer;
     function zoomToFeatureE(e) {
+        setToempty();
         map.fitBounds(e.target.getBounds());
 
     }
@@ -434,8 +435,72 @@ $(document).ready(function(){
         $("#dropdown-Texas").show();
         $("#dropdown-Georgia").show();
         $("#dropdown-Maryland").show();
+        setToempty();
 
-        document.getElementById("raw-democratic-num").innerHTML="";
+      
+        
+
+    });
+    
+
+    $("#dropdown-Georgia").on("click", function () {
+        map._layers["Georgia"].fire('click');
+    });
+
+    $("#dropdown-Maryland").on("click", function () {
+        map._layers["Maryland"].fire('click');
+
+    });
+
+    $("#dropdown-Texas").on("click", function () {
+        map._layers["Texas"].fire('click');
+    });
+    featureByName={};
+    $("#error1").on("click", function () {
+        setToempty();
+        map.fitBounds(featureByName["err_1"].getBounds());
+
+    });
+    $("#error2").on("click", function () {
+        setToempty();
+        map.fitBounds(featureByName["err_2"].getBounds());
+
+    });
+    $("#error3").on("click", function () {
+        setToempty();
+        map.fitBounds(featureByName["err_3"].getBounds());
+
+    });
+    $("#error4").on("click", function () {
+        setToempty();
+        map.fitBounds(featureByName["err_4"].getBounds());
+
+    });
+    $("#error5").on("click", function () {
+        setToempty();
+        map.fitBounds(featureByName["err_5"].getBounds());
+
+    });
+    $("#error5").on("click", function () {
+        setToempty();
+        map.fitBounds(featureByName["err_5"].getBounds());
+
+    });
+    document.getElementById('state-park-checkbox').onclick = function() {
+        // access properties using this keyword
+        if ( this.checked ) {
+            if (!park_layer.hasLayer(geojson_parks)){
+                park_layer.addLayer(geojson_parks);
+            }
+        } else {
+            if (park_layer.hasLayer(geojson_parks)){
+                park_layer.removeLayer(geojson_parks);
+            }
+
+        }
+    };
+    function setToempty(){
+          document.getElementById("raw-democratic-num").innerHTML="";
         document.getElementById("raw-republican-num").innerHTML = "";
         document.getElementById("raw-thirdparty-num").innerHTML = "";
         document.getElementById("raw-democratic-num-prec").innerHTML="";
@@ -455,60 +520,17 @@ $(document).ready(function(){
         document.getElementById("raw-hispanic-num-perc").innerHTML="";
         document.getElementById("raw-asian-num-perc").innerHTML="";
         document.getElementById("raw-white-num-perc").innerHTML="";
-
-    });
-
-    $("#dropdown-Georgia").on("click", function () {
-        map._layers["Georgia"].fire('click');
-    });
-
-    $("#dropdown-Maryland").on("click", function () {
-        map._layers["Maryland"].fire('click');
-
-    });
-
-    $("#dropdown-Texas").on("click", function () {
-        map._layers["Texas"].fire('click');
-    });
-    featureByName={};
-    $("#error1").on("click", function () {
-        map.fitBounds(featureByName["err_1"].getBounds());
-
-    });
-    $("#error2").on("click", function () {
-        map.fitBounds(featureByName["err_2"].getBounds());
-
-    });
-    $("#error3").on("click", function () {
-        map.fitBounds(featureByName["err_3"].getBounds());
-
-    });
-    $("#error4").on("click", function () {
-        map.fitBounds(featureByName["err_4"].getBounds());
-
-    });
-    $("#error5").on("click", function () {
-        map.fitBounds(featureByName["err_5"].getBounds());
-
-    });
-    $("#error5").on("click", function () {
-        map.fitBounds(featureByName["err_5"].getBounds());
-
-    });
-    document.getElementById('state-park-checkbox').onclick = function() {
-        // access properties using this keyword
-        if ( this.checked ) {
-            if (!park_layer.hasLayer(geojson_parks)){
-                park_layer.addLayer(geojson_parks);
-            }
-        } else {
-            if (park_layer.hasLayer(geojson_parks)){
-                park_layer.removeLayer(geojson_parks);
-            }
-
-        }
-    };
-
+        
+        document.getElementById("edit-democratic-btn").style.display = "none";
+        document.getElementById("edit-republican-btn").style.display = "none";
+        document.getElementById("edit-thirdparty-btn").style.display = "none";
+        document.getElementById("edit-africanamerican-btn").style.display = "none";
+        document.getElementById("edit-democratic-btn").style.display = "none";
+        document.getElementById("edit-asian-btn").style.display = "none";
+        document.getElementById("edit-hispanic-btn").style.display = "none";
+        document.getElementById("edit-nativeamerican-btn").style.display = "none";
+        document.getElementById("edit-white-btn").style.display = "none";
+    }
 
     // Interaction behaviors.
     function onEachFeature(feature, layer) {
@@ -600,6 +622,8 @@ $(document).ready(function(){
         document.getElementById("raw-democratic-num-prec").innerHTML=Math.round(e.target.feature.properties.G16PREDCli/total*100).toString()+"%";
         document.getElementById("raw-republican-num-prec").innerHTML = Math.round(e.target.feature.properties.G16PRERTru/total*100).toString()+"%";
         document.getElementById("raw-thirdparty-num-prec").innerHTML = Math.round((e.target.feature.properties.G16PRELJoh+e.target.feature.properties.G16PREGSte+e.target.feature.properties.G16PREOth)/total*100).toString()+"%";
+        
+        //document.getElementById("raw-republican-num").innerHTML = e.target.feature.properties.G16PRERTru;
 
         var max = e.target.feature.properties.G16PREDCli + e.target.feature.properties.G16PRERTru + e.target.feature.properties.G16PRELJoh+e.target.feature.properties.G16PREGSte+e.target.feature.properties.G16PREOth;
         var r0 = randombetween(1, max-4);
@@ -626,6 +650,16 @@ $(document).ready(function(){
         function randombetween(min, max) {
             return Math.floor(Math.random()*(max-min+1)+min);
         }
+        
+        document.getElementById("edit-democratic-btn").style.display = "block";
+        document.getElementById("edit-republican-btn").style.display = "block";
+        document.getElementById("edit-thirdparty-btn").style.display = "block";
+        document.getElementById("edit-africanamerican-btn").style.display = "block";
+        document.getElementById("edit-democratic-btn").style.display = "block";
+        document.getElementById("edit-asian-btn").style.display = "block";
+        document.getElementById("edit-hispanic-btn").style.display = "block";
+        document.getElementById("edit-nativeamerican-btn").style.display = "block";
+        document.getElementById("edit-white-btn").style.display = "block";
 
         map.fitBounds(e.target.getBounds());
         if (editLayer!= undefined) map.removeLayer(editLayer);
