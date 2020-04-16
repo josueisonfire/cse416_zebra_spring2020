@@ -22,25 +22,26 @@ $(document).ready(function(){
     }
 
     //Selective Maryland county boundary data.
-    var countyData = getJSON_data("http://localhost:8080/Congressional-Redistricting/maryland_counties.json")
-    console.log('loaded json for county')
-    console.log(countyData)
+    var countyData = getJSON_data("http://localhost:8080/Congressional-Redistricting/maryland_counties.json");
+    console.log('loaded json for county');
+    console.log(countyData);
+   
     // Selective precinct data.
-    var precinctData = getJSON_data("http://localhost:8080/Congressional-Redistricting/maryland_precincts.json")
-    console.log('loaded json for precinct')
-    console.log(countyData)
+    var precinctData = getJSON_data("http://localhost:8080/Congressional-Redistricting/maryland1.geojson");
+    console.log('loaded json for precinct');
+    console.log(countyData);
     // State boundaries.
-    var statesData = getJSON_data("http://localhost:8080/Congressional-Redistricting/us_states.json")
-    console.log('loaded json for states')
-    console.log(countyData)
+    var statesData = getJSON_data("http://localhost:8080/Congressional-Redistricting/us_states.json");
+    console.log('loaded json for states');
+    console.log(countyData);
     //Park data
-    var parkData = getJSON_data("http://localhost:8080/Congressional-Redistricting/maryland_parks.json")
-    console.log('loaded json for parks')
-    console.log(parkData)
+    var parkData = getJSON_data("http://localhost:8080/Congressional-Redistricting/maryland_parks.json");
+    console.log('loaded json for parks');
+    console.log(parkData);
     //error data
-    var errorData = getJSON_data("http://localhost:8080/Congressional-Redistricting/err_list.json")
-    console.log('loaded json for errors')
-    console.log(errorData)
+    var errorData = getJSON_data("http://localhost:8080/Congressional-Redistricting/err_list.json");
+    console.log('loaded json for errors');
+    console.log(errorData);
     //var error_layer = L.layerGroup();
 
 //$.ajax({
@@ -70,9 +71,9 @@ $(document).ready(function(){
 //}});
 
     //congressional districy data
-    var congDistrData = getJSON_data("http://localhost:8080/Congressional-Redistricting/all_cong_districts.json")
-    console.log('loaded json for congressional district data')
-    console.log(congDistrData)
+    var congDistrData = getJSON_data("http://localhost:8080/Congressional-Redistricting/all_cong_districts.json");
+    console.log('loaded json for congressional district data');
+    console.log(congDistrData);
 
 
     // Init map.
