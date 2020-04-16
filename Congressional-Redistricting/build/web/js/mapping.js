@@ -684,7 +684,7 @@ $(document).ready(function(){
 
     }
     function onEachFeatureP(feature, layer) {
-        layer.bindPopup('<p>JURIS: '+feature.properties.JURIS+'</p>'+'<p>NAME: '+feature.properties.NAME+'</p>Republican:'+feature.properties.G16PRERTru+'</p>'+'</p>Democratic:'+feature.properties.G16PREDCli+'</p>');
+        layer.bindPopup('<p>JURIS: '+feature.properties.JURIS+'</p>'+'<p>NAME: '+feature.properties.NAME+'</p>Republican:'+feature.properties.G16PRERTru+'</p>'+'</p>Democratic:'+feature.properties.G16PREDCli+'</p>'+'</p>Error:'+feature.properties.errors+'</p>');
         layer.on({
             mouseover: highlightFeature,
             mouseout: resetHighlightP,
